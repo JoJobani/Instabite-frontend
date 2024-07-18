@@ -8,7 +8,7 @@ function getEmptyUser() {
         username: '',
         password: '',
         fullname: '',
-        imageUrl: '',
+        imgUrl: '',
         following: [],
         followers: [],
         likedStories: [],

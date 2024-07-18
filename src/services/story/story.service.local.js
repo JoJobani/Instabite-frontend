@@ -20,8 +20,8 @@ window.cs = storyService
 
 async function query(filterBy = {}) {
     var stories = await storageService.query(STORAGE_KEY)
-    if (filterBy.by._id) {
-        stories = storys.filter(story => filterBy.by._id === story.by._id)
+    if (filterBy.by) {
+        stories = stories.filter(story => filterBy.by._id === story.by._id)
     }
     return stories
 }
@@ -35,7 +35,6 @@ async function remove(storyId) {
 }
 
 async function save(story) {
-    var savedStory
     if (story._id) {
         const storyToSave = {
             _id: story._id,
@@ -43,7 +42,7 @@ async function save(story) {
             comments: story.comments,
             likedBy: story.likedBy
         }
-        savedStory = await storageService.put(STORAGE_KEY, storyToSave)
+        return await storageService.put(STORAGE_KEY, storyToSave)
     } else {
         const storyToSave = {
             txt: story.txt,
@@ -53,9 +52,8 @@ async function save(story) {
             comments: [],
             likedBy: []
         }
-        savedStory = await storageService.story(STORAGE_KEY, storyToSave)
+        return await storageService.post(STORAGE_KEY, storyToSave)
     }
-    return savedStory
 }
 
 async function addStoryComment(storyId, txt) {
@@ -79,7 +77,6 @@ async function _demoStories() {
                 imgUrl: 'https://picsum.photos/200/300',
             }
             await save(story)
-            console.log(story)
         }
     }
 }
