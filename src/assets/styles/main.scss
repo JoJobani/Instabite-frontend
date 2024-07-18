@@ -16,10 +16,17 @@
 @import "pages/UserDetails";
 @import "pages/StoryDetails";
 
-// Components
+//App Components
 @import "cmps/AppNav";
 @import "cmps/AppFooter";
 @import "cmps/Search";
-
 @import "cmps/StoryList";
 @import "cmps/StoryPreview";
+
+//Story components
+@import "cmps/story/StoryComments";
+@import "cmps/story/StoryControls";
+@import "cmps/story/StoryHeader";
+@import "cmps/story/StoryImg";
+@import "cmps/story/StoryLikes";
+@import "cmps/story/StoryText";

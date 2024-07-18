@@ -1,0 +1,20 @@
+.story-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block-start: 4px;
+    height: 40px;
+
+    .story-controls-left {
+        display: flex;
+
+        >* {
+            margin: 8px 16px 8px 0;
+        }
+    }
+
+    .story-controls-right {
+        display: flex;
+        justify-content: end;
+    }
+}
