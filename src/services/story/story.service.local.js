@@ -3,7 +3,7 @@ import { storageService } from '../async-storage.service'
 import { makeId, makeLorem } from '../util.service'
 import { userService } from '../user'
 
-const STORAGE_KEY = 'story'
+const STORAGE_KEY = 'storyDB'
 
 export const storyService = {
     query,
@@ -74,7 +74,7 @@ async function _demoStories() {
         for (let i = 0; i < 5; i++) {
             const story = {
                 txt: makeLorem(5),
-                imgUrl: 'https://picsum.photos/200/300',
+                imgUrl: 'https://picsum.photos/200',
             }
             await save(story)
         }

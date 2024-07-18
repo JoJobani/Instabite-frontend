@@ -1,16 +1,26 @@
 // Colors
 $black1: #000000;
-$black2:#1c1e21;
-$black3:#262626;
+$black2: #1c1e21;
+$black3: #262626;
 $blue1: #0095f6;
-$blue2:#00376b;
-$red:#ff3040;
+$blue2: #00376b;
+$red: #ff3040;
 
 $gray1: #737373;
 $gray2: #8e8e8e;
 $gray3: #c7c7c7;
 $gray4: #efefef;
 $gray5: #fafafa;
+
+//Font size
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
 
 // Breakpoints
 $mobile-breakpoint: 767px;
