@@ -1,6 +1,6 @@
 
 import { storageService } from '../async-storage.service'
-import { makeId } from '../util.service'
+import { makeId, makeLorem } from '../util.service'
 import { userService } from '../user'
 
 const STORAGE_KEY = 'story'
@@ -12,6 +12,8 @@ export const storyService = {
     remove,
     addStoryComment
 }
+
+_demoStories()
 
 //For debugging
 window.cs = storyService
@@ -46,7 +48,8 @@ async function save(story) {
         const storyToSave = {
             txt: story.txt,
             imgUrl: story.imgUrl,
-            by: userService.getLoggedinUser(),
+            by: _getTestUser(),
+            // by: userService.getLoggedinUser(),
             comments: [],
             likedBy: []
         }
@@ -56,7 +59,6 @@ async function save(story) {
 }
 
 async function addStoryComment(storyId, txt) {
-    // Later, this is all done by the backend
     const story = await getById(storyId)
     const comment = {
         id: makeId(),
@@ -66,4 +68,26 @@ async function addStoryComment(storyId, txt) {
     story.comments.push(comment)
     await storageService.put(STORAGE_KEY, story)
     return comment
+}
+
+async function _demoStories() {
+    let stories = query()
+    if (!stories || !stories.length) {
+        for (let i = 0; i < 5; i++) {
+            const story = {
+                txt: makeLorem(5),
+                imgUrl: 'https://picsum.photos/200/300',
+            }
+            await save(story)
+            console.log(story)
+        }
+    }
+}
+
+function _getTestUser() {
+    return {
+        _id: 'u101',
+        fullname: 'mr tester',
+        imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
+    }
 }

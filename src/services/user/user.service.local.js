@@ -2,6 +2,9 @@ import { storageService } from '../async-storage.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
+//unmark this when creating users
+// _createAdmin()
+
 export const userService = {
     login,
     logout,
@@ -79,16 +82,14 @@ function saveLoggedinUser(user) {
     return user
 }
 
-// To quickly create an admin user, uncomment the next line
-if (getUsers().length === 0) {
-    _createAdmin()
-}
 async function _createAdmin() {
-    const user = {
-        username: 'admin',
-        password: 'admin',
-        fullname: 'Mustafa Adminsky'
+    if (!getUsers() || !getUsers().length) {
+        const user = {
+            username: 'admin',
+            password: 'admin',
+            fullname: 'Mustafa Adminsky'
+        }
+        const newUser = signup(user)
+        console.log('newUser: ', newUser)
     }
-    const newUser = signup(user)
-    console.log('newUser: ', newUser)
 }
