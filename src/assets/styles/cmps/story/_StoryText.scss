@@ -1,14 +1,12 @@
 .story-txt {
-    display: flex;
     margin-top: 6px;
-    height: 18px;
+
+    p {
+        margin: 0;
+    }
 
     .user {
         font-weight: $font-weight-semibold;
-    }
-
-    >* {
-        margin: 0;
-        padding-right: 4px;
+        cursor: pointer;
     }
 }

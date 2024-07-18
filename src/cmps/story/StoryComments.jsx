@@ -18,7 +18,7 @@ export function StoryComments({ story, openComments, addComment }) {
         <div className="story-comments">
             <section
                 className="comment-count"
-                onClick={openComments}
+                onClick={() => openComments(story._id)}
             >
                 View all {story.comments.length} Comments
             </section>
@@ -31,7 +31,8 @@ export function StoryComments({ story, openComments, addComment }) {
                         className="comment-input"
                         name="comment"
                         placeholder="Add a comment..."
-                        autoComplete="off">
+                        autoComplete="off"
+                        >
                     </textarea>
                 </form>
                 <Emoji />

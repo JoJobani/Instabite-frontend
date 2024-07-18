@@ -12,10 +12,12 @@
             align-items: center;
             width: fit-content;
             gap: 10px;
+            cursor: pointer;
 
             img {
                 width: 32px;
                 height: 32px;
+                border-radius: 50%;
             }
 
             p {
@@ -29,6 +31,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
     }
 
 }

@@ -2,13 +2,15 @@ export function StoryText({ story, clickUser }) {
 
     return (
         <section className="story-txt">
-            <p
-                className="user"
-                onClick={clickUser}
-            >
-                {story.by.fullname}
+            <p>
+                <span
+                    className="user"
+                    onClick={() => clickUser(story.by._id)}
+                >
+                    {story.by.fullname}
+                </span>
+                {" " + story.txt}
             </p>
-            {story.txt}
         </section>
     )
 }

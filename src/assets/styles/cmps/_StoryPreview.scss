@@ -1,4 +1,5 @@
 .story-preview {
     display: flex;
     flex-direction: column;
+    width: min(470px, 100vw);
 }
