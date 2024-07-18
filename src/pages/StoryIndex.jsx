@@ -6,11 +6,18 @@ import { StoryList } from "../cmps/StoryList.jsx"
 
 export function StoryIndex() {
     const stories = useSelector(storeState => storeState.storyModule.stories)
-    const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
 
     useEffect(() => {
-        loadStories()
-    }, [])
+        awaitLoad()
+    }, [stories])
+
+    async function awaitLoad() {
+        try {
+            await loadStories()
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     function clickUser(userId) {
         console.log(`clicked user ${userId}`)
@@ -42,8 +49,9 @@ export function StoryIndex() {
 
     return (
         <main className="story-index">
-            {!isLoading
-                ? <StoryList
+            {!stories || !stories.length
+                ? <div>Loading...</div>
+                : <StoryList
                     stories={stories}
                     clickUser={clickUser}
                     clickMore={clickMore}
@@ -53,7 +61,6 @@ export function StoryIndex() {
                     saveStory={saveStory}
                     openLikedBy={openLikedBy}
                 />
-                : <div>Loading...</div>
             }
         </main>
     )
