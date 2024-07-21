@@ -1,4 +1,5 @@
 import Like from '../../assets/svg/Like.svg?react'
+import Unlike from '../../assets/svg/Unlike.svg?react'
 import Comment from '../../assets/svg/Comment.svg?react'
 import Share from '../../assets/svg/Share.svg?react'
 import Save from '../../assets/svg/Save.svg?react'
@@ -14,7 +15,7 @@ export function StoryControls({ story, toggleLike, openComments, shareStory, sav
             <div className="story-controls-left">
                 <div onClick={() => toggleLike(story._id)}>
                     {isLiked
-                        ? <Like fill="red" />
+                        ? <Unlike fill="red" />
                         : <Like />}
                 </div>
                 <div onClick={() => openComments(story._id)}>
