@@ -78,7 +78,7 @@ async function addStoryComment(storyId, txt) {
     }
     story.comments.push(comment)
     await storageService.put(STORAGE_KEY, story)
-    return comment
+    return story
 }
 
 async function _demoStories() {

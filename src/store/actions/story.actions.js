@@ -1,6 +1,6 @@
 import { storyService } from '../../services/story'
 import { store } from '../store'
-import { ADD_STORY, REMOVE_STORY, SET_STORIES, SET_STORY, UPDATE_STORY, ADD_STORY_COMMENT } from '../reducers/story.reducer.js'
+import { ADD_STORY, REMOVE_STORY, SET_STORIES, SET_STORY, UPDATE_STORY } from '../reducers/story.reducer.js'
 
 export async function loadStories(filterBy) {
     try {
@@ -14,7 +14,10 @@ export async function loadStories(filterBy) {
 
 export async function loadStory(storyId) {
     try {
-        const story = await storyService.getById(storyId)
+        const story = null
+        if (storyId) {
+            story = await storyService.getById(storyId)
+        }
         store.dispatch(getCmdSetStory(story))
     } catch (err) {
         console.log('Cannot load story', err)
@@ -67,9 +70,9 @@ export async function toggleStoryLike(storyId) {
 
 export async function addStoryComment(storyId, txt) {
     try {
-        const comment = await storyService.addStoryComment(storyId, txt)
-        store.dispatch(getCmdAddStoryComment(comment))
-        return comment
+        const story = await storyService.addStoryComment(storyId, txt)
+        store.dispatch(getCmdUpdateStory(story))
+        return story
     } catch (err) {
         console.log('Cannot add story comment', err)
         throw err
@@ -105,19 +108,5 @@ function getCmdUpdateStory(story) {
     return {
         type: UPDATE_STORY,
         story
-    }
-}
-
-function getCmdUpdateLikes(likedBy) {
-    return {
-        type: UPDATE_STORY_LIKES,
-        likedBy
-    }
-}
-
-function getCmdAddStoryComment(comment) {
-    return {
-        type: ADD_STORY_COMMENT,
-        comment
     }
 }
