@@ -3,7 +3,7 @@ import { storageService } from '../async-storage.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 //unmark this when creating users
-// _createAdmin()
+_createAdmin()
 
 export const userService = {
     login,
@@ -83,13 +83,14 @@ function saveLoggedinUser(user) {
 }
 
 async function _createAdmin() {
-    if (!getUsers() || !getUsers().length) {
+    const users = await getUsers()
+    if (!users || !users.length) {
+        console.log('creating admin')
         const user = {
             username: 'admin',
             password: 'admin',
             fullname: 'Mustafa Adminsky'
         }
         const newUser = signup(user)
-        console.log('newUser: ', newUser)
     }
 }
