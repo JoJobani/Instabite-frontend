@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router'
+import { useState } from 'react'
 
 // import { LoginSignup } from './pages/LoginSignup.jsx'
 import { StoryIndex } from './pages/StoryIndex.jsx'
@@ -7,11 +8,23 @@ import { StoryIndex } from './pages/StoryIndex.jsx'
 // import { UserDetails } from './pages/UserDetails.jsx'
 // import { AppFooter } from './cmps/AppFooter.jsx'
 import { AppNav } from './cmps/AppNav.jsx'
+import { ImgUploader } from './cmps/ImgUploader.jsx'
+
 
 export function RootCmp() {
+    const [isUploading, setIsUploading] = useState(false)
+
+
+    function onClickUpload() {
+        console.log('click')
+        setIsUploading(true)
+    }
+
+
     return (
         <div className="main-container">
-            <AppNav />
+            <AppNav onClickUpload={onClickUpload} />
+            {isUploading && <ImgUploader />}
             <main>
                 <Routes>
                     <Route path="" element={<StoryIndex />} />

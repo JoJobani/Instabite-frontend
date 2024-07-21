@@ -28,12 +28,14 @@
             margin: 0;
 
             .link {
+                background: none;
                 height: 56px;
                 width: 220px;
                 margin-block: 4px;
                 padding: 12px;
                 display: flex;
                 align-items: center;
+                border: none;
                 border-radius: 10px;
                 color: black;
 

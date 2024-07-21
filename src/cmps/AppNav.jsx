@@ -11,7 +11,7 @@ import Create from '../assets/svg/Create.svg?react'
 import Hamburger from '../assets/svg/Hamburger.svg?react'
 
 
-export function AppNav() {
+export function AppNav({ onClickUpload }) {
     const navigate = useNavigate()
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
@@ -41,10 +41,10 @@ export function AppNav() {
                         <Messenger />
                         <p>Messages</p>
                     </NavLink>
-                    <NavLink to='/' className='link'>
+                    <button className='link' onClick={() => onClickUpload()}>
                         <Create />
                         <p>Create</p>
-                    </NavLink>
+                    </button>
                     <NavLink to='/' className='link'>
                         <img src={loggedInUser.imgUrl} />
                         <p>Profile</p>
