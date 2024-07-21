@@ -14,7 +14,7 @@ export async function loadStories(filterBy) {
 
 export async function loadStory(storyId) {
     try {
-        const story = null
+        let story = null
         if (storyId) {
             story = await storyService.getById(storyId)
         }

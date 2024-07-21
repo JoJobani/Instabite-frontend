@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 import { loadStories, loadStory, removeStory, toggleStoryLike, addStoryComment } from "../store/actions/story.actions.js"
-import { userService } from "../services/user/index.js"
-import { storyService } from "../services/story/index.js"
 import { StoryList } from "../cmps/StoryList.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 import { StoryDetails } from "./StoryDetails.jsx"
 
 export function StoryIndex() {
     const stories = useSelector(storeState => storeState.storyModule.stories)
-    const [focusedStory, setFocuesdStory] = useState(null)
+    const story = useSelector(storeState => storeState.storyModule.story)
     const [openedStoryOptions, setOpenedStoryOptions] = useState(false)
     const [openedStoryDetails, setOpenedStoryDetails] = useState(false)
 
@@ -31,26 +28,24 @@ export function StoryIndex() {
     }
 
     async function clickMore(storyId) {
-        const story = await storyService.getById(storyId)
-        setFocuesdStory(story)
+        await loadStory(storyId)
         setOpenedStoryOptions(true)
     }
 
     async function openDetails(storyId) {
-        const story = await storyService.getById(storyId)
-        setFocuesdStory(story)
+        await loadStory(storyId)
         setOpenedStoryDetails(true)
     }
 
     function onCloseModal() {
         setOpenedStoryOptions(false)
         setOpenedStoryDetails(false)
-        setFocuesdStory(null)
+        loadStory(null)
     }
 
     async function onRemoveStory() {
         try {
-            await removeStory(focusedStory._id)
+            await removeStory(story._id)
             onCloseModal()
         } catch (err) {
             console.log(err)
@@ -89,7 +84,6 @@ export function StoryIndex() {
         <main className="story-index">
             {openedStoryDetails &&
                 <StoryDetails
-                    story={focusedStory}
                     clickUser={clickUser}
                     clickMore={clickMore}
                     toggleLike={toggleLike}
@@ -101,7 +95,6 @@ export function StoryIndex() {
                 />}
             {openedStoryOptions &&
                 <StoryOptionsModal
-                    focusedStory={focusedStory}
                     onCloseModal={onCloseModal}
                     onRemoveStory={onRemoveStory} />}
             {!stories || !stories.length

@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import { useSelector } from "react-redux"
 
 import { StoryHeader } from "../cmps/story/StoryHeader.jsx"
 import { StoryImg } from "../cmps/story/StoryImg.jsx"
@@ -9,7 +10,6 @@ import { StoryComments } from '../cmps/story/StoryComments.jsx'
 import { StoryAddComment } from "../cmps/story/StoryAddComment.jsx"
 
 export function StoryDetails({
-    story,
     clickUser,
     clickMore,
     toggleLike,
@@ -20,6 +20,7 @@ export function StoryDetails({
     onCloseModal
 }) {
     const modalContentRef = useRef(null)
+    const story = useSelector(storeState => storeState.storyModule.story)
 
     useEffect(() => {
         function handleClickOutside(ev) {
