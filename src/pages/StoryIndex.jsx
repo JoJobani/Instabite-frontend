@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
-import { loadStories, loadStory, removeStory, toggleStoryLike } from "../store/actions/story.actions.js"
+import { loadStories, loadStory, removeStory, toggleStoryLike, addStoryComment } from "../store/actions/story.actions.js"
 import { userService } from "../services/user/index.js"
 import { storyService } from "../services/story/index.js"
 import { StoryList } from "../cmps/StoryList.jsx"
@@ -29,7 +29,6 @@ export function StoryIndex() {
     }
 
     async function clickMore(storyId) {
-        console.log(storyId)
         const story = await storyService.getById(storyId)
         setFocuesdStory(story)
         setOpenedStoryOptions(true)
@@ -52,6 +51,15 @@ export function StoryIndex() {
     async function toggleLike(storyId) {
         try {
             await toggleStoryLike(storyId)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    async function addComment(storyId, txt) {
+        try {
+            console.log('click')
+            await addStoryComment(storyId, txt)
         } catch (err) {
             console.log(err)
         }
@@ -87,6 +95,7 @@ export function StoryIndex() {
                     clickUser={clickUser}
                     clickMore={clickMore}
                     toggleLike={toggleLike}
+                    addComment={addComment}
                     openComments={openComments}
                     shareStory={shareStory}
                     saveStory={saveStory}

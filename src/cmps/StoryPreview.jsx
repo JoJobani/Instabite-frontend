@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { StoryHeader } from "./story/StoryHeader.jsx"
 import { StoryImg } from "./story/StoryImg.jsx"
 import { StoryControls } from "./story/StoryControls.jsx"
@@ -12,6 +10,7 @@ export function StoryPreview({
     clickUser,
     clickMore,
     toggleLike,
+    addComment,
     openComments,
     shareStory,
     saveStory,
@@ -46,6 +45,7 @@ export function StoryPreview({
             <StoryComments
                 story={story}
                 openComments={openComments}
+                addComment={addComment}
             />
         </section>
     )

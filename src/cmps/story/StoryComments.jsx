@@ -6,7 +6,8 @@ export function StoryComments({ story, openComments, addComment }) {
 
     function onAddComment(ev) {
         ev.preventDefault()
-        addComment(commentToAdd)
+        addComment(story._id, comment)
+        setComment('')
     }
 
     function handleChange(ev) {
@@ -32,8 +33,12 @@ export function StoryComments({ story, openComments, addComment }) {
                         name="comment"
                         placeholder="Add a comment..."
                         autoComplete="off"
-                        >
-                    </textarea>
+                    />
+                    {comment &&
+                        <button>
+                            Post
+                        </button>
+                    }
                 </form>
                 <Emoji />
             </section>
