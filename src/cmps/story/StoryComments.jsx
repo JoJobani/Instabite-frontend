@@ -1,11 +1,20 @@
-export function StoryComments({ story, openDetails }) {
+export function StoryComments({ story }) {
 
     return (
-        <section
-            className="comment-count"
-            onClick={() => openDetails(story._id)}
-        >
-            View all {story.comments.length} Comments
-        </section>
+        <ul className="story-comments">
+            {story.comments.map(comment => (
+                <li key={comment.id}>
+                    <img src={comment.by.imgUrl} />
+                    <p>
+                        <span
+                            className="user"
+                        >
+                            {comment.by.fullname}
+                        </span>
+                        {" " + comment.txt}
+                    </p>
+                </li>
+            ))}
+        </ul>
     )
 }

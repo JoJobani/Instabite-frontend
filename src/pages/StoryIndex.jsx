@@ -6,6 +6,7 @@ import { userService } from "../services/user/index.js"
 import { storyService } from "../services/story/index.js"
 import { StoryList } from "../cmps/StoryList.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
+import { StoryDetails } from "./StoryDetails.jsx"
 
 export function StoryIndex() {
     const stories = useSelector(storeState => storeState.storyModule.stories)
@@ -86,6 +87,18 @@ export function StoryIndex() {
 
     return (
         <main className="story-index">
+            {openedStoryDetails &&
+                <StoryDetails
+                    story={focusedStory}
+                    clickUser={clickUser}
+                    clickMore={clickMore}
+                    toggleLike={toggleLike}
+                    addComment={addComment}
+                    shareStory={shareStory}
+                    saveStory={saveStory}
+                    openLikedBy={openLikedBy}
+                    onCloseModal={onCloseModal}
+                />}
             {openedStoryOptions &&
                 <StoryOptionsModal
                     focusedStory={focusedStory}

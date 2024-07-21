@@ -1,0 +1,11 @@
+ .comment-count {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     margin-top: 8px;
+     height: 18px;
+     color: $gray1;
+     margin-bottom: 10px;
+     width: fit-content;
+     cursor: pointer;
+ }

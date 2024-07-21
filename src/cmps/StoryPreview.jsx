@@ -3,7 +3,7 @@ import { StoryImg } from "./story/StoryImg.jsx"
 import { StoryControls } from "./story/StoryControls.jsx"
 import { StoryLikes } from "./story/StoryLikes.jsx"
 import { StoryText } from "./story/StoryText.jsx"
-import { StoryComments } from "./story/StoryComments.jsx"
+import { StoryCommentCount } from "./story/StoryCommentCount.jsx"
 import { StoryAddComment } from "./story/StoryAddComment.jsx"
 
 export function StoryPreview({
@@ -41,9 +41,10 @@ export function StoryPreview({
             />
             <StoryText
                 story={story}
+                isDetailsOpen={false}
                 clickUser={clickUser}
             />
-            <StoryComments
+            <StoryCommentCount
                 story={story}
                 openDetails={openDetails}
             />

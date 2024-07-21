@@ -1,7 +1,10 @@
-export function StoryText({ story, clickUser }) {
+export function StoryText({ story, isDetailsOpen, clickUser }) {
 
     return (
         <section className="story-txt">
+            {isDetailsOpen &&
+                <img src={story.by.imgUrl} />
+            }
             <p>
                 <span
                     className="user"

@@ -1,11 +1,12 @@
 import { useRef, useEffect } from 'react'
 
-import { StoryHeader } from "./story/StoryHeader.jsx"
-import { StoryImg } from "./story/StoryImg.jsx"
-import { StoryControls } from "./story/StoryControls.jsx"
-import { StoryLikes } from "./story/StoryLikes.jsx"
-import { StoryText } from "./story/StoryText.jsx"
-import { StoryComments } from "./story/StoryComments.jsx"
+import { StoryHeader } from "../cmps/story/StoryHeader.jsx"
+import { StoryImg } from "../cmps/story/StoryImg.jsx"
+import { StoryControls } from "../cmps/story/StoryControls.jsx"
+import { StoryLikes } from "../cmps/story/StoryLikes.jsx"
+import { StoryText } from "../cmps/story/StoryText.jsx"
+import { StoryComments } from '../cmps/story/StoryComments.jsx'
+import { StoryAddComment } from "../cmps/story/StoryAddComment.jsx"
 
 export function StoryDetails({
     story,
@@ -15,7 +16,8 @@ export function StoryDetails({
     addComment,
     shareStory,
     saveStory,
-    openLikedBy
+    openLikedBy,
+    onCloseModal
 }) {
     const modalContentRef = useRef(null)
 
@@ -33,38 +35,45 @@ export function StoryDetails({
 
     return (
         <div className='modal-overlay'>
-            <div className='story-img'>
+            <div className='story-details' ref={modalContentRef}>
                 <StoryImg
                     story={story}
                     toggleLike={toggleLike}
                 />
+                <div className='story-info'>
+                    <StoryHeader
+                        story={story}
+                        clickUser={clickUser}
+                        clickMore={clickMore}
+                    />
+                    <div className='details-main'>
+                        <StoryText
+                            story={story}
+                            isDetailsOpen={true}
+                            clickUser={clickUser}
+                        />
+                        <StoryComments
+                            story={story}
+                        />
+                    </div>
+                    <div className='details-footer'>
+                        <StoryControls
+                            story={story}
+                            toggleLike={toggleLike}
+                            shareStory={shareStory}
+                            saveStory={saveStory}
+                        />
+                        <StoryLikes
+                            story={story}
+                            openLikedBy={openLikedBy}
+                        />
+                        <StoryAddComment
+                            story={story}
+                            addComment={addComment}
+                        />
+                    </div>
+                </div>
             </div>
-            <div className='story-info'>
-                <StoryHeader
-                    story={story}
-                    clickUser={clickUser}
-                    clickMore={clickMore}
-                />
-                <StoryControls
-                    story={story}
-                    toggleLike={toggleLike}
-                    shareStory={shareStory}
-                    saveStory={saveStory}
-                />
-                <StoryLikes
-                    story={story}
-                    openLikedBy={openLikedBy}
-                />
-                <StoryText
-                    story={story}
-                    clickUser={clickUser}
-                />
-                <StoryComments
-                    story={story}
-                    addComment={addComment}
-                />
-            </div>
-
         </div>
     )
 }
