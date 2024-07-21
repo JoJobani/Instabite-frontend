@@ -59,7 +59,7 @@ export async function updateStory(story) {
 
 export async function toggleStoryLike(storyId) {
     try {
-        const story = await storyService.toggleLike(storyId)
+        const story = storyService.toggleLike(storyId)
         store.dispatch(getCmdUpdateStory(story))
         return story
     } catch (err) {
