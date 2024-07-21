@@ -24,10 +24,10 @@
         flex-direction: column;
         justify-content: space-between;
 
-        ul {
+        nav {
             margin: 0;
 
-            li {
+            .link {
                 height: 56px;
                 width: 220px;
                 margin-block: 4px;
@@ -35,17 +35,24 @@
                 display: flex;
                 align-items: center;
                 border-radius: 10px;
+                color: black;
 
                 p {
                     padding-left: 16px;
                     font-size: 16px;
                 }
+
+                img {
+                    width: 24px;
+                    border-radius: 50%;
+                }
             }
 
-            li:hover {
+            .link:hover {
                 transition-duration: 0.2s;
                 background-color: $gray4;
                 cursor: pointer;
+                text-decoration: none;
             }
         }
     }

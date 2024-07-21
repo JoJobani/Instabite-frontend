@@ -1,3 +1,7 @@
+import { Link, NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router'
+import { useSelector } from 'react-redux'
+
 import instaClone from '../assets/img/instaClone.png'
 import Home from '../assets/svg/Home.svg?react'
 import Search from '../assets/svg/Search.svg?react'
@@ -8,46 +12,51 @@ import Hamburger from '../assets/svg/Hamburger.svg?react'
 
 
 export function AppNav() {
-
+    const navigate = useNavigate()
+    const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
     return (
         <section className="app-nav">
-            <div className="logo">
+
+            <NavLink to='/' className='logo'>
                 <img src={instaClone} alt="logo" />
-            </div>
+            </NavLink>
+
             <section className='nav-bar'>
-                <ul className='main-nav'>
-                    <li>
+
+                <nav className='main-nav'>
+                    <NavLink to='/' className='link'>
                         <Home />
                         <p>Home</p>
-                    </li>
-                    <li>
+                    </NavLink>
+                    <NavLink to='/' className='link'>
                         <Search />
                         <p>Search</p>
-                    </li>
-                    <li>
+                    </NavLink>
+                    <NavLink to='/' className='link'>
                         <Explore />
                         <p>Explore</p>
-                    </li>
-                    <li>
+                    </NavLink>
+                    <NavLink to='/' className='link'>
                         <Messenger />
                         <p>Messages</p>
-                    </li>
-                    <li>
+                    </NavLink>
+                    <NavLink to='/' className='link'>
                         <Create />
                         <p>Create</p>
-                    </li>
-                    <li>
+                    </NavLink>
+                    <NavLink to='/' className='link'>
+                        <img src={loggedInUser.imgUrl} />
                         <p>Profile</p>
-                    </li>
-                </ul>
+                    </NavLink>
+                </nav>
 
-                <ul className="lower-nav">
-                    <li>
+                <nav className="lower-nav">
+                    <NavLink to='/' className='link'>
                         <Hamburger />
                         <p>Settings</p>
-                    </li>
-                </ul>
+                    </NavLink>
+                </nav>
             </section>
 
         </section>
