@@ -4,6 +4,7 @@ const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 //unmark this when creating users
 _createAdmin()
+_autoLog()
 
 export const userService = {
     login,
@@ -80,6 +81,11 @@ function saveLoggedinUser(user) {
     }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
+}
+
+async function _autoLog() {
+    const users = await getUsers()
+    saveLoggedinUser(users[0])
 }
 
 async function _createAdmin() {
