@@ -11,9 +11,7 @@ function getEmptyStory() {
             _id: '',
             fullname: '',
             imgUrl: ''
-        },
-        comments: [],
-        likedBy: []
+        }
     }
 }
 

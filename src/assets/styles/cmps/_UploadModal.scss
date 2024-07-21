@@ -1,0 +1,121 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    .modal-content {
+        background-color: white;
+        border-radius: 15px;
+        position: relative;
+        width: 42%;
+        height: 81%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .modal-header {
+            font-size: 16px;
+            font-weight: $font-weight-semibold;
+            width: 100%;
+            height: 42px;
+            margin: 0;
+            border-bottom: 1px $gray3 solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                width: 100%;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+            }
+
+            Button {
+                background: none;
+                color: blue;
+                border: none;
+                font-weight: $font-weight-semibold;
+                cursor: pointer;
+                z-index: 2;
+                padding: 20px;
+            }
+        }
+
+        .upload-preview {
+            height: 90%;
+            width: 100%;
+            padding: 20px;
+            font-size: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            input {
+                display: none;
+            }
+        }
+
+        &.after {
+            width: 63%;
+
+            .upload-edit {
+                height: 90%;
+                width: 100%;
+                display: flex;
+
+                .edit-section {
+                    width: 30%;
+
+                    .profile {
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                        width: fit-content;
+                        gap: 10px;
+                        padding-block: 20px;
+
+                        img {
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                        }
+
+                        p {
+                            font-weight: $font-weight-semibold;
+                            margin: 0;
+                        }
+                    }
+
+                    .edit-comment {
+                        min-height: 168px;
+                        padding: 0 16px;
+
+                        textarea {
+                            font: inherit;
+                            width: 100%;
+                            min-height: 168px;
+                            resize: none;
+                            border-style: none;
+                            word-wrap: break-word;
+                        }
+                    }
+                }
+
+                img {
+                    width: 70%;
+                }
+            }
+        }
+
+
+    }
+}

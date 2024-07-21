@@ -8,23 +8,25 @@ import { StoryIndex } from './pages/StoryIndex.jsx'
 // import { UserDetails } from './pages/UserDetails.jsx'
 // import { AppFooter } from './cmps/AppFooter.jsx'
 import { AppNav } from './cmps/AppNav.jsx'
-import { ImgUploader } from './cmps/ImgUploader.jsx'
+import { UploadModal } from './cmps/UploadModal.jsx'
 
 
 export function RootCmp() {
     const [isUploading, setIsUploading] = useState(false)
 
-
     function onClickUpload() {
-        console.log('click')
         setIsUploading(true)
+    }
+
+    function onCloseUpload() {
+        setIsUploading(false)
     }
 
 
     return (
         <div className="main-container">
             <AppNav onClickUpload={onClickUpload} />
-            {isUploading && <ImgUploader />}
+            {isUploading && <UploadModal onCloseUpload={onCloseUpload} />}
             <main>
                 <Routes>
                     <Route path="" element={<StoryIndex />} />
