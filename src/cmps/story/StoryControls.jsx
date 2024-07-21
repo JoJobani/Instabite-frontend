@@ -5,7 +5,7 @@ import Share from '../../assets/svg/Share.svg?react'
 import Save from '../../assets/svg/Save.svg?react'
 import { useSelector } from 'react-redux'
 
-export function StoryControls({ story, toggleLike, openComments, shareStory, saveStory }) {
+export function StoryControls({ story, toggleLike, openDetails, shareStory, saveStory }) {
 
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
     const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
@@ -18,7 +18,7 @@ export function StoryControls({ story, toggleLike, openComments, shareStory, sav
                         ? <Unlike fill="red" />
                         : <Like />}
                 </div>
-                <div onClick={() => openComments(story._id)}>
+                <div onClick={() => openDetails(story._id)}>
                     <Comment />
                 </div>
                 <div onClick={() => shareStory(story._id)}>

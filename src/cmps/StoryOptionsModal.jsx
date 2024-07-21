@@ -1,12 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
-export function StoryOptionsModal({ onCloseMore, onRemoveStory }) {
+export function StoryOptionsModal({ onCloseModal, onRemoveStory }) {
     const modalContentRef = useRef(null)
 
     useEffect(() => {
         function handleClickOutside(ev) {
             if (modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
-                onCloseMore()
+                onCloseModal()
             }
         }
         document.addEventListener('mousedown', handleClickOutside)
@@ -24,7 +24,7 @@ export function StoryOptionsModal({ onCloseMore, onRemoveStory }) {
                 <li>
                     Edit
                 </li>
-                <li onClick={onCloseMore}>
+                <li onClick={onCloseModal}>
                     Cancel
                 </li>
             </ul>

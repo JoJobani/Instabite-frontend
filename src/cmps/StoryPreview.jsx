@@ -4,6 +4,7 @@ import { StoryControls } from "./story/StoryControls.jsx"
 import { StoryLikes } from "./story/StoryLikes.jsx"
 import { StoryText } from "./story/StoryText.jsx"
 import { StoryComments } from "./story/StoryComments.jsx"
+import { StoryAddComment } from "./story/StoryAddComment.jsx"
 
 export function StoryPreview({
     story,
@@ -11,7 +12,7 @@ export function StoryPreview({
     clickMore,
     toggleLike,
     addComment,
-    openComments,
+    openDetails,
     shareStory,
     saveStory,
     openLikedBy
@@ -30,7 +31,7 @@ export function StoryPreview({
             <StoryControls
                 story={story}
                 toggleLike={toggleLike}
-                openComments={openComments}
+                openDetails={openDetails}
                 shareStory={shareStory}
                 saveStory={saveStory}
             />
@@ -44,7 +45,10 @@ export function StoryPreview({
             />
             <StoryComments
                 story={story}
-                openComments={openComments}
+                openDetails={openDetails}
+            />
+            <StoryAddComment
+                story={story}
                 addComment={addComment}
             />
         </section>

@@ -6,7 +6,7 @@ export function StoryList({
     clickMore,
     toggleLike,
     addComment,
-    openComments,
+    openDetails,
     shareStory,
     saveStory,
     openLikedBy
@@ -21,7 +21,7 @@ export function StoryList({
                     clickMore={clickMore}
                     toggleLike={toggleLike}
                     addComment={addComment}
-                    openComments={openComments}
+                    openDetails={openDetails}
                     shareStory={shareStory}
                     saveStory={saveStory}
                     openLikedBy={openLikedBy}

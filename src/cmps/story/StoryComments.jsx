@@ -1,47 +1,11 @@
-import { useState } from 'react'
-import Emoji from '../../assets/svg/Emoji.svg?react'
-
-export function StoryComments({ story, openComments, addComment }) {
-    const [comment, setComment] = useState('')
-
-    function onAddComment(ev) {
-        ev.preventDefault()
-        addComment(story._id, comment)
-        setComment('')
-    }
-
-    function handleChange(ev) {
-        const value = ev.target.value
-        setComment(value)
-    }
+export function StoryComments({ story, openDetails }) {
 
     return (
-        <div className="story-comments">
-            <section
-                className="comment-count"
-                onClick={() => openComments(story._id)}
-            >
-                View all {story.comments.length} Comments
-            </section>
-            <section className="add-comment">
-                <form
-                    onSubmit={onAddComment}>
-                    <textarea
-                        value={comment}
-                        onChange={handleChange}
-                        className="comment-input"
-                        name="comment"
-                        placeholder="Add a comment..."
-                        autoComplete="off"
-                    />
-                    {comment &&
-                        <button>
-                            Post
-                        </button>
-                    }
-                </form>
-                <Emoji />
-            </section>
-        </div>
+        <section
+            className="comment-count"
+            onClick={() => openDetails(story._id)}
+        >
+            View all {story.comments.length} Comments
+        </section>
     )
 }

@@ -11,6 +11,7 @@ export function StoryIndex() {
     const stories = useSelector(storeState => storeState.storyModule.stories)
     const [focusedStory, setFocuesdStory] = useState(null)
     const [openedStoryOptions, setOpenedStoryOptions] = useState(false)
+    const [openedStoryDetails, setOpenedStoryDetails] = useState(false)
 
     useEffect(() => {
         awaitLoad()
@@ -34,15 +35,22 @@ export function StoryIndex() {
         setOpenedStoryOptions(true)
     }
 
-    function onCloseMore() {
+    async function openDetails(storyId) {
+        const story = await storyService.getById(storyId)
+        setFocuesdStory(story)
+        setOpenedStoryDetails(true)
+    }
+
+    function onCloseModal() {
         setOpenedStoryOptions(false)
+        setOpenedStoryDetails(false)
         setFocuesdStory(null)
     }
 
     async function onRemoveStory() {
         try {
             await removeStory(focusedStory._id)
-            onCloseMore()
+            onCloseModal()
         } catch (err) {
             console.log(err)
         }
@@ -58,15 +66,10 @@ export function StoryIndex() {
 
     async function addComment(storyId, txt) {
         try {
-            console.log('click')
             await addStoryComment(storyId, txt)
         } catch (err) {
             console.log(err)
         }
-    }
-
-    function openComments(storyId) {
-        console.log(`open comments for ${storyId}`)
     }
 
     function shareStory(storyId) {
@@ -86,7 +89,7 @@ export function StoryIndex() {
             {openedStoryOptions &&
                 <StoryOptionsModal
                     focusedStory={focusedStory}
-                    onCloseMore={onCloseMore}
+                    onCloseModal={onCloseModal}
                     onRemoveStory={onRemoveStory} />}
             {!stories || !stories.length
                 ? <div>Loading...</div>
@@ -96,7 +99,7 @@ export function StoryIndex() {
                     clickMore={clickMore}
                     toggleLike={toggleLike}
                     addComment={addComment}
-                    openComments={openComments}
+                    openDetails={openDetails}
                     shareStory={shareStory}
                     saveStory={saveStory}
                     openLikedBy={openLikedBy}

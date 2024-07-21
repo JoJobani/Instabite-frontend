@@ -1,54 +1,11 @@
-.story-comments {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 8px;
-
-    .comment-count {
-        height: 18px;
-        color: $gray1;
-        margin-bottom: 10px;
-        width: fit-content;
-        cursor: pointer;
-    }
-
-    .add-comment {
-        height: 18px;
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-
-        form {
-            width: 100%;
-            display: flex;
-
-            .comment-input {
-                width: 100%;
-                padding: 0;
-                margin: 0;
-                max-height: 80px;
-                border-style: none;
-                font-size: inherit;
-                resize: none;
-            }
-
-            Button {
-                margin: 0;
-                align-self: flex-start;
-                background: none;
-                color: blue;
-                border: none;
-                font-weight: $font-weight-semibold;
-                cursor: pointer;
-                z-index: 2;
-            }
-
-        }
-
-        svg {
-            color: $gray1;
-            margin-right: 6px;
-            margin-top: 2px;
-        }
-    }
-}
+ .comment-count {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     margin-top: 8px;
+     height: 18px;
+     color: $gray1;
+     margin-bottom: 10px;
+     width: fit-content;
+     cursor: pointer;
+ }
