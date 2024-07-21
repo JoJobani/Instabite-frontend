@@ -27,8 +27,8 @@ async function query(filterBy = {}) {
     return stories
 }
 
-function getById(storyId) {
-    return storageService.get(STORAGE_KEY, storyId)
+async function getById(storyId) {
+    return await storageService.get(STORAGE_KEY, storyId)
 }
 
 async function remove(storyId) {

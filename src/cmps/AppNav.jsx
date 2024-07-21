@@ -10,7 +10,6 @@ import Messenger from '../assets/svg/Messenger.svg?react'
 import Create from '../assets/svg/Create.svg?react'
 import Hamburger from '../assets/svg/Hamburger.svg?react'
 
-
 export function AppNav({ onClickUpload }) {
     const navigate = useNavigate()
     const loggedInUser = useSelector(storeState => storeState.userModule.user)

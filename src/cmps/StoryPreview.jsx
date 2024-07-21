@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { StoryHeader } from "./story/StoryHeader.jsx"
 import { StoryImg } from "./story/StoryImg.jsx"
 import { StoryControls } from "./story/StoryControls.jsx"

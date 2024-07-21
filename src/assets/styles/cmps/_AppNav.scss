@@ -48,13 +48,13 @@
                     width: 24px;
                     border-radius: 50%;
                 }
-            }
 
-            .link:hover {
-                transition-duration: 0.2s;
-                background-color: $gray4;
-                cursor: pointer;
-                text-decoration: none;
+                &:hover {
+                    transition-duration: 0.2s;
+                    background-color: $gray4;
+                    cursor: pointer;
+                    text-decoration: none;
+                }
             }
         }
     }
