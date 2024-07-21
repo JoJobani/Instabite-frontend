@@ -6,12 +6,12 @@ import { StoryIndex } from './pages/StoryIndex.jsx'
 // import { StoryDetails } from './pages/StoryDetails.jsx'
 // import { UserDetails } from './pages/UserDetails.jsx'
 // import { AppFooter } from './cmps/AppFooter.jsx'
-// import { AppNav } from './cmps/AppNav.jsx'
+import { AppNav } from './cmps/AppNav.jsx'
 
 export function RootCmp() {
     return (
         <div className="main-container">
-            {/* <AppNav /> */}
+            <AppNav />
             <main>
                 <Routes>
                     <Route path="" element={<StoryIndex />} />
