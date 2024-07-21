@@ -1,16 +1,17 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
-import { loadStories, removeStory, addStory } from "../store/actions/story.actions.js"
+import { loadStories, loadStory, removeStory, addStory, toggleStoryLike } from "../store/actions/story.actions.js"
 import { userService } from "../services/user/index.js"
 import { StoryList } from "../cmps/StoryList.jsx"
 
 export function StoryIndex() {
     const stories = useSelector(storeState => storeState.storyModule.stories)
+    const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
     useEffect(() => {
         awaitLoad()
-    }, [stories])
+    }, [])
 
     async function awaitLoad() {
         try {
@@ -28,8 +29,13 @@ export function StoryIndex() {
         console.log(`open options for ${storyId}`)
     }
 
-    function toggleLike(storyId) {
-        console.log(`liked story ${storyId}`)
+    async function toggleLike(storyId) {
+        try {
+            const story = await toggleStoryLike(storyId)
+            console.log(story)
+        } catch (err) {
+            showErrorMsg('Cannot like story')
+        }
     }
 
     function openComments(storyId) {

@@ -54,6 +54,17 @@ export async function updateStory(story) {
     }
 }
 
+export async function toggleStoryLike(storyId) {
+    try {
+        const story = await storyService.toggleLike(storyId)
+        store.dispatch(getCmdUpdateStory(story))
+        return story
+    } catch (err) {
+        console.log('Cannot like story', err)
+        throw err
+    }
+}
+
 export async function addStoryComment(storyId, txt) {
     try {
         const comment = await storyService.addStoryComment(storyId, txt)
@@ -96,6 +107,14 @@ function getCmdUpdateStory(story) {
         story
     }
 }
+
+function getCmdUpdateLikes(likedBy) {
+    return {
+        type: UPDATE_STORY_LIKES,
+        likedBy
+    }
+}
+
 function getCmdAddStoryComment(comment) {
     return {
         type: ADD_STORY_COMMENT,

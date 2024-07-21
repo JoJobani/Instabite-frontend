@@ -10,6 +10,7 @@ export const storyService = {
     getById,
     save,
     remove,
+    toggleLike,
     addStoryComment
 }
 
@@ -48,12 +49,24 @@ async function save(story) {
             txt: story.txt,
             imgUrl: story.imgUrl,
             by: story.by,
-            // by: userService.getLoggedinUser(),
             comments: [],
             likedBy: []
         }
         return await storageService.post(STORAGE_KEY, storyToSave)
     }
+}
+
+async function toggleLike(storyId) {
+    const story = await getById(storyId)
+    const likingUser = userService.getLoggedinUser()
+    const idx = story.likedBy.findIndex(user => user._id === likingUser._id)
+    if (idx === -1) {
+        story.likedBy.push(likingUser)
+    } else {
+        story.likedBy.splice(idx, 1)
+    }
+    await save(story)
+    return story
 }
 
 async function addStoryComment(storyId, txt) {
