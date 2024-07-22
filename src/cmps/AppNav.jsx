@@ -1,5 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
-import { useNavigate } from 'react-router'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import instaClone from '../assets/img/instaClone.png'
@@ -11,12 +10,10 @@ import Create from '../assets/svg/Create.svg?react'
 import Hamburger from '../assets/svg/Hamburger.svg?react'
 
 export function AppNav({ onClickUpload }) {
-    const navigate = useNavigate()
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
     return (
         <section className="app-nav">
-
             <NavLink to='/' className='logo'>
                 <img src={instaClone} alt="logo" />
             </NavLink>
