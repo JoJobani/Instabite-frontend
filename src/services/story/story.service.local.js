@@ -1,6 +1,6 @@
 
 import { storageService } from '../async-storage.service'
-import { makeId, makeLorem } from '../util.service'
+import { makeId } from '../util.service'
 import { userService } from '../user'
 
 const STORAGE_KEY = 'storyDB'
@@ -16,9 +16,6 @@ export const storyService = {
 }
 
 _demoStories()
-
-//For debugging
-window.cs = storyService
 
 async function query(filterBy = {}) {
     var stories = await storageService.query(STORAGE_KEY)

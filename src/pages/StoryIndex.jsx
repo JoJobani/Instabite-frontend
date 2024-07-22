@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { loadStories, loadStory, removeStory, toggleStoryLike, addStoryComment, removeStoryComment } from "../store/actions/story.actions.js"
+import {
+    loadStories,
+    loadStory,
+    removeStory,
+    toggleStoryLike,
+    addStoryComment,
+    removeStoryComment
+} from "../store/actions/story.actions.js"
 import { StoryList } from "../cmps/StoryList.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 import { StoryDetails } from "./StoryDetails.jsx"
@@ -45,6 +52,7 @@ export function StoryIndex() {
 
     async function onRemoveStory() {
         try {
+            if (!confirm('Are you sure you want to delete this story?')) return
             await removeStory(story._id)
             onCloseModal()
         } catch (err) {
@@ -70,6 +78,7 @@ export function StoryIndex() {
 
     async function onRemoveComment(storyId, commentId) {
         try {
+            if (!confirm('Are you sure you want to delete this comment?')) return
             await removeStoryComment(storyId, commentId)
         } catch (err) {
             console.log(err)

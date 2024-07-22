@@ -1,6 +1,12 @@
 import { storyService } from '../../services/story'
 import { store } from '../store'
-import { ADD_STORY, REMOVE_STORY, SET_STORIES, SET_STORY, UPDATE_STORY } from '../reducers/story.reducer.js'
+import {
+    ADD_STORY,
+    REMOVE_STORY,
+    SET_STORIES,
+    SET_STORY,
+    UPDATE_STORY
+} from '../reducers/story.reducer.js'
 
 export async function loadStories(filterBy) {
     try {

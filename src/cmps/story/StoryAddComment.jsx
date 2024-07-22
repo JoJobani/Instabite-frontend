@@ -37,6 +37,4 @@ export function StoryAddComment({ story, addComment }) {
             <Emoji />
         </section>
     )
-
-
 }

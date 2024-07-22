@@ -2,9 +2,6 @@ import { storageService } from '../async-storage.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
-//unmark this when creating users
-_createAdmin()
-
 export const userService = {
     login,
     logout,
@@ -68,6 +65,7 @@ async function logout() {
 }
 
 function getLoggedinUser() {
+    //temp hardcoded user
     return {
         _id: 'admin',
         fullname: 'admin',
@@ -86,17 +84,4 @@ function saveLoggedinUser(user) {
     }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
-}
-
-async function _createAdmin() {
-    const users = await getUsers()
-    if (!users || !users.length) {
-        console.log('creating admin')
-        const user = {
-            username: 'admin',
-            password: 'admin',
-            fullname: 'Mustafa Adminsky'
-        }
-        const newUser = signup(user)
-    }
 }
