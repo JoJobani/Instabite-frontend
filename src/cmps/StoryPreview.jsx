@@ -9,7 +9,7 @@ import { StoryAddComment } from "./story/StoryAddComment.jsx"
 export function StoryPreview({
     story,
     clickUser,
-    clickMore,
+    onOpenOptions,
     toggleLike,
     addComment,
     openDetails,
@@ -22,7 +22,7 @@ export function StoryPreview({
             <StoryHeader
                 story={story}
                 clickUser={clickUser}
-                clickMore={clickMore}
+                onOpenOptions={onOpenOptions}
             />
             <StoryImg
                 story={story}

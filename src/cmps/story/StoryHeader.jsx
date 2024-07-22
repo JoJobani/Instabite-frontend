@@ -1,6 +1,6 @@
 import MoreOptions from '../../assets/svg/MoreOptions.svg?react'
 
-export function StoryHeader({ story, clickUser, clickMore }) {
+export function StoryHeader({ story, clickUser, onOpenOptions }) {
 
     return (
         <section className="story-header">
@@ -14,7 +14,7 @@ export function StoryHeader({ story, clickUser, clickMore }) {
             </div>
             <div
                 className="more-options"
-                onClick={() => clickMore(story._id)}>
+                onClick={() => onOpenOptions(story._id)}>
                 <MoreOptions />
             </div>
         </section>

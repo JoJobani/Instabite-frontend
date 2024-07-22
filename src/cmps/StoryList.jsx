@@ -3,7 +3,7 @@ import { StoryPreview } from "./StoryPreview.jsx"
 export function StoryList({
     stories,
     clickUser,
-    clickMore,
+    onOpenOptions,
     toggleLike,
     addComment,
     openDetails,
@@ -18,7 +18,7 @@ export function StoryList({
                 <StoryPreview
                     story={story}
                     clickUser={clickUser}
-                    clickMore={clickMore}
+                    onOpenOptions={onOpenOptions}
                     toggleLike={toggleLike}
                     addComment={addComment}
                     openDetails={openDetails}
