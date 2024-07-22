@@ -6,7 +6,7 @@ import { StoryImg } from "../cmps/story/StoryImg.jsx"
 import { StoryControls } from "../cmps/story/StoryControls.jsx"
 import { StoryLikes } from "../cmps/story/StoryLikes.jsx"
 import { StoryText } from "../cmps/story/StoryText.jsx"
-import { StoryComments } from '../cmps/story/StoryComments.jsx'
+import { StoryCommentList } from '../cmps/story/StoryCommentList.jsx'
 import { StoryAddComment } from "../cmps/story/StoryAddComment.jsx"
 
 export function StoryDetails({
@@ -14,6 +14,7 @@ export function StoryDetails({
     clickMore,
     toggleLike,
     addComment,
+    onRemoveComment,
     shareStory,
     saveStory,
     openLikedBy,
@@ -53,8 +54,10 @@ export function StoryDetails({
                             isDetailsOpen={true}
                             clickUser={clickUser}
                         />
-                        <StoryComments
+                        <StoryCommentList
                             story={story}
+                            onRemoveComment={onRemoveComment}
+
                         />
                     </div>
                     <div className='details-footer'>

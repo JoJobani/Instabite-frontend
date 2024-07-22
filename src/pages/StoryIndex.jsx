@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { loadStories, loadStory, removeStory, toggleStoryLike, addStoryComment } from "../store/actions/story.actions.js"
+import { loadStories, loadStory, removeStory, toggleStoryLike, addStoryComment, removeStoryComment } from "../store/actions/story.actions.js"
 import { StoryList } from "../cmps/StoryList.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 import { StoryDetails } from "./StoryDetails.jsx"
@@ -68,6 +68,14 @@ export function StoryIndex() {
         }
     }
 
+    async function onRemoveComment(storyId, commentId) {
+        try {
+            await removeStoryComment(storyId, commentId)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     function shareStory(storyId) {
         console.log(`sharing story ${storyId}`)
     }
@@ -88,6 +96,7 @@ export function StoryIndex() {
                     clickMore={clickMore}
                     toggleLike={toggleLike}
                     addComment={addComment}
+                    onRemoveComment={onRemoveComment}
                     shareStory={shareStory}
                     saveStory={saveStory}
                     openLikedBy={openLikedBy}

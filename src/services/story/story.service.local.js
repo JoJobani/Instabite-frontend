@@ -11,7 +11,8 @@ export const storyService = {
     save,
     remove,
     toggleLike,
-    addStoryComment
+    addStoryComment,
+    removeStoryComment
 }
 
 _demoStories()
@@ -65,8 +66,7 @@ async function toggleLike(storyId) {
     } else {
         story.likedBy.splice(idx, 1)
     }
-    await save(story)
-    return story
+    return await storageService.put(STORAGE_KEY, story)
 }
 
 async function addStoryComment(storyId, txt) {
@@ -77,8 +77,14 @@ async function addStoryComment(storyId, txt) {
         txt
     }
     story.comments.push(comment)
-    await storageService.put(STORAGE_KEY, story)
-    return story
+    return await storageService.put(STORAGE_KEY, story)
+}
+
+async function removeStoryComment(storyId, commentId) {
+    const story = await getById(storyId)
+    const commentIdx = story.comments.findIndex(comment => commentId === comment.id)
+    story.comments.splice(commentIdx, 1)
+    return await storageService.put(STORAGE_KEY, story)
 }
 
 async function _demoStories() {

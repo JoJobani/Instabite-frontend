@@ -78,3 +78,14 @@ export async function addStoryComment(storyId, txt) {
         throw err
     }
 }
+
+export async function removeStoryComment(storyId, commentId) {
+    try {
+        const story = await storyService.removeStoryComment(storyId, commentId)
+        store.dispatch({ type: UPDATE_STORY, story })
+        return story
+    } catch (err) {
+        console.log('Couldnt remove comment', err)
+        throw err
+    }
+}
