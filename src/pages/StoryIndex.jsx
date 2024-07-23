@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom"
 import { Outlet } from "react-router"
 import {
     loadStories,
-    loadStory,
     removeStory,
     toggleStoryLike,
     addStoryComment
@@ -15,8 +14,7 @@ import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 export function StoryIndex() {
     const navigate = useNavigate()
     const stories = useSelector(storeState => storeState.storyModule.stories)
-    const story = useSelector(storeState => storeState.storyModule.story)
-    const [openedStoryOptions, setOpenedStoryOptions] = useState(false)
+    const [focusedStoryId, setFocusedStoryId] = useState(null)
 
     useEffect(() => {
         loadStories()
@@ -31,19 +29,17 @@ export function StoryIndex() {
     }
 
     async function onOpenOptions(storyId) {
-        await loadStory(storyId)
-        setOpenedStoryOptions(true)
+        setFocusedStoryId(storyId)
     }
 
     function onCloseOptions() {
-        setOpenedStoryOptions(false)
-        loadStory(null)
+        setFocusedStoryId(null)
     }
 
     async function onRemoveStory() {
         try {
             if (!confirm('Are you sure you want to delete this story?')) return
-            await removeStory(story._id)
+            await removeStory(focusedStoryId)
             onCloseOptions()
         } catch (err) {
             console.log(err)
@@ -81,7 +77,7 @@ export function StoryIndex() {
     return (
         <main className="story-index">
             <Outlet />
-            {openedStoryOptions &&
+            {focusedStoryId &&
                 <StoryOptionsModal
                     onCloseOptions={onCloseOptions}
                     onRemoveStory={onRemoveStory} />}

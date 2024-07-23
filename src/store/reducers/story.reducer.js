@@ -5,8 +5,7 @@ export const ADD_STORY = 'ADD_STORY'
 export const UPDATE_STORY = 'UPDATE_STORY'
 
 const initialState = {
-    stories: [],
-    story: null
+    stories: []
 }
 
 export function storyReducer(state = initialState, action) {
@@ -14,8 +13,6 @@ export function storyReducer(state = initialState, action) {
     switch (action.type) {
         case SET_STORIES:
             return { ...state, stories: action.stories }
-        case SET_STORY:
-            return { ...state, story: action.story }
         case REMOVE_STORY:
             stories = state.stories.filter(story => story._id !== action.storyId)
             return { ...state, stories }

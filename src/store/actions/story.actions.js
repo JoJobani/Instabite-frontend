@@ -4,7 +4,6 @@ import {
     ADD_STORY,
     REMOVE_STORY,
     SET_STORIES,
-    SET_STORY,
     UPDATE_STORY
 } from '../reducers/story.reducer.js'
 
@@ -14,19 +13,6 @@ export async function loadStories(filterBy) {
         store.dispatch({ type: SET_STORIES, stories })
     } catch (err) {
         console.log('Cannot load stories', err)
-        throw err
-    }
-}
-
-export async function loadStory(storyId) {
-    try {
-        let story = null
-        if (storyId) {
-            story = await storyService.getById(storyId)
-        }
-        store.dispatch({ type: SET_STORY, story })
-    } catch (err) {
-        console.log('Cannot load story', err)
         throw err
     }
 }
