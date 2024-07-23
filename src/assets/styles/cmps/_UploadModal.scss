@@ -71,8 +71,10 @@
                 height: 90%;
                 width: 100%;
                 display: flex;
+                align-items: center;
 
                 .edit-section {
+                    height: 100%;
                     width: 30%;
 
                     .profile {
@@ -111,7 +113,9 @@
                 }
 
                 img {
-                    width: 70%;
+                    max-width: 70%;
+                    height: fit-content;
+                    object-fit: cover;
                 }
             }
         }
