@@ -54,9 +54,8 @@ async function save(story) {
     }
 }
 
-async function toggleLike(storyId) {
+async function toggleLike(storyId, likingUser) {
     const story = await getById(storyId)
-    const likingUser = userService.getLoggedinUser()
     const idx = story.likedBy.findIndex(user => user._id === likingUser._id)
     if (idx === -1) {
         story.likedBy.push(likingUser)

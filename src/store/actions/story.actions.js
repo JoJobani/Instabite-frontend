@@ -60,7 +60,7 @@ export async function toggleStoryLike(storyId, likingUser, isLiked) {
         } else {
             store.dispatch({ type: ADD_LIKE, storyId, likingUser })
         }
-        await storyService.toggleLike(storyId)
+        return await storyService.toggleLike(storyId, likingUser)
     } catch (err) {
         store.dispatch({ type: STORY_UNDO })
         console.log('Cannot like story', err)
