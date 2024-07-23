@@ -46,9 +46,9 @@ export function StoryIndex() {
         }
     }
 
-    async function toggleLike(storyId) {
+    async function toggleLike(storyId, likingUser, isLiked) {
         try {
-            await toggleStoryLike(storyId)
+            await toggleStoryLike(storyId, likingUser, isLiked)
         } catch (err) {
             console.log(err)
         }

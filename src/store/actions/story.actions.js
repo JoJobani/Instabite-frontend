@@ -4,7 +4,10 @@ import {
     ADD_STORY,
     REMOVE_STORY,
     SET_STORIES,
-    UPDATE_STORY
+    UPDATE_STORY,
+    ADD_LIKE,
+    REMOVE_LIKE,
+    STORY_UNDO
 } from '../reducers/story.reducer.js'
 
 export async function loadStories(filterBy) {
@@ -49,12 +52,17 @@ export async function updateStory(story) {
     }
 }
 
-export async function toggleStoryLike(storyId) {
+//Optimistic function
+export async function toggleStoryLike(storyId, likingUser, isLiked) {
     try {
-        const story = await storyService.toggleLike(storyId)
-        store.dispatch({ type: UPDATE_STORY, story })
-        return story
+        if (isLiked) {
+            store.dispatch({ type: REMOVE_LIKE, storyId, likingUser })
+        } else {
+            store.dispatch({ type: ADD_LIKE, storyId, likingUser })
+        }
+        await storyService.toggleLike(storyId)
     } catch (err) {
+        store.dispatch({ type: STORY_UNDO })
         console.log('Cannot like story', err)
         throw err
     }
@@ -64,7 +72,6 @@ export async function addStoryComment(storyId, txt) {
     try {
         const story = await storyService.addStoryComment(storyId, txt)
         store.dispatch({ type: UPDATE_STORY, story })
-        return story
     } catch (err) {
         console.log('Cannot add story comment', err)
         throw err
