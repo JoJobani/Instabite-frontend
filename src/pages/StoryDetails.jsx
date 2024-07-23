@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import {
     removeStory,
     toggleStoryLike,
-    addStoryComment
+    addStoryComment,
+    removeStoryComment
 } from "../store/actions/story.actions.js"
 import { storyService } from '../services/story/index.js'
 import { StoryHeader } from "../cmps/story/StoryHeader.jsx"
@@ -73,6 +74,14 @@ export function StoryDetails() {
         }
     }
 
+    async function onRemoveComment(storyId, commentId) {
+        try {
+            await removeStoryComment(storyId, commentId)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     async function onRemoveStory() {
         try {
             if (!confirm('Are you sure you want to delete this story?')) return
@@ -123,6 +132,7 @@ export function StoryDetails() {
                         />
                         <StoryCommentList
                             story={story}
+                            onRemoveComment={onRemoveComment}
                         />
                     </div>
                     <div className='details-footer'>

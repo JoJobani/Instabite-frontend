@@ -13,7 +13,7 @@ export function StoryControls({ story, toggleLike, openDetails, shareStory, save
     return (
         <section className="story-controls">
             <div className="story-controls-left">
-                <div onClick={() => toggleLike(story._id)}>
+                <div onClick={() => toggleLike(story._id, loggedInUser, isLiked)}>
                     {isLiked
                         ? <Unlike fill="red" />
                         : <Like />}
