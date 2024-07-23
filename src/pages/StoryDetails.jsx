@@ -24,15 +24,6 @@ export function StoryDetails() {
 
     useEffect(() => {
         loadStory()
-        function handleClickOutside(ev) {
-            if (!openedStoryOptions && modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
-                onCloseDetails()
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
     }, [storyId, story])
 
     async function loadStory() {
@@ -44,9 +35,14 @@ export function StoryDetails() {
         }
     }
 
+    function handleClickOutside(ev) {
+        if (!openedStoryOptions && modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
+            onCloseDetails()
+        }
+    }
+
     function onCloseDetails() {
         navigate('/')
-        loadStory(null)
     }
 
     function onOpenOptions() {
@@ -102,7 +98,7 @@ export function StoryDetails() {
     if (!story) return
 
     return (
-        <div className='modal-overlay'>
+        <div className='modal-overlay' onClick={handleClickOutside}>
             {openedStoryOptions &&
                 <StoryOptionsModal
                     onCloseOptions={onCloseOptions}

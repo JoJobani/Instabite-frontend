@@ -3,20 +3,14 @@ import { useRef, useEffect } from 'react'
 export function StoryOptionsModal({ onCloseOptions, onRemoveStory }) {
     const modalContentRef = useRef(null)
 
-    useEffect(() => {
-        function handleClickOutside(ev) {
-            if (modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
-                onCloseOptions()
-            }
+    function handleClickOutside(ev) {
+        if (modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
+            onCloseOptions()
         }
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
+    }
 
     return (
-        <div className="modal-overlay">
+        <div className="modal-overlay" onClick={handleClickOutside}>
             <ul className='modal-options' ref={modalContentRef}>
                 <li onClick={onRemoveStory}>
                     Remove
