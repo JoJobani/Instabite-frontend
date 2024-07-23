@@ -65,7 +65,7 @@ export async function updateStory(story) {
 
 export async function toggleStoryLike(storyId) {
     try {
-        const story = storyService.toggleLike(storyId)
+        const story = await storyService.toggleLike(storyId)
         store.dispatch({ type: UPDATE_STORY, story })
         return story
     } catch (err) {
