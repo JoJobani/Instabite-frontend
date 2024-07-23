@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { Outlet } from "react-router"
 import {
     loadStories,
     loadStory,
@@ -8,7 +9,6 @@ import {
     toggleStoryLike,
     addStoryComment
 } from "../store/actions/story.actions.js"
-import { Outlet } from "react-router"
 import { StoryList } from "../cmps/StoryList.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 
@@ -19,16 +19,8 @@ export function StoryIndex() {
     const [openedStoryOptions, setOpenedStoryOptions] = useState(false)
 
     useEffect(() => {
-        awaitLoad()
-    }, [stories])
-
-    async function awaitLoad() {
-        try {
-            await loadStories()
-        } catch (err) {
-            console.log(err)
-        }
-    }
+        loadStories()
+    }, [])
 
     function clickUser(userId) {
         console.log(`clicked user ${userId}`)

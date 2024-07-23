@@ -44,7 +44,7 @@ export async function removeStory(storyId) {
 export async function addStory(story) {
     try {
         const savedStory = await storyService.save(story)
-        store.dispatch({ type: ADD_STORY, story })
+        store.dispatch({ type: ADD_STORY, story: savedStory })
         return savedStory
     } catch (err) {
         console.log('Cannot add story', err)

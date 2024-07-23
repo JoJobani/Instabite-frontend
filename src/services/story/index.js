@@ -15,5 +15,14 @@ function getEmptyStory() {
     }
 }
 
+function getDefaultFilter() {
+    return {
+        by: {
+            _id: '',
+            fullname: ''
+        }
+    }
+}
+
 const service = VITE_LOCAL === 'true' ? local : remote
-export const storyService = { getEmptyStory, ...service }
+export const storyService = { getEmptyStory, getDefaultFilter, ...service }

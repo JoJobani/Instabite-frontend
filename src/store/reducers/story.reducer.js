@@ -17,6 +17,7 @@ export function storyReducer(state = initialState, action) {
         case SET_STORY:
             return { ...state, story: action.story }
         case REMOVE_STORY:
+            stories = state.stories.filter(story => story._id !== action.storyId)
             return { ...state, stories }
         case ADD_STORY:
             return { ...state, stories: [action.story, ...state.stories] }
