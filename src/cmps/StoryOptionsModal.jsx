@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 
 export function StoryOptionsModal({ onCloseOptions, onRemoveStory }) {
     const modalContentRef = useRef(null)

@@ -15,17 +15,16 @@ export function UploadModal({ onCloseUpload }) {
     const [isUploading, setIsUploading] = useState(false)
     const modalContentRef = useRef(null)
 
-    useEffect(() => {
-        function handleClickOutside(ev) {
-            if (modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
-                onCloseUpload()
-            }
+    function handleClickOutside(ev) {
+        if (modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
+            onCloseModal()
         }
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
+    }
+
+    function onCloseModal() {
+        if (isUploading && !confirm('Are you sure you want to discard this story?')) return
+        onCloseUpload()
+    }
 
     async function uploadImg(ev) {
         setIsUploading(true)
@@ -44,7 +43,7 @@ export function UploadModal({ onCloseUpload }) {
     }
 
     return (
-        <div className="modal-overlay">
+        <div className="modal-overlay" onClick={handleClickOutside}>
             {!isUploading &&
                 <div className='modal-content' ref={modalContentRef}>
                     <div className='modal-header'>
@@ -70,7 +69,7 @@ export function UploadModal({ onCloseUpload }) {
             {isUploading &&
                 <div className='modal-content after' ref={modalContentRef}>
                     <div className='modal-header'>
-                        <button onClick={onCloseUpload}>
+                        <button onClick={onCloseModal}>
                             Cancel
                         </button>
                         <p>Create new story</p>
