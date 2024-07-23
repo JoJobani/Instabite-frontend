@@ -17,10 +17,9 @@
         }
 
         Button {
-            margin: 0;
-            align-self: flex-start;
+            margin: auto;
             background: none;
-            color: $blue2;
+            color: $blue1;
             border: none;
             font-weight: $font-weight-semibold;
             cursor: pointer;
@@ -30,7 +29,6 @@
 
     svg {
         color: $gray1;
-        margin-right: 6px;
-        margin-top: 2px;
+        margin: auto 5px auto 2px;
     }
 }
