@@ -12,7 +12,7 @@
 
     .story-details {
         background-color: white;
-        border-radius: 5px;
+        border-radius: 4px;
         position: relative;
         width: 82%;
         height: 94%;
@@ -32,12 +32,14 @@
 
         .story-info {
             width: 35%;
-            margin: 10px 10px 0 0;
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
 
             .details-main {
+                border-top: 1px $seperator solid;
+
                 .story-txt {
                     height: 80px;
                     margin: -5px -2px 0 0;
