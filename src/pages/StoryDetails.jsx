@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import {
     removeStory,
@@ -6,7 +7,6 @@ import {
     addStoryComment,
     removeStoryComment
 } from "../store/actions/story.actions.js"
-import { storyService } from '../services/story/index.js'
 import { StoryHeader } from "../cmps/story/StoryHeader.jsx"
 import { StoryImg } from "../cmps/story/StoryImg.jsx"
 import { StoryControls } from "../cmps/story/StoryControls.jsx"
@@ -19,17 +19,18 @@ import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 export function StoryDetails() {
     const navigate = useNavigate()
     const modalContentRef = useRef(null)
+    const stories = useSelector(storeState => storeState.storyModule.stories)
     const [story, setStory] = useState(null)
     const { storyId } = useParams()
     const [openedStoryOptions, setOpenedStoryOptions] = useState(false)
 
     useEffect(() => {
         loadStory()
-    }, [storyId, story])
+    }, [storyId, stories])
 
     async function loadStory() {
         try {
-            let story = await storyService.getById(storyId)
+            let story = stories.find(story => story._id === storyId)
             setStory(story)
         } catch (err) {
             console.log(err)
