@@ -31,6 +31,17 @@
             justify-content: space-between;
             align-items: center;
 
+            .back-btn {
+                display: flex;
+                align-items: center;
+                background: none;
+                border: none;
+                cursor: pointer;
+                z-index: 2;
+                padding: 8px;
+                margin-left: 4px;
+            }
+
             p {
                 width: 100%;
                 position: absolute;
@@ -38,9 +49,9 @@
                 justify-content: center;
             }
 
-            Button {
+            .share-btn {
                 background: none;
-                color: blue;
+                color: $blue1;
                 border: none;
                 font-weight: $font-weight-semibold;
                 cursor: pointer;
@@ -59,7 +70,7 @@
             justify-content: center;
             align-items: center;
 
-            p{
+            p {
                 margin-top: 12px;
             }
 
@@ -75,8 +86,8 @@
                 color: white;
                 border: none;
                 border-radius: 10px;
-                
-                label{
+
+                label {
                     cursor: pointer;
                 }
             }
@@ -104,9 +115,10 @@
                         padding-block: 20px;
 
                         img {
-                            width: 32px;
-                            height: 32px;
+                            width: 28px;
+                            height: 28px;
                             border-radius: 50%;
+                            margin-left: 20px;
                         }
 
                         p {

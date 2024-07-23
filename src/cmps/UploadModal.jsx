@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { uploadService } from '../services/upload.service'
 import { addStory } from "../store/actions/story.actions.js"
 
 import UploadPlaceholder from '../assets/svg/UploadPlaceholder.svg?react'
+import Back from '../assets/svg/Back.svg?react'
 
 export function UploadModal({ onCloseUpload }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
@@ -69,11 +70,11 @@ export function UploadModal({ onCloseUpload }) {
             {isUploading &&
                 <div className='modal-content after' ref={modalContentRef}>
                     <div className='modal-header'>
-                        <button onClick={onCloseModal}>
-                            Cancel
+                        <button className='back-btn' onClick={()=> setIsUploading(false)}>
+                            <Back />
                         </button>
                         <p>Create new story</p>
-                        <button onClick={shareStory}>
+                        <button className='share-btn' onClick={shareStory}>
                             Share
                         </button>
                     </div>
