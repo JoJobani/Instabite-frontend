@@ -21,6 +21,13 @@
 
         .story-img {
             width: 65%;
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
         }
 
         .story-info {

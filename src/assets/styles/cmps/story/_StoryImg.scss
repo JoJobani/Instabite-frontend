@@ -1,6 +1,9 @@
 .story-img {
+    display: flex;
+    justify-content: center;
+
     img {
-        aspect-ratio: 1/1;
-        max-height: 100%;
+        width: 470px;
+        max-height: 585px; //max width * 1.25
     }
 }
