@@ -51,7 +51,7 @@ export function UploadModal({ onCloseUpload }) {
                     </div>
                     <div className='upload-preview'>
                         <UploadPlaceholder />
-                        <p>Drag photo here</p>
+                        <p>Drag photos and videos here</p>
                         <input
                             type="file"
                             id='fileInput'
@@ -59,7 +59,7 @@ export function UploadModal({ onCloseUpload }) {
                             accept="img/*" />
                         <button>
                             <label htmlFor="fileInput">
-                                Upload from device
+                                Select from computer
                             </label>
                         </button>
                     </div>

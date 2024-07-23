@@ -50,17 +50,35 @@
         }
 
         .upload-preview {
-            height: 90%;
+            height: 100%;
             width: 100%;
             padding: 20px;
-            font-size: 26px;
+            font-size: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
 
+            p{
+                margin-top: 12px;
+            }
+
             input {
                 display: none;
+            }
+
+            button {
+                height: 32px;
+                padding: 7px 16px 7px 16px;
+                background-color: $blue1;
+                font-weight: $font-weight-semibold;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                
+                label{
+                    cursor: pointer;
+                }
             }
         }
 
