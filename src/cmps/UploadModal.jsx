@@ -22,8 +22,13 @@ export function UploadModal({ onCloseUpload }) {
         }
     }
 
+    function onBack(){
+        if (!confirm('Are you sure you want to discard changes?')) return
+        setIsUploading(false)
+    }
+
     function onCloseModal() {
-        if (isUploading && !confirm('Are you sure you want to discard this story?')) return
+        if (isUploading && !confirm('Are you sure you want to discard changes?')) return
         onCloseUpload()
     }
 
@@ -70,7 +75,7 @@ export function UploadModal({ onCloseUpload }) {
             {isUploading &&
                 <div className='modal-content after' ref={modalContentRef}>
                     <div className='modal-header'>
-                        <button className='back-btn' onClick={()=> setIsUploading(false)}>
+                        <button className='back-btn' onClick={onBack}>
                             <Back />
                         </button>
                         <p>Create new story</p>

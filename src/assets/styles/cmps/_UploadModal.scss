@@ -133,11 +133,14 @@
 
                         textarea {
                             font: inherit;
+                            font-size: 16px;
+                            line-height: 24px;
                             width: 100%;
                             min-height: 168px;
                             resize: none;
                             border-style: none;
-                            word-wrap: break-word;
+                            outline: 0px none transparent;
+                            white-space: pre-wrap;
                         }
                     }
                 }
