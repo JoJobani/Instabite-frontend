@@ -19,10 +19,10 @@ export function RootCmp() {
     }
 
     return (
-        <div className="main-container">
+        <div className="app-container">
             <AppNav onClickUpload={onClickUpload} />
             {isUploading && <UploadModal onCloseUpload={onCloseUpload} />}
-            <main>
+            <main className='main-content'>
                 <Routes>
                     <Route path="" element={<StoryIndex />} >
                         <Route path="/p/:storyId" element={<StoryDetails />} />

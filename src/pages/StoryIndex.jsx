@@ -9,6 +9,7 @@ import {
     addStoryComment
 } from "../store/actions/story.actions.js"
 import { StoryList } from "../cmps/StoryList.jsx"
+import { SuggestionsBar } from "../cmps/SuggestionsBar.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 
 export function StoryIndex() {
@@ -83,17 +84,20 @@ export function StoryIndex() {
                     onRemoveStory={onRemoveStory} />}
             {!stories || !stories.length
                 ? <div>Loading...</div>
-                : <StoryList
-                    stories={stories}
-                    clickUser={clickUser}
-                    onOpenOptions={onOpenOptions}
-                    toggleLike={toggleLike}
-                    addComment={addComment}
-                    openDetails={openDetails}
-                    shareStory={shareStory}
-                    saveStory={saveStory}
-                    openLikedBy={openLikedBy}
-                />
+                : <div className="index-content">
+                    <StoryList
+                        stories={stories}
+                        clickUser={clickUser}
+                        onOpenOptions={onOpenOptions}
+                        toggleLike={toggleLike}
+                        addComment={addComment}
+                        openDetails={openDetails}
+                        shareStory={shareStory}
+                        saveStory={saveStory}
+                        openLikedBy={openLikedBy}
+                    />
+                    <SuggestionsBar />
+                </div>
             }
         </main>
     )

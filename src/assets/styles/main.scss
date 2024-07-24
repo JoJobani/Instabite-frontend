@@ -7,8 +7,6 @@
 @import "basics/helpers";
 @import "basics/layout";
 @import "basics/base";
-@import "basics/forms";
-
 
 // pages
 @import "pages/LoginSignup";
@@ -18,12 +16,12 @@
 
 //App Components
 @import "cmps/AppNav";
-@import "cmps/AppFooter";
 @import "cmps/Search";
 @import "cmps/StoryList";
 @import "cmps/StoryPreview";
 @import "cmps/UploadModal";
 @import "cmps/StoryOptionsModal";
+@import "cmps/SuggestionsBar";
 
 //Story components
 @import "cmps/story/StoryCommentCount";

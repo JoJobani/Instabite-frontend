@@ -8,9 +8,12 @@ body {
     margin: 0;
 }
 
-img {
-    display: block;
-    max-width: 100%;
+button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 a {

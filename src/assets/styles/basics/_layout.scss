@@ -1,14 +1,15 @@
-.main-container {
-    display: grid;
-    grid-template-columns: 2fr 8fr 3fr;
+.app-container {
+    display: flex;
+    width: 100%;
+    margin: 0;
 
-    >* {
-        grid-column: 2;
-
-        &.full {
-            grid-column: 1 / -1;
-        }
+    .main-content {
+        margin-left: 244px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
+
 
     // @include for-narrow-layout {
     //     grid-template-columns: 

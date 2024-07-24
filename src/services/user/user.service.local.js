@@ -1,4 +1,5 @@
 import { storageService } from '../async-storage.service'
+import adminPicture from '../../assets/img/adminPicture.jpg'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -68,8 +69,9 @@ function getLoggedinUser() {
     //temp hardcoded user
     return {
         _id: 'admin',
-        fullname: 'admin',
-        imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg',
+        username: 'jona_menashe',
+        fullname: 'Jonathan Menashe',
+        imgUrl: adminPicture,
         isAdmin: true
     }
     // return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
