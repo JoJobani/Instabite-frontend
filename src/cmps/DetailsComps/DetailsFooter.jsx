@@ -66,7 +66,12 @@ export function DetailsFooter({ story, toggleLike, shareStory, saveStory, openLi
                 {story.likedBy.length} likes
             </div>
 
+            <div className='story-date'>
+                some time ago
+            </div>
+
             <div className="add-comment">
+                <Emoji />
                 <form onSubmit={onAddComment}>
                     <textarea
                         ref={textareaRef}
@@ -78,7 +83,6 @@ export function DetailsFooter({ story, toggleLike, shareStory, saveStory, openLi
                     />
                     {comment && <button>Post</button>}
                 </form>
-                <Emoji />
             </div>
 
         </section>

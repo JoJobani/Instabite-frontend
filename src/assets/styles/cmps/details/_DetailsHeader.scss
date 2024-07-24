@@ -2,14 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 46px;
-    padding: 0 0 12px 4px;
-    border-bottom: 1px $seperator solid;
+    padding: 14px 16px 14px 16px;
+    border-bottom: 1px $gray4 solid;
 
     .user-info {
         .profile-link {
             display: flex;
-            justify-content: start;
             align-items: center;
             width: fit-content;
             gap: 10px;
@@ -23,6 +21,7 @@
 
             p {
                 font-weight: $font-weight-semibold;
+                color: $black3;
                 margin: 0;
             }
         }
@@ -30,8 +29,6 @@
 
     .more-options {
         display: flex;
-        justify-content: center;
-        align-items: center;
         cursor: pointer;
     }
 }

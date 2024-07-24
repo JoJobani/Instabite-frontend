@@ -1,12 +1,12 @@
 .details-footer {
-    width: 100%;
+    border-top: 1px $gray4 solid;
 
     .story-controls {
+        padding-inline: 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-block-start: 4px;
-        height: 40px;
+        padding-block: 6px;
 
         .story-controls-left {
             display: flex;
@@ -25,20 +25,33 @@
     }
 
     .story-likes {
+        padding-inline: 16px;
         width: 100%;
-        margin-bottom: 30px;
         line-height: 18px;
         font-weight: $font-weight-semibold;
         width: fit-content;
         cursor: pointer;
     }
 
+    .story-date {
+        padding-inline: 16px;
+        color: $gray1;
+        font-size: 12px;
+    }
+
     .add-comment {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         border-top: 1px $gray3 solid;
         min-height: 53px;
-        padding: 6px 16px 6px 0;
+        margin-top: 15px;
+        padding: 6px 16px;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+        }
 
         form {
             width: 100%;
@@ -63,11 +76,6 @@
                 cursor: pointer;
                 z-index: 2;
             }
-        }
-
-        svg {
-            color: $gray1;
-            margin: auto 5px auto 2px;
         }
     }
 }

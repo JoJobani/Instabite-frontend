@@ -12,6 +12,7 @@ import { DetailsHeader } from "../cmps/DetailsComps/DetailsHeader.jsx"
 import { DetailsTexts } from "../cmps/DetailsComps/DetailsTexts.jsx"
 import { DetailsFooter } from "../cmps/DetailsComps/DetailsFooter.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
+import Close from "../assets/svg/close.svg?react"
 
 export function StoryDetails() {
     const navigate = useNavigate()
@@ -137,6 +138,10 @@ export function StoryDetails() {
                         addComment={addComment}
                     />
                 </section>
+            </div>
+
+            <div className='close-btn'>
+                <Close />
             </div>
         </div>
     )

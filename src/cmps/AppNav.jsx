@@ -7,6 +7,7 @@ import { MoreMenu } from './MoreMenu.jsx'
 
 import instaClone from '../assets/img/instaClone.png'
 import Home from '../assets/svg/Home.svg?react'
+import HomeSelected from '../assets/svg/HomeSelected.svg?react'
 import Search from '../assets/svg/Search.svg?react'
 import Explore from '../assets/svg/Explore.svg?react'
 import Messenger from '../assets/svg/Messenger.svg?react'
@@ -28,31 +29,35 @@ export function AppNav({ onClickUpload }) {
 
                 <nav className='main-nav'>
                     <NavLink to='/' className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
-                        <Home />
-                        <p>Home</p>
+                        {({ isActive }) => (
+                            <>
+                                {isActive ? <HomeSelected /> : <Home />}
+                                <span>Home</span>
+                            </>
+                        )}
                     </NavLink>
                     <button
                         className={`link ${isSearchOpen ? 'selected' : ''}`}
                         onClick={() => setIsSearchOpen(!isSearchOpen)}
                     >
                         <Search />
-                        <p>Search</p>
+                        <span>Search</span>
                     </button>
                     <NavLink to='/explore' className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
                         <Explore />
-                        <p>Explore</p>
+                        <span>Explore</span>
                     </NavLink>
                     <NavLink to='/' className='link'>
                         <Messenger />
-                        <p>Messages</p>
+                        <span>Messages</span>
                     </NavLink>
                     <button className='link' onClick={() => onClickUpload()}>
                         <Create />
-                        <p>Create</p>
+                        <span>Create</span>
                     </button>
                     <NavLink to={`/${loggedInUser.username}`} className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
                         <img src={loggedInUser.imgUrl} />
-                        <p>Profile</p>
+                        <span>Profile</span>
                     </NavLink>
                 </nav>
 
@@ -62,7 +67,7 @@ export function AppNav({ onClickUpload }) {
                         onClick={() => setIsMoreOpen(!isMoreOpen)}
                     >
                         <Hamburger />
-                        <p>More</p>
+                        <span>More</span>
                     </button>
                 </nav>
             </section>

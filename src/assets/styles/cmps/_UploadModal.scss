@@ -1,154 +1,143 @@
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    position: relative;
+    width: 42%;
+    height: 81%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    z-index: 2;
 
-    .modal-content {
-        background-color: white;
-        border-radius: 15px;
-        position: relative;
-        width: 42%;
-        height: 81%;
+    .modal-header {
+        font-size: 16px;
+        font-weight: $font-weight-semibold;
+        width: 100%;
+        height: 46px;
+        margin: 0;
+        border-bottom: 1px $gray3 solid;
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
 
-        .modal-header {
-            font-size: 16px;
-            font-weight: $font-weight-semibold;
-            width: 100%;
-            height: 42px;
-            margin: 0;
-            border-bottom: 1px $gray3 solid;
+        .back-btn {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-
-            .back-btn {
-                display: flex;
-                align-items: center;
-                background: none;
-                border: none;
-                cursor: pointer;
-                z-index: 2;
-                padding: 8px;
-                margin-left: 4px;
-            }
-
-            p {
-                width: 100%;
-                position: absolute;
-                display: flex;
-                justify-content: center;
-            }
-
-            .share-btn {
-                background: none;
-                color: $blue1;
-                border: none;
-                font-weight: $font-weight-semibold;
-                cursor: pointer;
-                z-index: 2;
-                padding: 20px;
-            }
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            padding: 8px;
+            margin-left: 4px;
         }
 
-        .upload-preview {
-            height: 100%;
+        p {
             width: 100%;
-            padding: 20px;
-            font-size: 20px;
+            position: absolute;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-
-            p {
-                margin-top: 12px;
-            }
-
-            input {
-                display: none;
-            }
-
-            button {
-                height: 32px;
-                padding: 7px 16px 7px 16px;
-                background-color: $blue1;
-                font-weight: $font-weight-semibold;
-                color: white;
-                border: none;
-                border-radius: 10px;
-
-                label {
-                    cursor: pointer;
-                }
-            }
         }
 
-        &.after {
-            width: 63%;
+        .share-btn {
+            background: none;
+            color: $blue1;
+            border: none;
+            font-weight: $font-weight-semibold;
+            cursor: pointer;
+            z-index: 2;
+            padding: 20px;
+        }
+    }
 
-            .upload-edit {
-                height: 90%;
-                width: 100%;
-                display: flex;
-                align-items: center;
+    .upload-preview {
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-                .edit-section {
-                    height: 100%;
-                    width: 30%;
+        p {
+            margin-top: 12px;
+        }
 
-                    .profile {
-                        display: flex;
-                        justify-content: start;
-                        align-items: center;
-                        width: fit-content;
-                        gap: 10px;
-                        padding-block: 20px;
+        input {
+            display: none;
+        }
 
-                        img {
-                            width: 28px;
-                            height: 28px;
-                            border-radius: 50%;
-                            margin-left: 20px;
-                        }
+        button {
+            height: 32px;
+            width: 170px;
+            padding: 7px 16px 7px 16px;
+            background-color: $blue1;
+            font-weight: $font-weight-semibold;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
 
-                        p {
-                            font-weight: $font-weight-semibold;
-                            margin: 0;
-                        }
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.after {
+        width: 63%;
+
+        .upload-edit {
+            height: 90%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            .edit-section {
+                height: 100%;
+                width: 30%;
+
+                .profile {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    width: fit-content;
+                    gap: 10px;
+                    padding-block: 20px;
+
+                    img {
+                        width: 28px;
+                        height: 28px;
+                        border-radius: 50%;
+                        margin-left: 20px;
                     }
 
-                    .edit-comment {
+                    p {
+                        font-weight: $font-weight-semibold;
+                        margin: 0;
+                    }
+                }
+
+                .edit-comment {
+                    min-height: 168px;
+                    padding: 0 16px;
+
+                    textarea {
+                        font: inherit;
+                        font-size: 16px;
+                        line-height: 24px;
+                        width: 100%;
                         min-height: 168px;
-                        padding: 0 16px;
-
-                        textarea {
-                            font: inherit;
-                            font-size: 16px;
-                            line-height: 24px;
-                            width: 100%;
-                            min-height: 168px;
-                            resize: none;
-                            border-style: none;
-                            outline: 0px none transparent;
-                            white-space: pre-wrap;
-                        }
+                        resize: none;
+                        border-style: none;
+                        outline: 0px none transparent;
+                        white-space: pre-wrap;
                     }
                 }
+            }
 
-                img {
-                    max-width: 70%;
-                    object-fit: contain;
-                }
+            img {
+                max-width: 70%;
+                object-fit: contain;
             }
         }
     }
