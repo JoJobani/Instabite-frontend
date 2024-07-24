@@ -1,6 +1,6 @@
-export function StoryImg({ story, toggleLike }) {
+export function PrevImg({ story, toggleLike }) {
     return (
-        <div className="story-img"
+        <div className="prev-img"
             onDoubleClick={() => toggleLike(story._id)}>
             <img
                 src={story.imgUrl}

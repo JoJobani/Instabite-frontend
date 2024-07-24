@@ -1,10 +1,6 @@
-import { StoryHeader } from "./story/StoryHeader.jsx"
-import { StoryImg } from "./story/StoryImg.jsx"
-import { StoryControls } from "./story/StoryControls.jsx"
-import { StoryLikes } from "./story/StoryLikes.jsx"
-import { StoryText } from "./story/StoryText.jsx"
-import { StoryCommentCount } from "./story/StoryCommentCount.jsx"
-import { StoryAddComment } from "./story/StoryAddComment.jsx"
+import { PrevHeader } from "./PrevComps/PrevHeader.jsx"
+import { PrevImg } from "./PrevComps/PrevImg.jsx"
+import { PrevFooter } from "./PrevComps/PrevFooter.jsx"
 
 export function StoryPreview({
     story,
@@ -19,37 +15,23 @@ export function StoryPreview({
 }) {
     return (
         <section className="story-preview">
-            <StoryHeader
+            <PrevHeader
                 story={story}
                 clickUser={clickUser}
                 onOpenOptions={onOpenOptions}
             />
-            <StoryImg
+            <PrevImg
                 story={story}
                 toggleLike={toggleLike}
             />
-            <StoryControls
+            <PrevFooter
                 story={story}
                 toggleLike={toggleLike}
                 openDetails={openDetails}
                 shareStory={shareStory}
                 saveStory={saveStory}
-            />
-            <StoryLikes
-                story={story}
                 openLikedBy={openLikedBy}
-            />
-            <StoryText
-                story={story}
-                isDetailsOpen={false}
                 clickUser={clickUser}
-            />
-            <StoryCommentCount
-                story={story}
-                openDetails={openDetails}
-            />
-            <StoryAddComment
-                story={story}
                 addComment={addComment}
             />
         </section>

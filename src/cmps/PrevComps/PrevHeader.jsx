@@ -1,9 +1,9 @@
 import MoreOptions from '../../assets/svg/MoreOptions.svg?react'
 
-export function StoryHeader({ story, clickUser, onOpenOptions }) {
+export function PrevHeader({ story, clickUser, onOpenOptions }) {
 
     return (
-        <section className="story-header">
+        <section className="prev-header">
             <div className="user-info">
                 <div
                     className="profile-link"

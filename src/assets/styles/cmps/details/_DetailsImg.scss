@@ -1,0 +1,10 @@
+.details-img {
+    width: 65%;
+    display: flex;
+    background-color: black;
+
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+}

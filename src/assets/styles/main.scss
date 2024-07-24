@@ -24,12 +24,13 @@
 @import "cmps/SuggestionsBar";
 @import "cmps/MoreMenu";
 
-//Story components
-@import "cmps/story/StoryCommentCount";
-@import "cmps/story/StoryControls";
-@import "cmps/story/StoryHeader";
-@import "cmps/story/StoryImg";
-@import "cmps/story/StoryLikes";
-@import "cmps/story/StoryText";
-@import "cmps/story/StoryAddComment";
-@import "cmps/story/StoryCommentList";
+//Story Preview Components
+@import "cmps/prev/PrevHeader";
+@import "cmps/prev/PrevImg";
+@import "cmps/prev/PrevFooter";
+
+//Story Details Components
+@import "cmps/details/DetailsImg";
+@import "cmps/details/DetailsHeader";
+@import "cmps/details/DetailsTexts";
+@import "cmps/details/DetailsFooter";

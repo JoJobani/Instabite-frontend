@@ -1,0 +1,63 @@
+.details-texts {
+    height: 80%;
+    margin: -5px -2px 0 0;
+    padding: 5px 16px 16px 0;
+
+    .story-txt {
+        height: 80px;
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+        padding: 5px 16px 16px 0;
+        gap: 10px;
+
+        img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .user {
+            font-weight: $font-weight-semibold;
+            cursor: pointer;
+        }
+    }
+
+    .story-comment-list {
+        display: flex;
+        flex-direction: column;
+
+        li {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            height: 55px;
+
+            .comment-info {
+                gap: 10px;
+                display: flex;
+                align-items: end;
+
+                img {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                }
+
+                .user {
+                    font-weight: $font-weight-semibold;
+                    cursor: pointer;
+                }
+            }
+
+            .comment-controls {
+                cursor: pointer;
+                margin-bottom: 6px;
+            }
+        }
+    }
+}

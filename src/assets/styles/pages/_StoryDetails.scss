@@ -19,54 +19,12 @@
         display: flex;
         flex-direction: row;
 
-        .story-img {
-            width: 65%;
-            display: flex;
-            align-items: center;
-
-            img {
-                width: 100%;
-                object-fit: contain;
-            }
-        }
-
-        .story-info {
+        .details-info {
             width: 35%;
             margin-top: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
-            .details-main {
-                border-top: 1px $seperator solid;
-
-                .story-txt {
-                    height: 80px;
-                    margin: -5px -2px 0 0;
-                    padding: 5px 16px 16px 0;
-                }
-
-                height: 80%;
-            }
-
-            .details-footer {
-                width: 100%;
-
-                .story-likes {
-                    width: 100%;
-                    margin-bottom: 30px;
-                }
-
-                .add-comment {
-                    border-top: 1px $gray3 solid;
-                    min-height: 53px;
-                    padding: 6px 16px 6px 0;
-                    display: flex;
-                    align-items: center;
-                }
-            }
         }
     }
-
-
 }

@@ -7,13 +7,10 @@ import {
     addStoryComment,
     removeStoryComment
 } from "../store/actions/story.actions.js"
-import { StoryHeader } from "../cmps/story/StoryHeader.jsx"
-import { StoryImg } from "../cmps/story/StoryImg.jsx"
-import { StoryControls } from "../cmps/story/StoryControls.jsx"
-import { StoryLikes } from "../cmps/story/StoryLikes.jsx"
-import { StoryText } from "../cmps/story/StoryText.jsx"
-import { StoryCommentList } from '../cmps/story/StoryCommentList.jsx'
-import { StoryAddComment } from "../cmps/story/StoryAddComment.jsx"
+import { DetailsImg } from "../cmps/DetailsComps/DetailsImg.jsx"
+import { DetailsHeader } from "../cmps/DetailsComps/DetailsHeader.jsx"
+import { DetailsTexts } from "../cmps/DetailsComps/DetailsTexts.jsx"
+import { DetailsFooter } from "../cmps/DetailsComps/DetailsFooter.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 
 export function StoryDetails() {
@@ -116,43 +113,30 @@ export function StoryDetails() {
                 />}
 
             <div className='story-details' ref={modalContentRef}>
-                <StoryImg
+                <DetailsImg
                     story={story}
                     toggleLike={toggleLike}
                 />
-                <div className='story-info'>
-                    <StoryHeader
+                <section className='details-info'>
+                    <DetailsHeader
                         story={story}
                         clickUser={clickUser}
                         onOpenOptions={onOpenOptions}
                     />
-                    <div className='details-main'>
-                        <StoryText
-                            story={story}
-                            clickUser={clickUser}
-                        />
-                        <StoryCommentList
-                            story={story}
-                            onRemoveComment={onRemoveComment}
-                        />
-                    </div>
-                    <div className='details-footer'>
-                        <StoryControls
-                            story={story}
-                            toggleLike={toggleLike}
-                            shareStory={shareStory}
-                            saveStory={saveStory}
-                        />
-                        <StoryLikes
-                            story={story}
-                            openLikedBy={openLikedBy}
-                        />
-                        <StoryAddComment
-                            story={story}
-                            addComment={addComment}
-                        />
-                    </div>
-                </div>
+                    <DetailsTexts
+                        story={story}
+                        clickUser={clickUser}
+                        onRemoveComment={onRemoveComment}
+                    />
+                    <DetailsFooter
+                        story={story}
+                        toggleLike={toggleLike}
+                        shareStory={shareStory}
+                        saveStory={saveStory}
+                        openLikedBy={openLikedBy}
+                        addComment={addComment}
+                    />
+                </section>
             </div>
         </div>
     )

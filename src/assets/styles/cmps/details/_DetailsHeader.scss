@@ -1,0 +1,37 @@
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+    padding: 0 0 12px 4px;
+    border-bottom: 1px $seperator solid;
+
+    .user-info {
+        .profile-link {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: fit-content;
+            gap: 10px;
+            cursor: pointer;
+
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+
+            p {
+                font-weight: $font-weight-semibold;
+                margin: 0;
+            }
+        }
+    }
+
+    .more-options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+}
