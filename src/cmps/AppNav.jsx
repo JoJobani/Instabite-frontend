@@ -1,5 +1,9 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
+import { SearchMenu } from './SearchMenu.jsx'
+import { MoreMenu } from './MoreMenu.jsx'
 
 import instaClone from '../assets/img/instaClone.png'
 import Home from '../assets/svg/Home.svg?react'
@@ -11,6 +15,8 @@ import Hamburger from '../assets/svg/Hamburger.svg?react'
 
 export function AppNav({ onClickUpload }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [isMoreOpen, setIsMoreOpen] = useState(false)
 
     return (
         <section className="app-nav">
@@ -21,15 +27,18 @@ export function AppNav({ onClickUpload }) {
             <section className='nav-bar'>
 
                 <nav className='main-nav'>
-                    <NavLink to='/' className='link'>
+                    <NavLink to='/' className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
                         <Home />
                         <p>Home</p>
                     </NavLink>
-                    <NavLink to='/' className='link'>
+                    <button
+                        className={`link ${isSearchOpen ? 'selected' : ''}`}
+                        onClick={() => setIsSearchOpen(!isSearchOpen)}
+                    >
                         <Search />
                         <p>Search</p>
-                    </NavLink>
-                    <NavLink to='/' className='link'>
+                    </button>
+                    <NavLink to='/explore' className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
                         <Explore />
                         <p>Explore</p>
                     </NavLink>
@@ -41,20 +50,24 @@ export function AppNav({ onClickUpload }) {
                         <Create />
                         <p>Create</p>
                     </button>
-                    <NavLink to='/' className='link'>
+                    <NavLink to={`/${loggedInUser.username}`} className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
                         <img src={loggedInUser.imgUrl} />
                         <p>Profile</p>
                     </NavLink>
                 </nav>
 
                 <nav className="lower-nav">
-                    <NavLink to='/' className='link'>
+                    <button
+                        className={`link ${isMoreOpen ? 'selected' : ''}`}
+                        onClick={() => setIsMoreOpen(!isMoreOpen)}
+                    >
                         <Hamburger />
-                        <p>Settings</p>
-                    </NavLink>
+                        <p>More</p>
+                    </button>
                 </nav>
             </section>
-
-        </section>
+            {/* {isSearchOpen && <SearchMenu />}
+            {isMoreOpen && <MoreMenu />} */}
+        </section >
     )
 }

@@ -58,4 +58,13 @@
             }
         }
     }
+
+    .side-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        //background color for visual testing
+        background-color: antiquewhite;
+        z-index: 1000;
+    }
 }

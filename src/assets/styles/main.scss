@@ -16,12 +16,13 @@
 
 //App Components
 @import "cmps/AppNav";
-@import "cmps/Search";
+@import "cmps/SearchMenu";
 @import "cmps/StoryList";
 @import "cmps/StoryPreview";
 @import "cmps/UploadModal";
 @import "cmps/StoryOptionsModal";
 @import "cmps/SuggestionsBar";
+@import "cmps/MoreMenu";
 
 //Story components
 @import "cmps/story/StoryCommentCount";
