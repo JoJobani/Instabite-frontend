@@ -84,7 +84,7 @@ export function StoryDetails() {
     async function onRemoveStory() {
         try {
             if (!confirm('Are you sure you want to delete this story?')) return
-            navigate('/')
+            navigate(-1)
             await removeStory(story._id)
         } catch (err) {
             console.log(err)
