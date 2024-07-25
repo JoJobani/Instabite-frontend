@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { Outlet } from "react-router"
 import {
     loadStories,
     removeStory,
@@ -77,7 +76,6 @@ export function StoryIndex() {
 
     return (
         <main className="story-index">
-            <Outlet />
             {focusedStoryId &&
                 <StoryOptionsModal
                     onCloseOptions={onCloseOptions}

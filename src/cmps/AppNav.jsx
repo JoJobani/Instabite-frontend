@@ -7,7 +7,7 @@ import { MoreMenu } from './MoreMenu.jsx'
 
 import instaClone from '../assets/img/instaClone.png'
 import Home from '../assets/svg/Home.svg?react'
-import HomeSelected from '../assets/svg/HomeSelected.svg?react'
+import HomeFocus from '../assets/svg/HomeFocus.svg?react'
 import Search from '../assets/svg/Search.svg?react'
 import Explore from '../assets/svg/Explore.svg?react'
 import Messenger from '../assets/svg/Messenger.svg?react'
@@ -26,12 +26,11 @@ export function AppNav({ onClickUpload }) {
             </NavLink>
 
             <section className='nav-bar'>
-
                 <nav className='main-nav'>
                     <NavLink to='/' className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
                         {({ isActive }) => (
                             <>
-                                {isActive ? <HomeSelected /> : <Home />}
+                                {isActive ? <HomeFocus /> : <Home />}
                                 <span>Home</span>
                             </>
                         )}
@@ -47,7 +46,7 @@ export function AppNav({ onClickUpload }) {
                         <Explore />
                         <span>Explore</span>
                     </NavLink>
-                    <NavLink to='/' className='link'>
+                    <NavLink to='/direct' className={({ isActive }) => `link ${isActive ? 'selected' : ''}`}>
                         <Messenger />
                         <span>Messages</span>
                     </NavLink>

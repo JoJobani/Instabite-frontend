@@ -1,6 +1,6 @@
-import { PrevHeader } from "./PrevComps/PrevHeader.jsx"
-import { PrevImg } from "./PrevComps/PrevImg.jsx"
-import { PrevFooter } from "./PrevComps/PrevFooter.jsx"
+import { PrevHeader } from "./PrevCmps/PrevHeader.jsx"
+import { PrevImg } from "./PrevCmps/PrevImg.jsx"
+import { PrevFooter } from "./PrevCmps/PrevFooter.jsx"
 
 export function StoryPreview({
     story,

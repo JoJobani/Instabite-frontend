@@ -7,10 +7,10 @@ import {
     addStoryComment,
     removeStoryComment
 } from "../store/actions/story.actions.js"
-import { DetailsImg } from "../cmps/DetailsComps/DetailsImg.jsx"
-import { DetailsHeader } from "../cmps/DetailsComps/DetailsHeader.jsx"
-import { DetailsTexts } from "../cmps/DetailsComps/DetailsTexts.jsx"
-import { DetailsFooter } from "../cmps/DetailsComps/DetailsFooter.jsx"
+import { DetailsImg } from "../cmps/DetailsCmps/DetailsImg.jsx"
+import { DetailsHeader } from "../cmps/DetailsCmps/DetailsHeader.jsx"
+import { DetailsTexts } from "../cmps/DetailsCmps/DetailsTexts.jsx"
+import { DetailsFooter } from "../cmps/DetailsCmps/DetailsFooter.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 import Close from "../assets/svg/close.svg?react"
 
@@ -42,7 +42,7 @@ export function StoryDetails() {
     }
 
     function onCloseDetails() {
-        navigate('/')
+        navigate(-1)
     }
 
     function onOpenOptions() {

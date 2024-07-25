@@ -1,4 +1,4 @@
-
+import { NavLink, Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 
@@ -44,8 +44,28 @@ export function UserDetails() {
                 </div>
             </header>
 
+            <section className='story-type'>
 
+            </section>
 
         </section>
+    )
+}
+
+export function UploadedStories() {
+    return (
+        <p>Stories uploaded by the user</p>
+    )
+}
+
+export function SavedStories() {
+    return (
+        <p>Stories saved by the user</p>
+    )
+}
+
+export function TaggedStories() {
+    return (
+        <p>Stories where the user is tagged</p>
     )
 }
