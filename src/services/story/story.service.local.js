@@ -17,10 +17,10 @@ export const storyService = {
 
 _demoStories()
 
-async function query(filterBy = {}) {
+async function query(filterBy = { byUserId: '' }) {
     var stories = await storageService.query(STORAGE_KEY)
-    if (filterBy.by) {
-        stories = stories.filter(story => filterBy.by._id === story.by._id)
+    if (filterBy.byUserId) {
+        stories = stories.filter(story => filterBy.byUserId === story.by._id)
     }
     return stories
 }

@@ -75,7 +75,6 @@ function getLoggedinUser() {
         bio: 'Lorem ipsum odor amet, consectetuer adipiscing elit. Magna dis arcu mus ligula habitasse ex fames dignissim condimentum iaculis non fusce fames finibus sapien imperdiet cursus bibendum',
         followers: [],
         following: [],
-        uploadedStories: [],
         savedStories: [],
         taggedStories: [],
         isAdmin: true

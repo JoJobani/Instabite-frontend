@@ -1,13 +1,28 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, useNavigate, Outlet, useOutletContext } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { loadStories } from "../store/actions/story.actions.js"
+import { ImgGrid } from "../cmps/ImgGrid.jsx"
 import ShowUploaded from '../assets/svg/ShowUploaded.svg?react'
 import ShowSaved from '../assets/svg/ShowSaved.svg?react'
 import ShowTagged from '../assets/svg/ShowTagged.svg?react'
 
 export function UserDetails() {
+    const navigate = useNavigate()
     const user = useSelector(storeState => storeState.userModule.user)
+    const stories = useSelector(storeState => storeState.storyModule.stories)
     //set if the profile were looking at belongs to the user or someone else
     const isUserLogged = true
+
+    useEffect(() => {
+        loadStories({ byUserId: user._id })
+    }, [])
+
+    function onStoryClick(storyId) {
+        navigate(`/p/${storyId}`)
+    }
+
+    if (!stories || !stories.length) return <div>loading...</div>
 
     return (
         <section className="user-details">
@@ -35,7 +50,7 @@ export function UserDetails() {
                             </div>}
                     </div>
                     <div className="user-stats">
-                        <p><span>{user.uploadedStories.length}</span> stories</p>
+                        <p><span>{stories.length}</span> stories</p>
                         <p><span>{user.followers.length}</span> followers</p>
                         <p><span>{user.following.length}</span> following</p>
                     </div>
@@ -61,26 +76,28 @@ export function UserDetails() {
                 </NavLink>
             </section>
 
-            <Outlet />
-
+            <Outlet context={{ user, stories, onStoryClick }} />
         </section>
     )
 }
 
 export function UploadedStories() {
+    const { stories, onStoryClick } = useOutletContext()
     return (
-        <p>Stories uploaded by the user</p>
+        <ImgGrid stories={stories} onStoryClick={onStoryClick} />
     )
 }
 
 export function SavedStories() {
+    const { user, onStoryClick } = useOutletContext()
     return (
-        <p>Stories saved by the user</p>
+        <ImgGrid stories={user.savedStories} onStoryClick={onStoryClick} />
     )
 }
 
 export function TaggedStories() {
+    const { user, onStoryClick } = useOutletContext()
     return (
-        <p>Stories where the user is tagged</p>
+        <ImgGrid stories={user.taggedStories} onStoryClick={onStoryClick} />
     )
 }

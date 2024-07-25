@@ -12,7 +12,6 @@ function getEmptyUser() {
         bio: '',
         followers: [],
         following: [],
-        uploadedStories: [],
         savedStories: [],
         taggedStories: [],
         isAdmin: false
