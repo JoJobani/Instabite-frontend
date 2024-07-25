@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { StoryIndex } from './pages/StoryIndex.jsx'
 import { StoryDetails } from './pages/StoryDetails.jsx'
+import { UserDetails } from './pages/UserDetails.jsx'
 import { AppNav } from './cmps/AppNav.jsx'
 import { UploadModal } from './cmps/UploadModal.jsx'
 
@@ -26,6 +27,9 @@ export function RootCmp() {
                 <Routes>
                     <Route path="" element={<StoryIndex />} >
                         <Route path="/p/:storyId" element={<StoryDetails />} />
+                    </Route>
+                    <Route path="/:username" element={<UserDetails />}>
+
                     </Route>
                 </Routes>
             </main>

@@ -72,6 +72,12 @@ function getLoggedinUser() {
         username: 'jona_menashe',
         fullname: 'Jonathan Menashe',
         imgUrl: adminPicture,
+        bio: 'Lorem ipsum odor amet, consectetuer adipiscing elit. Magna dis arcu mus ligula habitasse ex fames dignissim condimentum iaculis non fusce fames finibus sapien imperdiet cursus bibendum',
+        followers: [],
+        following: [],
+        uploadedStories: [],
+        savedStories: [],
+        taggedStories: [],
         isAdmin: true
     }
     // return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
