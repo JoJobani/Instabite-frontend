@@ -22,7 +22,7 @@ export function UserDetails() {
         navigate(`/p/${storyId}`)
     }
 
-    if (!stories || !stories.length) return <div>loading...</div>
+    if (!stories) return <div>loading...</div>
 
     return (
         <section className="user-details">

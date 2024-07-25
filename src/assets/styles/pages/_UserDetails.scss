@@ -1,7 +1,7 @@
 .user-details {
     padding: 30px 20px 0 20px;
     width: calc(100% - 40px);
-    max-width: 935px;
+    max-width: 975px;
 
     header {
         display: grid;
@@ -96,6 +96,10 @@
                 margin: 0 0 0 6px;
                 font-weight: $font-weight-semibold;
                 letter-spacing: 1px;
+            }
+
+            &:last-of-type{
+                margin-right: 0;
             }
 
             &.selected {
