@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
+import ShowUploaded from '../assets/svg/ShowUploaded.svg?react'
+import ShowSaved from '../assets/svg/ShowSaved.svg?react'
+import ShowTagged from '../assets/svg/ShowTagged.svg?react'
 
 export function UserDetails() {
     const user = useSelector(storeState => storeState.userModule.user)
@@ -45,8 +47,21 @@ export function UserDetails() {
             </header>
 
             <section className='story-type'>
-
+                <NavLink to="" end className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>
+                    <ShowUploaded />
+                    <p>STORIES</p>
+                </NavLink>
+                <NavLink to="saved" className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>
+                    <ShowSaved />
+                    <p>SAVED</p>
+                </NavLink>
+                <NavLink to="tagged" className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>
+                    <ShowTagged />
+                    <p>TAGGED</p>
+                </NavLink>
             </section>
+
+            <Outlet />
 
         </section>
     )

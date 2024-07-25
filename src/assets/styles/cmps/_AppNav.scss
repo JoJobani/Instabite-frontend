@@ -54,6 +54,10 @@
             }
         }
 
+        .selected {
+            font-weight: $font-weight-bold;
+        }
+
         .lower-nav {
             button {
                 margin-bottom: 4px;

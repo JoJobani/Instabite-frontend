@@ -76,4 +76,44 @@
         }
 
     }
+
+    .story-type {
+        display: flex;
+        justify-content: center;
+        border-top: 1px $seperator solid;
+        margin-top: 40px;
+
+        .tab {
+            background: none;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            color: $gray1;
+            margin-right: 60px;
+            font-size: 12px;
+
+            p {
+                margin: 0 0 0 6px;
+                font-weight: $font-weight-semibold;
+                letter-spacing: 1px;
+            }
+
+            &.selected {
+                margin-top: -1px;
+                color: black;
+                border-top: 1px black solid;
+            }
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            &:active {
+                color: $gray3;
+                border-top-color: $gray3;
+            }
+
+
+        }
+    }
 }
