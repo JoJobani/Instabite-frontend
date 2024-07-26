@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 export function DetailsImg({ story, toggleLike }) {
-    const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
 
     return (

@@ -30,7 +30,7 @@ export function RootCmp() {
                     <Route path="" element={<StoryIndex />} />
                     <Route path="/explore" element={<Explore />} />
                     <Route path="/direct" element={<Messages />} />
-                    <Route path="/:user" element={<UserDetails />} >
+                    <Route path="/:userRoute" element={<UserDetails />} >
                         <Route path="" element={<UploadedStories />} />
                         <Route path="saved" element={<SavedStories />} />
                         <Route path="tagged" element={<TaggedStories />} />

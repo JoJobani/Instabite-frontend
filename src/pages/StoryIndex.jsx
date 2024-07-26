@@ -10,6 +10,8 @@ import {
 import { StoryList } from "../cmps/StoryList.jsx"
 import { SuggestionsBar } from "../cmps/SuggestionsBar.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
+//maybe remove
+import { userService } from "../services/user/index.js"
 
 export function StoryIndex() {
     const navigate = useNavigate()
@@ -20,8 +22,9 @@ export function StoryIndex() {
         loadStories()
     }, [])
 
-    function clickUser(userId) {
-        console.log(`clicked user ${userId}`)
+    async function clickUser(userId) {
+        const user = await userService.getById(userId)
+        navigate(`/${user.username}`)
     }
 
     async function openDetails(storyId) {

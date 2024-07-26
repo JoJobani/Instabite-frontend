@@ -7,7 +7,7 @@ import UploadPlaceholder from '../assets/svg/UploadPlaceholder.svg?react'
 import Back from '../assets/svg/Back.svg?react'
 
 export function UploadModal({ onCloseUpload }) {
-    const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const [story, setStory] = useState({
         txt: '',
         by: loggedInUser,

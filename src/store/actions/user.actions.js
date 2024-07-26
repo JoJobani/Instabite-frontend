@@ -4,11 +4,15 @@ import { store } from '../store'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer'
 
+//TO REMOVE LATER - DEFAULT LOGIN
+_defaultLogin()
+
 export async function loadUsers(filterBy) {
     try {
         store.dispatch({ type: LOADING_START })
         const users = await userService.getUsers(filterBy)
         store.dispatch({ type: SET_USERS, users })
+        return users
     } catch (err) {
         console.log('UserActions: err in loadUsers', err)
     } finally {
@@ -32,7 +36,7 @@ export async function login(credentials) {
             type: SET_USER,
             user
         })
-        socketService.login(user._id)
+        // socketService.login(user._id)
         return user
     } catch (err) {
         console.log('Cannot login', err)
@@ -47,7 +51,7 @@ export async function signup(credentials) {
             type: SET_USER,
             user
         })
-        socketService.login(user._id)
+        // socketService.login(user._id)
         return user
     } catch (err) {
         console.log('Cannot signup', err)
@@ -62,7 +66,7 @@ export async function logout() {
             type: SET_USER,
             user: null
         })
-        socketService.logout()
+        // socketService.logout()
     } catch (err) {
         console.log('Cannot logout', err)
         throw err
@@ -76,4 +80,13 @@ export async function loadUser(userId) {
     } catch (err) {
         console.log('Cannot load user', err)
     }
+}
+
+async function _defaultLogin() {
+    console.log('logging demo user')
+    const creds = {
+        username: 'jona-menashe',
+        password: '1234'
+    }
+    await login(creds)
 }

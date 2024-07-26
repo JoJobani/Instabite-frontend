@@ -36,14 +36,24 @@
                     font-size: 20px;
                 }
 
-                a {
+                .user-btns {
                     display: flex;
-                    align-items: center;
-                    height: 32px;
-                    font-weight: $font-weight-semibold;
-                    background-color: $gray4;
-                    padding-inline: 16px;
-                    border-radius: 8px;
+                    gap: 8px;
+
+                    button {
+                        display: flex;
+                        align-items: center;
+                        height: 32px;
+                        font-weight: $font-weight-semibold;
+                        background-color: $gray4;
+                        padding-inline: 16px;
+                        border-radius: 8px;
+                    }
+
+                    .follow-btn {
+                        color: white;
+                        background-color: $blue1;
+                    }
                 }
             }
 
@@ -98,7 +108,7 @@
                 letter-spacing: 1px;
             }
 
-            &:last-of-type{
+            &:last-of-type {
                 margin-right: 0;
             }
 

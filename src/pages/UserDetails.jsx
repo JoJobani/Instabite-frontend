@@ -1,28 +1,41 @@
 import { useEffect, useState } from 'react'
-import { NavLink, useNavigate, Outlet, useOutletContext } from 'react-router-dom'
+import { NavLink, useNavigate, Outlet, useOutletContext, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { loadUsers } from '../store/actions/user.actions.js'
 import { loadStories } from "../store/actions/story.actions.js"
 import { ImgGrid } from "../cmps/ImgGrid.jsx"
 import ShowUploaded from '../assets/svg/ShowUploaded.svg?react'
 import ShowSaved from '../assets/svg/ShowSaved.svg?react'
 import ShowTagged from '../assets/svg/ShowTagged.svg?react'
 
+
 export function UserDetails() {
     const navigate = useNavigate()
-    const user = useSelector(storeState => storeState.userModule.user)
     const stories = useSelector(storeState => storeState.storyModule.stories)
-    //set if the profile were looking at belongs to the user or someone else
-    const isUserLogged = true
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+    const [user, setUser] = useState(null)
+    const { userRoute } = useParams()
 
     useEffect(() => {
-        loadStories({ byUserId: user._id })
-    }, [])
+        loadUserPage()
+    }, [userRoute])
+
+    async function loadUserPage() {
+        try {
+            const users = await loadUsers()
+            let foundUser = users.find(user => user.username === userRoute)
+            setUser(foundUser)
+            await loadStories({ byUserId: foundUser._id })
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     function onStoryClick(storyId) {
         navigate(`/p/${storyId}`)
     }
 
-    if (!stories) return <div>loading...</div>
+    if (!stories || !user) return <div>loading...</div>
 
     return (
         <section className="user-details">
@@ -34,19 +47,13 @@ export function UserDetails() {
                 <div className="user-info">
                     <div className="user-headline">
                         <p>{user.username}</p>
-                        {isUserLogged
+                        {(loggedInUser.username === userRoute)
                             ? <div className="user-btns">
-                                <a >
-                                    Edit profile
-                                </a>
+                                <button >Edit profile</button>
                             </div>
                             : <div className='user-btns'>
-                                <button>
-                                    Follow
-                                </button>
-                                <button>
-                                    Message
-                                </button>
+                                <button className='follow-btn'>Follow</button>
+                                <button>Message</button>
                             </div>}
                     </div>
                     <div className="user-stats">
@@ -66,17 +73,19 @@ export function UserDetails() {
                     <ShowUploaded />
                     <p>STORIES</p>
                 </NavLink>
-                <NavLink to="saved" className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>
-                    <ShowSaved />
-                    <p>SAVED</p>
-                </NavLink>
+                {(loggedInUser.username === userRoute) &&
+                    <NavLink to="saved" className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>
+                        <ShowSaved />
+                        <p>SAVED</p>
+                    </NavLink>
+                }
                 <NavLink to="tagged" className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>
                     <ShowTagged />
                     <p>TAGGED</p>
                 </NavLink>
             </section>
 
-            <Outlet context={{ user, stories, onStoryClick }} />
+            <Outlet context={{ user, loggedInUser, stories, navigate, onStoryClick }} />
         </section>
     )
 }
@@ -89,7 +98,14 @@ export function UploadedStories() {
 }
 
 export function SavedStories() {
-    const { user, onStoryClick } = useOutletContext()
+    const { user, loggedInUser, navigate, onStoryClick } = useOutletContext()
+
+    useEffect(() => {
+        if (user.username !== loggedInUser.username) {
+            navigate(`/${user.username}`)
+        }
+    }, [])
+
     return (
         <ImgGrid stories={user.savedStories} onStoryClick={onStoryClick} />
     )

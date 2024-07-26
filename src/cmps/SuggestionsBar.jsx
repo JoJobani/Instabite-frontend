@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 
 
 export function SuggestionsBar() {
-    const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
 
     return (
         <div className="suggestions-bar">

@@ -15,9 +15,11 @@ import Create from '../assets/svg/Create.svg?react'
 import Hamburger from '../assets/svg/Hamburger.svg?react'
 
 export function AppNav({ onClickUpload }) {
-    const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isMoreOpen, setIsMoreOpen] = useState(false)
+
+    if (!loggedInUser) return <div>loading...</div>
 
     return (
         <section className="app-nav">

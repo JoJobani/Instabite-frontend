@@ -9,7 +9,7 @@ import Save from '../../assets/svg/Save.svg?react'
 import Emoji from '../../assets/svg/Emoji.svg?react'
 
 export function PrevFooter({ story, toggleLike, openDetails, shareStory, saveStory, openLikedBy, clickUser, addComment }) {
-    const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
     const [comment, setComment] = useState('')
     const textareaRef = useRef(null)

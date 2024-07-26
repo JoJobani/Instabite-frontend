@@ -1,6 +1,5 @@
 import demoUsers from '../../../demoData/demoUsers.json'
 import { storageService } from '../async-storage.service'
-import adminPicture from '../../assets/img/adminPicture.jpg'
 
 const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
@@ -17,7 +16,6 @@ export const userService = {
     saveLoggedinUser,
     addDemoUsers
 }
-
 
 async function getUsers(filterBy = {}) {
     const users = await storageService.query(STORAGE_KEY)
@@ -72,25 +70,13 @@ async function logout() {
 }
 
 function getLoggedinUser() {
-    //temp hardcoded user
-    return {
-        _id: 'admin',
-        username: 'jona_menashe',
-        fullname: 'Jonathan Menashe',
-        imgUrl: adminPicture,
-        bio: 'Lorem ipsum odor amet, consectetuer adipiscing elit. Magna dis arcu mus ligula habitasse ex fames dignissim condimentum iaculis non fusce fames finibus sapien imperdiet cursus bibendum',
-        followers: [],
-        following: [],
-        savedStories: [],
-        taggedStories: [],
-        isAdmin: true
-    }
-    // return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 function saveLoggedinUser(user) {
     user = {
         _id: user._id,
+        username: user.username,
         fullname: user.fullname,
         imgUrl: user.imgUrl,
         isAdmin: user.isAdmin
