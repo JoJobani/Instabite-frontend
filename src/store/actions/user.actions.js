@@ -4,10 +4,10 @@ import { store } from '../store'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer'
 
-export async function loadUsers() {
+export async function loadUsers(filterBy) {
     try {
         store.dispatch({ type: LOADING_START })
-        const users = await userService.getUsers()
+        const users = await userService.getUsers(filterBy)
         store.dispatch({ type: SET_USERS, users })
     } catch (err) {
         console.log('UserActions: err in loadUsers', err)

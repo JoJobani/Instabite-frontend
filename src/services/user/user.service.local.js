@@ -1,3 +1,4 @@
+import demoUsers from '../../../demoData/demoUsers.json'
 import { storageService } from '../async-storage.service'
 import adminPicture from '../../assets/img/adminPicture.jpg'
 
@@ -15,7 +16,9 @@ export const userService = {
     saveLoggedinUser
 }
 
-async function getUsers() {
+_demoUsers()
+
+async function getUsers(filterBy = {}) {
     const users = await storageService.query('user')
     return users.map(user => {
         delete user.password
@@ -53,10 +56,12 @@ async function login(userCred) {
 
 async function signup(userCred) {
     if (!userCred.imgUrl) userCred.imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
-    userCred.following = []
+    if (!userCred.bio) userCred.bio = ''
     userCred.followers = []
-    userCred.likedStories = []
+    userCred.following = []
     userCred.savedStories = []
+    userCred.taggedStories = []
+    if (userCred.isAdmin) userCred.isAdmin = true
     const user = await storageService.post('user', userCred)
     return saveLoggedinUser(user)
 }
@@ -91,4 +96,16 @@ function saveLoggedinUser(user) {
     }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
+}
+
+async function _demoUsers() {
+    let users = await getUsers()
+    if (!users || !users.length) {
+        console.log('no users found. loading new users. please wait for a couple of seconds')
+        for (let user of demoUsers) {
+            await signup(user)
+        }
+        users = await getUsers()
+        console.log('finished loading users')
+    }
 }
