@@ -2,6 +2,7 @@ import demoUsers from '../../../demoData/demoUsers.json'
 import { storageService } from '../async-storage.service'
 import adminPicture from '../../assets/img/adminPicture.jpg'
 
+const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -13,13 +14,13 @@ export const userService = {
     remove,
     update,
     getLoggedinUser,
-    saveLoggedinUser
+    saveLoggedinUser,
+    addDemoUsers
 }
 
-_demoUsers()
 
 async function getUsers(filterBy = {}) {
-    const users = await storageService.query('user')
+    const users = await storageService.query(STORAGE_KEY)
     return users.map(user => {
         delete user.password
         return user
@@ -27,18 +28,18 @@ async function getUsers(filterBy = {}) {
 }
 
 async function getById(userId) {
-    return await storageService.get('user', userId)
+    return await storageService.get(STORAGE_KEY, userId)
 }
 
 function remove(userId) {
-    return storageService.remove('user', userId)
+    return storageService.remove(STORAGE_KEY, userId)
 }
 
 async function update(updatedUser) {
-    const user = await storageService.get('user', updatedUser._id)
+    const user = await storageService.get(STORAGE_KEY, updatedUser._id)
     user.fullname = updatedUser.fullname
     user.imgUrl = updatedUser.imgUrl
-    await storageService.put('user', user)
+    await storageService.put(STORAGE_KEY, user)
 
     const loggedinUser = getLoggedinUser()
     if (loggedinUser._id === user._id) saveLoggedinUser(user)
@@ -47,7 +48,7 @@ async function update(updatedUser) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
+    const users = await storageService.query(STORAGE_KEY)
     const user = users.find(user => user.username === userCred.username
         && user.password === userCred.password)
 
@@ -62,7 +63,7 @@ async function signup(userCred) {
     userCred.savedStories = []
     userCred.taggedStories = []
     if (userCred.isAdmin) userCred.isAdmin = true
-    const user = await storageService.post('user', userCred)
+    const user = await storageService.post(STORAGE_KEY, userCred)
     return saveLoggedinUser(user)
 }
 
@@ -98,14 +99,13 @@ function saveLoggedinUser(user) {
     return user
 }
 
-async function _demoUsers() {
+async function addDemoUsers() {
     let users = await getUsers()
     if (!users || !users.length) {
         console.log('no users found. loading new users. please wait for a couple of seconds')
         for (let user of demoUsers) {
             await signup(user)
         }
-        users = await getUsers()
         console.log('finished loading users')
     }
 }
