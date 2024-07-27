@@ -1,7 +1,9 @@
 import React from 'react'
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate, Outlet } from 'react-router'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
+import { LoginSignup } from './pages/LoginSignup.jsx'
 import { StoryIndex } from './pages/StoryIndex.jsx'
 import { Explore } from './pages/Explore.jsx'
 import { Messages } from './pages/Messages.jsx'
@@ -12,6 +14,7 @@ import { UploadModal } from './cmps/UploadModal.jsx'
 
 export function RootCmp() {
     const [isUploading, setIsUploading] = useState(false)
+    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
 
     function onClickUpload() {
         setIsUploading(true)
@@ -21,23 +24,38 @@ export function RootCmp() {
         setIsUploading(false)
     }
 
+    //Require login to access rest of the site
+    function ProtectedRoute({ isAuthenticated }) {
+        return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
+    }
+
     return (
         <div className="app-container">
-            <AppNav onClickUpload={onClickUpload} />
-            {isUploading && <UploadModal onCloseUpload={onCloseUpload} />}
-            <main className='main-content'>
-                <Routes>
-                    <Route path="" element={<StoryIndex />} />
-                    <Route path="/explore" element={<Explore />} />
-                    <Route path="/direct" element={<Messages />} />
-                    <Route path="/:userRoute" element={<UserDetails />} >
-                        <Route path="" element={<UploadedStories />} />
-                        <Route path="saved" element={<SavedStories />} />
-                        <Route path="tagged" element={<TaggedStories />} />
+            <Routes>
+                <Route path="/login" element={loggedInUser ? <Navigate to="/" replace /> : <LoginSignup />} />
+                <Route element={<ProtectedRoute isAuthenticated={!!loggedInUser} />}>
+                    <Route element={
+                        <>
+                            <AppNav onClickUpload={onClickUpload} />
+                            {isUploading && <UploadModal onCloseUpload={onCloseUpload} />}
+                            <main className='main-content'>
+                                <Outlet />
+                            </main>
+                        </>
+                    }>
+                        <Route path="" element={<StoryIndex />} />
+                        <Route path="/explore" element={<Explore />} />
+                        <Route path="/direct" element={<Messages />} />
+                        <Route path="/:userRoute" element={<UserDetails />} >
+                            <Route path="" element={<UploadedStories />} />
+                            <Route path="saved" element={<SavedStories />} />
+                            <Route path="tagged" element={<TaggedStories />} />
+                        </Route>
+                        <Route path="/p/:storyId" element={<StoryDetails />} />
                     </Route>
-                    <Route path="/p/:storyId" element={<StoryDetails />} />
-                </Routes>
-            </main>
+                </Route>
+                <Route path="*" element={<Navigate to={loggedInUser ? "/" : "/login"} replace />} />
+            </Routes>
         </div>
     )
 }

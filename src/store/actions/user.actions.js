@@ -35,6 +35,7 @@ export async function login(credentials) {
             user
         })
         // socketService.login(user._id)
+        console.log(user)
         return user
     } catch (err) {
         console.log('Cannot login', err)
@@ -81,7 +82,6 @@ export async function loadUser(userId) {
 }
 
 export async function testerLogin() {
-    console.log('logging demo user')
     const creds = {
         username: 'jona-menashe',
         password: '1234'

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router"
 import { testerLogin } from "../store/actions/user.actions.js"
 import { LoginForm } from "../cmps/LoginForm.jsx"
 import { SignupForm } from "../cmps/SignupForm.jsx"
@@ -6,7 +7,13 @@ import LoginVisual from "../assets/img/loginVisual.png"
 import InstaClone from "../assets/img/InstaClone.png"
 
 export function LoginSignup() {
+    const navigate = useNavigate()
     const [isSignup, setIsSignup] = useState(false)
+
+    function onTesterLogin() {
+        testerLogin()
+        navigate('/')
+    }
 
     return (
         <div className="login-signup">
@@ -27,7 +34,7 @@ export function LoginSignup() {
                         <p>Have an account? <span onClick={() => setIsSignup(!isSignup)}>Log in</span></p>
                     }
                 </div>
-                <button onClick={testerLogin}>tester login</button>
+                <button onClick={onTesterLogin}>tester login</button>
             </section>
 
             <footer>

@@ -19,8 +19,6 @@ export function AppNav({ onClickUpload }) {
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isMoreOpen, setIsMoreOpen] = useState(false)
 
-    if (!loggedInUser) return <div>loading...</div>
-
     return (
         <section className="app-nav">
             <NavLink to='/' className='logo'>
