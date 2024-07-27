@@ -12,12 +12,10 @@ import Search from '../assets/svg/Search.svg?react'
 import Explore from '../assets/svg/Explore.svg?react'
 import Messenger from '../assets/svg/Messenger.svg?react'
 import Create from '../assets/svg/Create.svg?react'
-import Hamburger from '../assets/svg/Hamburger.svg?react'
 
 export function AppNav({ onClickUpload }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
-    const [isMoreOpen, setIsMoreOpen] = useState(false)
 
     return (
         <section className="app-nav">
@@ -61,17 +59,10 @@ export function AppNav({ onClickUpload }) {
                 </nav>
 
                 <nav className="lower-nav">
-                    <button
-                        className={`link ${isMoreOpen ? 'selected' : ''}`}
-                        onClick={() => setIsMoreOpen(!isMoreOpen)}
-                    >
-                        <Hamburger />
-                        <span>More</span>
-                    </button>
+                    <MoreMenu />
                 </nav>
             </section>
-            {/* {isSearchOpen && <SearchMenu />}
-            {isMoreOpen && <MoreMenu />} */}
+            {/* {isSearchOpen && <SearchMenu />} */}
         </section >
     )
 }

@@ -12,7 +12,7 @@
         margin-bottom: 55px;
 
         img {
-            height: 40px;
+            height: 30px;
         }
     }
 
@@ -21,6 +21,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
 
         .link {
             //ADD SMALLER SCREEN CUTOFFS HERE
@@ -34,6 +35,10 @@
             border: none;
             border-radius: 10px;
             color: black;
+
+            &:last-of-type {
+                margin-bottom: 4px;
+            }
 
             span {
                 height: 20px;
@@ -57,20 +62,5 @@
         .selected {
             font-weight: $font-weight-bold;
         }
-
-        .lower-nav {
-            button {
-                margin-bottom: 4px;
-            }
-        }
-    }
-
-    .side-menu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        //background color for visual testing
-        background-color: antiquewhite;
-        z-index: 1000;
     }
 }

@@ -3,5 +3,5 @@ export function SearchMenu() {
         <div className="side-menu search-menu">
             {/* Search menu content */}
         </div>
-    );
+    )
 }
