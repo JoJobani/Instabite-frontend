@@ -4,8 +4,6 @@ import { store } from '../store'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer'
 
-//TO REMOVE LATER - DEFAULT LOGIN
-_defaultLogin()
 
 export async function loadUsers(filterBy) {
     try {
@@ -82,7 +80,7 @@ export async function loadUser(userId) {
     }
 }
 
-async function _defaultLogin() {
+export async function testerLogin() {
     console.log('logging demo user')
     const creds = {
         username: 'jona-menashe',

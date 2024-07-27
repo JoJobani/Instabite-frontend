@@ -10,10 +10,6 @@ function getEmptyUser() {
         fullname: '',
         imgUrl: '',
         bio: '',
-        followers: [],
-        following: [],
-        savedStories: [],
-        taggedStories: [],
         isAdmin: false
     }
 }
