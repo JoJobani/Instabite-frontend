@@ -22,21 +22,24 @@ export function LoginSignup() {
                     <img src={LoginVisual} />
                 </div>
                 <div className="form-container">
-                    <img src={InstaClone} />
-                    {!isSignup && <LoginForm />}
-                    {isSignup && <SignupForm />}
+                    <div className="input-container">
+                        <img src={InstaClone} />
+                        {!isSignup && <LoginForm />}
+                        {isSignup && <SignupForm />}
+                        <button className="tester-btn" onClick={onTesterLogin}>
+                            <p>tester login</p>
+                        </button>
+                    </div>
+                    <div className="auth-switcher">
+                        {!isSignup &&
+                            <p>Don't have an account? <span onClick={() => setIsSignup(!isSignup)}>Sign up</span></p>
+                        }
+                        {isSignup &&
+                            <p>Have an account? <span onClick={() => setIsSignup(!isSignup)}>Log in</span></p>
+                        }
+                    </div>
                 </div>
-                <div className="auth-switcher">
-                    {!isSignup &&
-                        <p>Don't have an account? <span onClick={() => setIsSignup(!isSignup)}>Sign up</span></p>
-                    }
-                    {isSignup &&
-                        <p>Have an account? <span onClick={() => setIsSignup(!isSignup)}>Log in</span></p>
-                    }
-                </div>
-                <button onClick={onTesterLogin}>tester login</button>
             </section>
-
             <footer>
                 <p>© Jonathan Menashe for Coding Academy 2024</p>
             </footer>

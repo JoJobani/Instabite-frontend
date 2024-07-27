@@ -45,7 +45,9 @@ export function SignupForm() {
                 onChange={handleChange}
                 required
             />
-            <button>Sign up</button>
+            <button>
+                <p>Sign up</p>
+            </button>
         </form>
     )
 }

@@ -36,7 +36,9 @@ export function LoginForm() {
                 onChange={handleChange}
                 required
             />
-            <button>Log in</button>
+            <button>
+                <p>Log in</p>
+            </button>
         </form>
     )
 }
