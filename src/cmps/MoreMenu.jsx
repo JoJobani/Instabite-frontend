@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { logout } from "../store/actions/user.actions.js"
 import Hamburger from "../assets/svg/Hamburger.svg?react"
 
 export function MoreMenu() {
@@ -8,15 +9,15 @@ export function MoreMenu() {
         setIsMenuOpen(!isMenuOpen)
     }
 
-    function testClick() {
-        console.log('click')
+    function onLogout() {
+        logout()
     }
 
     return (
         <div className="more-menu" >
             {isMenuOpen &&
                 <div className="menu-content">
-                    <button className="menu-btns" onClick={testClick}>
+                    <button className="menu-btns" onClick={onLogout}>
                         <p>Log out</p>
                     </button>
                 </div>
