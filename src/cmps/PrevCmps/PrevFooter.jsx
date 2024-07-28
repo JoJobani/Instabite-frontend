@@ -61,7 +61,7 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, onSaveS
             </section>
 
             <section className="story-likes" onClick={() => openLikedBy(story._id)}>
-                {story.likedBy.length} likes
+                {story.likedBy.length > 0 ? `${story.likedBy.length} likes` : ''}
             </section>
 
             <section className="story-txt">
@@ -77,7 +77,7 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, onSaveS
             </section>
 
             <section className="comment-count" onClick={() => openDetails(story._id)}>
-                View all {story.comments.length} Comments
+                {story.comments.length > 0 ? `View all ${story.comments.length} comments` : ''}
             </section>
 
             <section className="add-comment">

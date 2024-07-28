@@ -64,7 +64,7 @@ export function DetailsFooter({ story, toggleLike, shareStory, onSaveStory, open
             </div>
 
             <div className="story-likes" onClick={() => openLikedBy(story._id)}>
-                {story.likedBy.length} likes
+                {story.likedBy.length > 0 ? `${story.likedBy.length} likes` : ''}
             </div>
 
             <div className='story-date'>
