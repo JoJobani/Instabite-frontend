@@ -88,7 +88,7 @@ export function UserDetails() {
                 </NavLink>
             </section>
 
-            <Outlet context={{ user, loggedInUser, stories, userStories, navigate, onStoryClick }} />
+            <Outlet context={{ user, loggedInUser, stories, userStories, onStoryClick }} />
         </section>
     )
 }
@@ -102,7 +102,8 @@ export function UploadedStories() {
 }
 
 export function SavedStories() {
-    const { user, loggedInUser, navigate, onStoryClick } = useOutletContext()
+    const { user, loggedInUser, onStoryClick } = useOutletContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (user.username !== loggedInUser.username) {
@@ -116,7 +117,15 @@ export function SavedStories() {
 }
 
 export function TaggedStories() {
-    const { user, onStoryClick } = useOutletContext()
+    const { user, onStoryClick, stories } = useOutletContext()
+    const taggedStories = []
+
+    useEffect(() => {
+        for (let story in stories) {
+            if (user.taggedStories.includes(story._id)) taggedStories.push(story)
+        }
+    }, [taggedStories])
+
     return (
         <ImgGrid stories={user.taggedStories} onStoryClick={onStoryClick} />
     )
