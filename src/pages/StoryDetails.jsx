@@ -20,7 +20,7 @@ export function StoryDetails() {
 
     useEffect(() => {
         loadStory()
-    }, [storyId, stories])
+    }, [storyId, story])
 
     async function loadStory() {
         try {

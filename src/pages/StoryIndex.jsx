@@ -18,7 +18,7 @@ export function StoryIndex() {
         navigate(`/${user.username}`)
     }
 
-    async function openDetails(storyId) {
+    function openDetails(storyId) {
         navigate(`/p/${storyId}`)
     }
 

@@ -12,30 +12,25 @@ import ShowTagged from '../assets/svg/ShowTagged.svg?react'
 export function UserDetails() {
     const navigate = useNavigate()
     const stories = useSelector(storeState => storeState.storyModule.stories)
+    const users = useSelector(storeState => storeState.userModule.users)
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const [user, setUser] = useState(null)
     const { userRoute } = useParams()
 
     useEffect(() => {
         loadUserPage()
-    }, [userRoute])
+    }, [userRoute,users])
 
-    async function loadUserPage() {
-        try {
-            const users = await loadUsers()
-            let foundUser = users.find(user => user.username === userRoute)
-            setUser(foundUser)
-            await loadStories({ byUserId: foundUser._id })
-        } catch (err) {
-            console.log(err)
-        }
+    function loadUserPage() {
+        let foundUser = users.find(user => user.username === userRoute)
+        setUser(foundUser)
     }
 
     function onStoryClick(storyId) {
         navigate(`/p/${storyId}`)
     }
 
-    if (!stories || !user) return <div>loading...</div>
+    if (!user) return <div>Loading...</div>
 
     return (
         <section className="user-details">
@@ -91,9 +86,10 @@ export function UserDetails() {
 }
 
 export function UploadedStories() {
-    const { stories, onStoryClick } = useOutletContext()
+    const { user, stories, onStoryClick } = useOutletContext()
+    const UploadedStories = stories.filter(story => story.by._id === user._id)
     return (
-        <ImgGrid stories={stories} onStoryClick={onStoryClick} />
+        <ImgGrid stories={UploadedStories} onStoryClick={onStoryClick} />
     )
 }
 
