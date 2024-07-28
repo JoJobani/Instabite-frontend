@@ -13,16 +13,25 @@ export function UserDetails() {
     const users = useSelector(storeState => storeState.userModule.users)
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const [user, setUser] = useState(null)
+    const [userStories, setUserStories] = useState(null)
     const { userRoute } = useParams()
-    const uploadedStories = stories.filter(story => story.by._id === user._id)
 
     useEffect(() => {
-        loadUserPage()
+        loadUser()
     }, [userRoute, users])
 
-    function loadUserPage() {
+    useEffect(() => {
+        if (user) loadUserStories()
+    }, [user, stories])
+
+    function loadUser() {
         let foundUser = users.find(user => user.username === userRoute)
         setUser(foundUser)
+    }
+
+    function loadUserStories() {
+        let foundStories = stories.filter(story => story.by._id === user._id)
+        setUserStories(foundStories)
     }
 
     function onStoryClick(storyId) {
@@ -51,7 +60,7 @@ export function UserDetails() {
                             </div>}
                     </div>
                     <div className="user-stats">
-                        <p><span>{uploadedStories.length}</span> posts</p>
+                        <p><span>{userStories ? `${userStories.length}` : '0'}</span> posts</p>
                         <p><span>{user.followers.length}</span> followers</p>
                         <p><span>{user.following.length}</span> following</p>
                     </div>
@@ -79,15 +88,16 @@ export function UserDetails() {
                 </NavLink>
             </section>
 
-            <Outlet context={{ user, loggedInUser, stories, uploadedStories, navigate, onStoryClick }} />
+            <Outlet context={{ user, loggedInUser, stories, userStories, navigate, onStoryClick }} />
         </section>
     )
 }
 
 export function UploadedStories() {
-    const { uploadedStories, onStoryClick } = useOutletContext()
+    const { userStories, onStoryClick } = useOutletContext()
+    if (!userStories) return
     return (
-        <ImgGrid stories={uploadedStories} onStoryClick={onStoryClick} />
+        <ImgGrid stories={userStories} onStoryClick={onStoryClick} />
     )
 }
 
