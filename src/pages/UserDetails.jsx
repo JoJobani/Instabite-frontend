@@ -14,10 +14,11 @@ export function UserDetails() {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const [user, setUser] = useState(null)
     const { userRoute } = useParams()
+    const uploadedStories = stories.filter(story => story.by._id === user._id)
 
     useEffect(() => {
         loadUserPage()
-    }, [userRoute,users])
+    }, [userRoute, users])
 
     function loadUserPage() {
         let foundUser = users.find(user => user.username === userRoute)
@@ -50,7 +51,7 @@ export function UserDetails() {
                             </div>}
                     </div>
                     <div className="user-stats">
-                        <p><span>{stories.length}</span> posts</p>
+                        <p><span>{uploadedStories.length}</span> posts</p>
                         <p><span>{user.followers.length}</span> followers</p>
                         <p><span>{user.following.length}</span> following</p>
                     </div>
@@ -78,16 +79,15 @@ export function UserDetails() {
                 </NavLink>
             </section>
 
-            <Outlet context={{ user, loggedInUser, stories, navigate, onStoryClick }} />
+            <Outlet context={{ user, loggedInUser, stories, uploadedStories, navigate, onStoryClick }} />
         </section>
     )
 }
 
 export function UploadedStories() {
-    const { user, stories, onStoryClick } = useOutletContext()
-    const UploadedStories = stories.filter(story => story.by._id === user._id)
+    const { uploadedStories, onStoryClick } = useOutletContext()
     return (
-        <ImgGrid stories={UploadedStories} onStoryClick={onStoryClick} />
+        <ImgGrid stories={uploadedStories} onStoryClick={onStoryClick} />
     )
 }
 
