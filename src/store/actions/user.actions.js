@@ -29,10 +29,7 @@ export async function removeUser(userId) {
 export async function login(credentials) {
     try {
         const user = await userService.login(credentials)
-        store.dispatch({
-            type: SET_USER,
-            user
-        })
+        store.dispatch({ type: SET_USER, user })
         // socketService.login(user._id)
         return user
     } catch (err) {
@@ -44,10 +41,7 @@ export async function login(credentials) {
 export async function signup(credentials) {
     try {
         const user = await userService.signup(credentials)
-        store.dispatch({
-            type: SET_USER,
-            user
-        })
+        store.dispatch({ type: SET_USER, user })
         // socketService.login(user._id)
         return user
     } catch (err) {
@@ -59,10 +53,7 @@ export async function signup(credentials) {
 export async function logout() {
     try {
         await userService.logout()
-        store.dispatch({
-            type: SET_USER,
-            user: null
-        })
+        store.dispatch({ type: SET_USER, user: null })
         // socketService.logout()
     } catch (err) {
         console.log('Cannot logout', err)
@@ -76,5 +67,21 @@ export async function loadUser(userId) {
         store.dispatch({ type: SET_WATCHED_USER, user })
     } catch (err) {
         console.log('Cannot load user', err)
+    }
+}
+
+export async function saveStory(story, user) {
+    try {
+        const idx = user.savedStories.findIndex(storyItem => storyItem._id === story._id)
+        if (idx === -1) {
+            user.savedStories.push(story)
+        } else {
+            user.savedStories.splice(idx, 1)
+        }
+        user = await userService.update(user)
+        store.dispatch({ type: SET_USER, user })
+        return user
+    } catch (err) {
+        console.log('Cannot save story', err)
     }
 }

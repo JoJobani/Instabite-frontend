@@ -6,10 +6,12 @@ import Unlike from '../../assets/svg/Unlike.svg?react'
 import Comment from '../../assets/svg/Comment.svg?react'
 import Share from '../../assets/svg/Share.svg?react'
 import Save from '../../assets/svg/Save.svg?react'
+import Unsave from '../../assets/svg/Unsave.svg?react'
 import Emoji from '../../assets/svg/Emoji.svg?react'
 
-export function PrevFooter({ story, toggleLike, openDetails, shareStory, saveStory, openLikedBy, clickUser, addComment }) {
+export function PrevFooter({ story, toggleLike, openDetails, shareStory, onSaveStory, openLikedBy, clickUser, addComment }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+    const isSaved = loggedInUser.savedStories.find(storyItem => storyItem._id === story._id)
     const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
     const [comment, setComment] = useState('')
     const textareaRef = useRef(null)
@@ -42,9 +44,7 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, saveSto
             <section className="story-controls">
                 <div className="story-controls-left">
                     <div onClick={() => toggleLike(story._id, loggedInUser, isLiked)}>
-                        {isLiked
-                            ? <Unlike fill="red" />
-                            : <Like />}
+                        {isLiked ? <Unlike fill="red" /> : <Like />}
                     </div>
                     <div onClick={() => openDetails(story._id)}>
                         <Comment />
@@ -54,8 +54,8 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, saveSto
                     </div>
                 </div>
                 <div className="story-controls-right">
-                    <div onClick={() => saveStory(story._id)}>
-                        <Save />
+                    <div onClick={() => onSaveStory(story, loggedInUser)}>
+                        {isSaved ? <Unsave /> : <Save />}
                     </div>
                 </div>
             </section>

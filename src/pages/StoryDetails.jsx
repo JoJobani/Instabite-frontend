@@ -1,12 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import {
-    removeStory,
-    toggleStoryLike,
-    addStoryComment,
-    removeStoryComment
-} from "../store/actions/story.actions.js"
+import { removeStory, toggleStoryLike, addStoryComment, removeStoryComment } from "../store/actions/story.actions.js"
+import { saveStory } from "../store/actions/user.actions.js"
 import { DetailsImg } from "../cmps/DetailsCmps/DetailsImg.jsx"
 import { DetailsHeader } from "../cmps/DetailsCmps/DetailsHeader.jsx"
 import { DetailsTexts } from "../cmps/DetailsCmps/DetailsTexts.jsx"
@@ -99,8 +95,8 @@ export function StoryDetails() {
         console.log(`sharing story ${storyId}`)
     }
 
-    function saveStory(storyId) {
-        console.log(`saving story ${storyId}`)
+    function onSaveStory(story, savingUser) {
+        saveStory(story, savingUser)
     }
 
     if (!story) return
@@ -133,7 +129,7 @@ export function StoryDetails() {
                         story={story}
                         toggleLike={toggleLike}
                         shareStory={shareStory}
-                        saveStory={saveStory}
+                        onSaveStory={onSaveStory}
                         openLikedBy={openLikedBy}
                         addComment={addComment}
                     />

@@ -10,7 +10,7 @@ export function StoryPreview({
     addComment,
     openDetails,
     shareStory,
-    saveStory,
+    onSaveStory,
     openLikedBy
 }) {
     return (
@@ -29,7 +29,7 @@ export function StoryPreview({
                 toggleLike={toggleLike}
                 openDetails={openDetails}
                 shareStory={shareStory}
-                saveStory={saveStory}
+                onSaveStory={onSaveStory}
                 openLikedBy={openLikedBy}
                 clickUser={clickUser}
                 addComment={addComment}

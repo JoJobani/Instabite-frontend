@@ -14,7 +14,6 @@ export const userService = {
     update,
     getLoggedinUser,
     saveLoggedinUser,
-    toggleStorySave,
     addDemoUsers
 }
 
@@ -34,16 +33,10 @@ function remove(userId) {
     return storageService.remove(STORAGE_KEY, userId)
 }
 
-async function update(updatedUser) {
-    const user = await storageService.get(STORAGE_KEY, updatedUser._id)
-    user.fullname = updatedUser.fullname
-    user.imgUrl = updatedUser.imgUrl
-    await storageService.put(STORAGE_KEY, user)
-
+async function update(user) {
     const loggedinUser = getLoggedinUser()
     if (loggedinUser._id === user._id) saveLoggedinUser(user)
-
-    return user
+    return await storageService.put(STORAGE_KEY, user)
 }
 
 async function login(userCred) {
@@ -76,16 +69,6 @@ function getLoggedinUser() {
 function saveLoggedinUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
-}
-
-async function toggleStorySave(storyToSave, savingUser) {
-    const idx = savingUser.savedStories.find(story => story._id === storyToSave._id)
-    if (idx === -1) {
-        savingUser.savedStories.push(storyToSave)
-    } else {
-        savingUser.savedStories.splice(idx, 1)
-    }
-    return await storageService.put(STORAGE_KEY, savingUser)
 }
 
 async function addDemoUsers() {

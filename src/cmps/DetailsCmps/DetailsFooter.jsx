@@ -6,11 +6,12 @@ import Unlike from '../../assets/svg/Unlike.svg?react'
 import Comment from '../../assets/svg/Comment.svg?react'
 import Share from '../../assets/svg/Share.svg?react'
 import Save from '../../assets/svg/Save.svg?react'
+import Unsave from '../../assets/svg/Unsave.svg?react'
 import Emoji from '../../assets/svg/Emoji.svg?react'
 
-export function DetailsFooter({ story, toggleLike, shareStory, saveStory, openLikedBy, addComment }) {
-
+export function DetailsFooter({ story, toggleLike, shareStory, onSaveStory, openLikedBy, addComment }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+    const isSaved = loggedInUser.savedStories.find(storyItem => storyItem._id === story._id)
     const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
     const [comment, setComment] = useState('')
     const textareaRef = useRef(null)
@@ -56,8 +57,8 @@ export function DetailsFooter({ story, toggleLike, shareStory, saveStory, openLi
                     </div>
                 </div>
                 <div className="story-controls-right">
-                    <div onClick={() => saveStory(story._id)}>
-                        <Save />
+                    <div onClick={() => onSaveStory(story, loggedInUser)}>
+                        {isSaved ? <Unsave /> : <Save />}
                     </div>
                 </div>
             </div>

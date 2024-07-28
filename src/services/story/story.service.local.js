@@ -98,9 +98,10 @@ async function _demoStories() {
     await userService.addDemoUsers()
     let stories = await query()
     if (!stories || !stories.length) {
-        console.log('no stories in database, please wait a moment')
+        console.log('loading demo stories...')
         for (let story of demoStories) {
             await save(story, true)
         }
+        console.log('finished loading stories')
     }
 }

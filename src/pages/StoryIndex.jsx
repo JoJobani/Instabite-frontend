@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { removeStory, toggleStoryLike, addStoryComment } from "../store/actions/story.actions.js"
+import { saveStory } from "../store/actions/user.actions.js"
 import { StoryList } from "../cmps/StoryList.jsx"
 import { SuggestionsBar } from "../cmps/SuggestionsBar.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
@@ -59,8 +60,8 @@ export function StoryIndex() {
         console.log(`sharing story ${storyId}`)
     }
 
-    function saveStory(storyId) {
-        console.log(`saving story ${storyId}`)
+    function onSaveStory(story, savingUser) {
+        saveStory(story, savingUser)
     }
 
     function openLikedBy(storyId) {
@@ -84,7 +85,7 @@ export function StoryIndex() {
                         addComment={addComment}
                         openDetails={openDetails}
                         shareStory={shareStory}
-                        saveStory={saveStory}
+                        onSaveStory={onSaveStory}
                         openLikedBy={openLikedBy}
                     />
                     <SuggestionsBar />
