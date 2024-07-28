@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import {
-    loadStories,
     removeStory,
     toggleStoryLike,
     addStoryComment
@@ -17,10 +16,6 @@ export function StoryIndex() {
     const navigate = useNavigate()
     const stories = useSelector(storeState => storeState.storyModule.stories)
     const [focusedStoryId, setFocusedStoryId] = useState(null)
-
-    useEffect(() => {
-        loadStories()
-    }, [])
 
     async function clickUser(userId) {
         const user = await userService.getById(userId)

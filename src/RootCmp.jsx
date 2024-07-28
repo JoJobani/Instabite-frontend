@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, Navigate, Outlet } from 'react-router'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+
+import { loadUsers } from './store/actions/user.actions.js'
+import { loadStories } from './store/actions/story.actions.js'
 
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { StoryIndex } from './pages/StoryIndex.jsx'
@@ -15,6 +18,15 @@ import { UploadModal } from './cmps/UploadModal.jsx'
 export function RootCmp() {
     const [isUploading, setIsUploading] = useState(false)
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+
+    useEffect(() => {
+        loadApp()
+    }, [])
+
+    async function loadApp() {
+        await loadUsers()
+        await loadStories()
+    }
 
     function onClickUpload() {
         setIsUploading(true)
