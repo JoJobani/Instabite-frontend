@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useNavigate, Outlet, useOutletContext, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { loadUsers } from '../store/actions/user.actions.js'
-import { loadStories } from "../store/actions/story.actions.js"
 import { ImgGrid } from "../cmps/ImgGrid.jsx"
 import ShowUploaded from '../assets/svg/ShowUploaded.svg?react'
 import ShowSaved from '../assets/svg/ShowSaved.svg?react'

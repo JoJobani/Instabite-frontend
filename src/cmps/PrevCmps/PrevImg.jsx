@@ -2,11 +2,10 @@ import { useSelector } from "react-redux"
 
 export function PrevImg({ story, toggleLike }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
-    const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
 
     return (
         <div className="prev-img"
-            onDoubleClick={() => toggleLike(story._id, loggedInUser, isLiked)}>
+            onDoubleClick={() => toggleLike(story, loggedInUser)}>
             <img
                 src={story.imgUrl}
                 alt={story.txt}

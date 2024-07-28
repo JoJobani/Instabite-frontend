@@ -40,30 +40,32 @@ export function StoryIndex() {
         }
     }
 
-    async function toggleLike(storyId, likingUser, isLiked) {
+    async function toggleLike(story, user) {
         try {
-            await toggleStoryLike(storyId, likingUser, isLiked)
+            await toggleStoryLike(story, user)
         } catch (err) {
             console.log(err)
         }
     }
 
-    async function addComment(storyId, txt) {
+    async function addComment(story, user, txt) {
         try {
-            await addStoryComment(storyId, txt)
+            await addStoryComment(story, user, txt)
         } catch (err) {
             console.log(err)
         }
     }
 
+    //TODO
     function shareStory(storyId) {
         console.log(`sharing story ${storyId}`)
     }
 
-    function onSaveStory(story, savingUser) {
-        saveStory(story, savingUser)
+    function onSaveStory(story, user) {
+        saveStory(story, user)
     }
 
+    //TODO
     function openLikedBy(storyId) {
         console.log(`opening likes page for story ${storyId}`)
     }

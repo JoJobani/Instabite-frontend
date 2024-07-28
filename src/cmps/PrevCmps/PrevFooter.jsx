@@ -30,7 +30,7 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, onSaveS
 
     function onAddComment(ev) {
         ev.preventDefault()
-        addComment(story._id, comment)
+        addComment(story, loggedInUser, comment)
         setComment('')
     }
 
@@ -43,7 +43,7 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, onSaveS
         <div className="prev-footer">
             <section className="story-controls">
                 <div className="story-controls-left">
-                    <div onClick={() => toggleLike(story._id, loggedInUser, isLiked)}>
+                    <div onClick={() => toggleLike(story, loggedInUser)}>
                         {isLiked ? <Unlike fill="red" /> : <Like />}
                     </div>
                     <div onClick={() => openDetails(story._id)}>

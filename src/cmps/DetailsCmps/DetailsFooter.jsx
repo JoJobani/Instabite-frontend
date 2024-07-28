@@ -30,7 +30,7 @@ export function DetailsFooter({ story, toggleLike, shareStory, onSaveStory, open
 
     function onAddComment(ev) {
         ev.preventDefault()
-        addComment(story._id, comment)
+        addComment(story, loggedInUser, comment)
         setComment('')
     }
 
@@ -44,7 +44,7 @@ export function DetailsFooter({ story, toggleLike, shareStory, onSaveStory, open
 
             <div className="story-controls">
                 <div className="story-controls-left">
-                    <div onClick={() => toggleLike(story._id, loggedInUser, isLiked)}>
+                    <div onClick={() => toggleLike(story, loggedInUser)}>
                         {isLiked
                             ? <Unlike fill="red" />
                             : <Like />}

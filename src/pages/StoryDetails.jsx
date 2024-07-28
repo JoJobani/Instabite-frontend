@@ -20,7 +20,7 @@ export function StoryDetails() {
 
     useEffect(() => {
         loadStory()
-    }, [storyId, story])
+    }, [storyId, story, stories])
 
     async function loadStory() {
         try {
@@ -49,29 +49,30 @@ export function StoryDetails() {
         setOpenedStoryOptions(false)
     }
 
-    async function toggleLike(storyId, likingUser, isLiked) {
+    async function toggleLike(story, user) {
         try {
-            await toggleStoryLike(storyId, likingUser, isLiked)
+            await toggleStoryLike(story, user)
         } catch (err) {
             console.log(err)
         }
     }
 
-    function clickUser(userId) {
-        console.log(`clicked user ${userId}`)
+    async function clickUser(userId) {
+        const user = await userService.getById(userId)
+        navigate(`/${user.username}`)
     }
 
-    async function addComment(storyId, txt) {
+    async function addComment(story,user, txt) {
         try {
-            await addStoryComment(storyId, txt)
+            await addStoryComment(story,user, txt)
         } catch (err) {
             console.log(err)
         }
     }
 
-    async function onRemoveComment(storyId, commentId) {
+    async function onRemoveComment(story, commentId) {
         try {
-            await removeStoryComment(storyId, commentId)
+            await removeStoryComment(story, commentId)
         } catch (err) {
             console.log(err)
         }
@@ -87,16 +88,18 @@ export function StoryDetails() {
         }
     }
 
+    // TODO
     function openLikedBy(storyId) {
         console.log(`opening likes page for story ${storyId}`)
     }
 
+    //TODO
     function shareStory(storyId) {
         console.log(`sharing story ${storyId}`)
     }
 
-    function onSaveStory(story, savingUser) {
-        saveStory(story, savingUser)
+    function onSaveStory(story, user) {
+        saveStory(story, user)
     }
 
     if (!story) return

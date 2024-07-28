@@ -39,7 +39,7 @@ export function DetailsTexts({ story, clickUser, onRemoveComment }) {
                                     <p>Reply</p>
                                     <button
                                         className='comment-options'
-                                        onClick={() => onRemoveComment(story._id, comment.id)}>
+                                        onClick={() => onRemoveComment(story, comment.id)}>
                                         <MoreOptions />
                                     </button>
                                 </div>
