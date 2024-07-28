@@ -50,7 +50,7 @@ export function UserDetails() {
                             </div>}
                     </div>
                     <div className="user-stats">
-                        <p><span>{stories.length}</span> stories</p>
+                        <p><span>{stories.length}</span> posts</p>
                         <p><span>{user.followers.length}</span> followers</p>
                         <p><span>{user.following.length}</span> following</p>
                     </div>
@@ -64,7 +64,7 @@ export function UserDetails() {
             <section className='story-type'>
                 <NavLink to="" end className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>
                     <ShowUploaded />
-                    <p>STORIES</p>
+                    <p>POSTS</p>
                 </NavLink>
                 {(loggedInUser.username === userRoute) &&
                     <NavLink to="saved" className={({ isActive }) => `tab ${isActive ? 'selected' : ''}`}>

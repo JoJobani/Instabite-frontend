@@ -53,7 +53,7 @@ export function UploadModal({ onCloseUpload }) {
             {!isUploading &&
                 <div className='modal-content' ref={modalContentRef}>
                     <div className='modal-header'>
-                        <p className='pre-upload'>Create new story</p>
+                        <p className='pre-upload'>Create new post</p>
                     </div>
                     <div className='upload-preview'>
                         <UploadPlaceholder />
@@ -78,7 +78,7 @@ export function UploadModal({ onCloseUpload }) {
                         <button className='back-btn' onClick={onBack}>
                             <Back />
                         </button>
-                        <p>Create new story</p>
+                        <p>Create new post</p>
                         <button className='share-btn' onClick={shareStory}>
                             Share
                         </button>
