@@ -4,7 +4,6 @@ import { store } from '../store'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer'
 
-
 export async function loadUsers(filterBy) {
     try {
         store.dispatch({ type: LOADING_START })
@@ -35,7 +34,6 @@ export async function login(credentials) {
             user
         })
         // socketService.login(user._id)
-        console.log(user)
         return user
     } catch (err) {
         console.log('Cannot login', err)
@@ -79,12 +77,4 @@ export async function loadUser(userId) {
     } catch (err) {
         console.log('Cannot load user', err)
     }
-}
-
-export async function testerLogin() {
-    const creds = {
-        username: 'jona-menashe',
-        password: '1234'
-    }
-    await login(creds)
 }

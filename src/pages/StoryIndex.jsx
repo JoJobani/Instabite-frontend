@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import {
-    removeStory,
-    toggleStoryLike,
-    addStoryComment
-} from "../store/actions/story.actions.js"
+import { removeStory, toggleStoryLike, addStoryComment } from "../store/actions/story.actions.js"
 import { StoryList } from "../cmps/StoryList.jsx"
 import { SuggestionsBar } from "../cmps/SuggestionsBar.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
-//maybe remove
 import { userService } from "../services/user/index.js"
 
 export function StoryIndex() {

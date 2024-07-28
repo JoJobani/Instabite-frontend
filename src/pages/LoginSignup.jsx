@@ -1,19 +1,11 @@
 import { useState } from "react"
-import { useNavigate } from "react-router"
-import { testerLogin } from "../store/actions/user.actions.js"
 import { LoginForm } from "../cmps/LoginForm.jsx"
 import { SignupForm } from "../cmps/SignupForm.jsx"
 import LoginVisual from "../assets/img/loginVisual.png"
 import InstaClone from "../assets/img/InstaClone.png"
 
 export function LoginSignup() {
-    const navigate = useNavigate()
     const [isSignup, setIsSignup] = useState(false)
-
-    function onTesterLogin() {
-        testerLogin()
-        navigate('/')
-    }
 
     return (
         <div className="login-signup">
@@ -26,9 +18,6 @@ export function LoginSignup() {
                         <img src={InstaClone} />
                         {!isSignup && <LoginForm />}
                         {isSignup && <SignupForm />}
-                        <button className="tester-btn" onClick={onTesterLogin}>
-                            <p>tester login</p>
-                        </button>
                     </div>
                     <div className="auth-switcher">
                         {!isSignup &&

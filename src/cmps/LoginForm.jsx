@@ -4,7 +4,7 @@ import { login } from "../store/actions/user.actions.js"
 
 export function LoginForm() {
     const navigate = useNavigate()
-    const [credentials, setCredentials] = useState({ username: '', password: '' })
+    const [credentials, setCredentials] = useState({ username: 'jona-menashe', password: '1234' })
 
     function handleChange(ev) {
         const field = ev.target.name
