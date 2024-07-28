@@ -14,6 +14,7 @@ export const userService = {
     update,
     getLoggedinUser,
     saveLoggedinUser,
+    toggleStorySave,
     addDemoUsers
 }
 
@@ -61,8 +62,7 @@ async function signup(userCred) {
     userCred.savedStories = []
     userCred.taggedStories = []
     if (userCred.isAdmin) userCred.isAdmin = true
-    const user = await storageService.post(STORAGE_KEY, userCred)
-    return saveLoggedinUser(user)
+    return await storageService.post(STORAGE_KEY, userCred)
 }
 
 async function logout() {
@@ -74,15 +74,18 @@ function getLoggedinUser() {
 }
 
 function saveLoggedinUser(user) {
-    user = {
-        _id: user._id,
-        username: user.username,
-        fullname: user.fullname,
-        imgUrl: user.imgUrl,
-        isAdmin: user.isAdmin
-    }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
+}
+
+async function toggleStorySave(storyToSave, savingUser) {
+    const idx = savingUser.savedStories.find(story => story._id === storyToSave._id)
+    if (idx === -1) {
+        savingUser.savedStories.push(storyToSave)
+    } else {
+        savingUser.savedStories.splice(idx, 1)
+    }
+    return await storageService.put(STORAGE_KEY, savingUser)
 }
 
 async function addDemoUsers() {
