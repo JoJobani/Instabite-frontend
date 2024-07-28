@@ -24,11 +24,17 @@ export function DetailsTexts({ story, clickUser, onRemoveComment }) {
                 {story.comments.map(comment => (
                     <li key={comment.id}>
                         <div className='comment-info'>
-                            <img src={comment.by.imgUrl} />
+                            <img
+                                src={comment.by.imgUrl}
+                                onClick={() => clickUser(comment.by._id)}
+                            />
                             <div>
                                 <p>
-                                    <span className="user">
-                                        {comment.by.fullname}
+                                    <span
+                                        className="user"
+                                        onClick={() => clickUser(comment.by._id)}
+                                    >
+                                        {comment.by.username}
                                     </span>
                                     {" " + comment.txt}
                                 </p>

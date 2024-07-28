@@ -73,9 +73,14 @@ export async function toggleStoryLike(story, userId) {
 
 export async function addStoryComment(story, user, txt) {
     try {
+        const miniUser = {
+            _id: user._id,
+            username: user.username,
+            imgUrl: user.imgUrl
+        }
         const comment = {
             id: makeId(),
-            by: user,
+            by: miniUser,
             txt
         }
         story.comments.push(comment)
