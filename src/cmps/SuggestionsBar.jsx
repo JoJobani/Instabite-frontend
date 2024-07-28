@@ -87,9 +87,9 @@ export function SuggestionsBar() {
                         </button>
                     </li>
                 </ul>
-                <div className="footer">
+                <footer>
                     <p>© Jonathan Menashe for Coding Academy 2024</p>
-                </div>
+                </footer>
             </div>
         </div>
     )
