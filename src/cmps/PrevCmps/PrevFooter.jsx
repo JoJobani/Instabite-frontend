@@ -12,7 +12,7 @@ import Emoji from '../../assets/svg/Emoji.svg?react'
 export function PrevFooter({ story, toggleLike, openDetails, shareStory, onSaveStory, openLikedBy, clickUser, addComment }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const isSaved = loggedInUser.savedStories.find(storyItem => storyItem._id === story._id)
-    const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
+    const isLiked = story.likedBy.find(userId => userId === loggedInUser._id)
     const [comment, setComment] = useState('')
     const textareaRef = useRef(null)
 
@@ -43,7 +43,7 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, onSaveS
         <div className="prev-footer">
             <section className="story-controls">
                 <div className="story-controls-left">
-                    <div onClick={() => toggleLike(story, loggedInUser)}>
+                    <div onClick={() => toggleLike(story, loggedInUser._id)}>
                         {isLiked ? <Unlike fill="red" /> : <Like />}
                     </div>
                     <div onClick={() => openDetails(story._id)}>
