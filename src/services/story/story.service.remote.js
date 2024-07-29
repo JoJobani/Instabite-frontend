@@ -19,16 +19,15 @@ function getById(storyId) {
 async function remove(storyId) {
     return httpService.delete(`story/${storyId}`)
 }
+
 async function save(story) {
-    var savedStory
     if (story._id) {
-        savedStory = await httpService.put(`story/${story._id}`, story)
+        return await httpService.put(`story/${story._id}`, story)
     } else {
-        savedStory = await httpService.post('story', story)
+        return await httpService.post('story', story)
     }
-    return savedStory
 }
 
 async function addStoryComment(storyId, txt) {
-    return await httpService.post(`story/${storyId}/comment`, {txt})
+    return await httpService.post(`story/${storyId}/comment`, { txt })
 }

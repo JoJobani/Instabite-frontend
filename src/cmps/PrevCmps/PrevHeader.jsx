@@ -9,7 +9,7 @@ export function PrevHeader({ story, clickUser, onOpenOptions }) {
                     className="profile-link"
                     onClick={() => clickUser(story.by._id)}>
                     <img src={story.by.imgUrl} />
-                    <p>{story.by.fullname}</p>
+                    <p>{story.by.username}</p>
                 </div>
             </div>
             <div
