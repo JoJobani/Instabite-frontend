@@ -6,6 +6,7 @@ import { SearchMenu } from './SearchMenu.jsx'
 import { MoreMenu } from './MoreMenu.jsx'
 
 import instaClone from '../assets/img/instaClone.png'
+import Instagram from '../assets/svg/Instagram.svg?react'
 import Home from '../assets/svg/Home.svg?react'
 import HomeFocus from '../assets/svg/HomeFocus.svg?react'
 import Search from '../assets/svg/Search.svg?react'
@@ -20,7 +21,8 @@ export function AppNav({ onClickUpload }) {
     return (
         <section className="app-nav">
             <NavLink to='/' className='logo'>
-                <img src={instaClone} alt="logo" />
+                <img src={instaClone} />
+                <Instagram color="black" className='small-logo' />
             </NavLink>
 
             <section className='nav-bar'>
@@ -48,7 +50,7 @@ export function AppNav({ onClickUpload }) {
                         <Messenger />
                         <span>Messages</span>
                     </NavLink>
-                    <button className='link' onClick={() => onClickUpload()}>
+                    <button className='link upload-btn' onClick={() => onClickUpload()}>
                         <Create />
                         <span>Create</span>
                     </button>

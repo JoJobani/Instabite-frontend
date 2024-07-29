@@ -9,25 +9,40 @@
     .logo {
         height: 32px;
         padding: 25px 12px 16px 12px;
-        margin-bottom: 55px;
 
         img {
             height: 30px;
         }
+
+        .small-logo {
+            height: 60px;
+            width: 48px;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 10px;
+            display: none;
+
+            &:hover {
+                transition-duration: 0.2s;
+                background-color: $gray4;
+                cursor: pointer;
+            }
+        }
     }
 
     .nav-bar {
+        margin-top: 55px;
         height: 90%;
+        width: 220px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
 
         .link {
-            //ADD SMALLER SCREEN CUTOFFS HERE
             background: none;
+            width: 100%;
             height: 48px;
-            width: 220px;
             margin-bottom: 8px;
             padding: 12px;
             display: flex;
