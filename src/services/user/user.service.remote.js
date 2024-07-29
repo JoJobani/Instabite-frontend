@@ -28,11 +28,8 @@ function remove(userId) {
 
 async function update(updatedUser) {
 	const user = await httpService.put(`user/${_id}`, ...updatedUser)
-
-	// When admin updates other user's details, do not update loggedinUser
 	const loggedinUser = getLoggedinUser()
 	if (loggedinUser._id === user._id) saveLoggedinUser(user)
-
 	return user
 }
 
@@ -42,11 +39,6 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-	if (!userCred.imgUrl) userCred.imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
-	userCred.following = []
-	userCred.followers = []
-	userCred.likedStories = []
-	userCred.savedStories = []
 	const user = await httpService.post('auth/signup', userCred)
 	return saveLoggedinUser(user)
 }

@@ -80,7 +80,6 @@ export async function saveStory(story, user) {
         }
         user = await userService.update(user)
         store.dispatch({ type: SET_USER, user })
-        return user
     } catch (err) {
         console.log('Cannot save story', err)
     }
