@@ -5,7 +5,7 @@ export function PrevImg({ story, toggleLike }) {
 
     return (
         <div className="prev-img"
-            onDoubleClick={() => toggleLike(story, loggedInUser._id)}>
+            onDoubleClick={() => toggleLike(story, loggedInUser)}>
             <img
                 src={story.imgUrl}
                 alt={story.txt}

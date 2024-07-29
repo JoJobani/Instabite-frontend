@@ -12,7 +12,7 @@ import Emoji from '../../assets/svg/Emoji.svg?react'
 export function DetailsFooter({ story, toggleLike, shareStory, onSaveStory, openLikedBy, addComment }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const isSaved = loggedInUser.savedStories.find(storyItem => storyItem._id === story._id)
-    const isLiked = story.likedBy.find(userId => userId === loggedInUser._id)
+    const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
     const [comment, setComment] = useState('')
     const textareaRef = useRef(null)
 
@@ -44,7 +44,7 @@ export function DetailsFooter({ story, toggleLike, shareStory, onSaveStory, open
 
             <div className="story-controls">
                 <div className="story-controls-left">
-                    <div onClick={() => toggleLike(story, loggedInUser._id)}>
+                    <div onClick={() => toggleLike(story, loggedInUser)}>
                         {isLiked
                             ? <Unlike fill="red" />
                             : <Like />}

@@ -4,7 +4,6 @@ import Unlike from '../../assets/svg/Unlike.svg?react'
 
 export function DetailsTexts({ story, clickUser, onRemoveComment }) {
 
-    console.log(story.comments)
     return (
         <section className="details-texts">
 

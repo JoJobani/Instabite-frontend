@@ -52,15 +52,20 @@ export async function updateStory(story) {
 }
 
 //Optimistic function
-export async function toggleStoryLike(story, userId) {
+export async function toggleStoryLike(story, user) {
     try {
         const storyId = story._id
-        const idx = story.likedBy.findIndex(user => user === userId)
+        const miniUser = {
+            _id: user._id,
+            username: user.username,
+            imgUrl: user.imgUrl
+        }
+        const idx = story.likedBy.findIndex(user => user === miniUser._id)
         if (idx === -1) {
-            store.dispatch({ type: ADD_LIKE, storyId, userId })
-            story.likedBy.push(userId)
+            store.dispatch({ type: ADD_LIKE, storyId, miniUser })
+            story.likedBy.push(miniUser)
         } else {
-            store.dispatch({ type: REMOVE_LIKE, storyId, userId })
+            store.dispatch({ type: REMOVE_LIKE, storyId, miniUser })
             story.likedBy.splice(idx, 1)
         }
         await storyService.save(story)
