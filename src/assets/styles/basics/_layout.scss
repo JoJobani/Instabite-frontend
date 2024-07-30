@@ -30,6 +30,13 @@
             cursor: pointer;
         }
     }
+    @media (min-width:$wide-breakpoint) {
+        .app-nav{
+            .nav-bar{
+                width: 311px;
+            }
+        }
+    }
 
     @media (max-width:$normal-breakpoint) {
         .app-nav {
