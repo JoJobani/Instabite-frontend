@@ -8,7 +8,7 @@ export function StoryList({
     addComment,
     openDetails,
     shareStory,
-    onSaveStory,
+    toggleSave,
     openLikedBy
 }) {
     return (
@@ -23,7 +23,7 @@ export function StoryList({
                     addComment={addComment}
                     openDetails={openDetails}
                     shareStory={shareStory}
-                    onSaveStory={onSaveStory}
+                    toggleSave={toggleSave}
                     openLikedBy={openLikedBy}
                 />
             </li>)

@@ -2,8 +2,7 @@ import { useRef, useEffect, useState } from 'react'
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { userService } from '../services/user/index.js'
-import { removeStory, toggleStoryLike, addStoryComment, removeStoryComment } from "../store/actions/story.actions.js"
-import { saveStory } from "../store/actions/user.actions.js"
+import { removeStory, toggleStoryLike, addStoryComment, removeStoryComment, toggleStorySave } from "../store/actions/story.actions.js"
 import { DetailsImg } from "../cmps/DetailsCmps/DetailsImg.jsx"
 import { DetailsHeader } from "../cmps/DetailsCmps/DetailsHeader.jsx"
 import { DetailsTexts } from "../cmps/DetailsCmps/DetailsTexts.jsx"
@@ -58,14 +57,23 @@ export function StoryDetails() {
         }
     }
 
+    async function toggleSave(story, user) {
+        try {
+            toggleStorySave(story, user)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
     async function clickUser(userId) {
         const user = await userService.getById(userId)
         navigate(`/${user.username}`)
     }
 
-    async function addComment(story,user, txt) {
+    async function addComment(story, user, txt) {
         try {
-            await addStoryComment(story,user, txt)
+            await addStoryComment(story, user, txt)
         } catch (err) {
             console.log(err)
         }
@@ -99,10 +107,6 @@ export function StoryDetails() {
         console.log(`sharing story ${storyId}`)
     }
 
-    function onSaveStory(story, user) {
-        saveStory(story, user)
-    }
-
     if (!story) return
 
     return (
@@ -133,7 +137,7 @@ export function StoryDetails() {
                         story={story}
                         toggleLike={toggleLike}
                         shareStory={shareStory}
-                        onSaveStory={onSaveStory}
+                        toggleSave={toggleSave}
                         openLikedBy={openLikedBy}
                         addComment={addComment}
                     />

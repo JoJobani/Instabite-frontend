@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, useNavigate, Outlet, useOutletContext, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ImgGrid } from "../cmps/ImgGrid.jsx"
+import { storyService } from '../services/story'
 import ShowUploaded from '../assets/svg/ShowUploaded.svg?react'
 import ShowSaved from '../assets/svg/ShowSaved.svg?react'
 import ShowTagged from '../assets/svg/ShowTagged.svg?react'
@@ -14,6 +15,8 @@ export function UserDetails() {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const [user, setUser] = useState(null)
     const [userStories, setUserStories] = useState(null)
+    const [savedStories, setSavedStories] = useState(null)
+    const [taggedStories, setTaggedStories] = useState(null)
     const { userRoute } = useParams()
 
     useEffect(() => {
@@ -29,9 +32,11 @@ export function UserDetails() {
         setUser(foundUser)
     }
 
-    function loadUserStories() {
-        let foundStories = stories.filter(story => story.by._id === user._id)
-        setUserStories(foundStories)
+    async function loadUserStories() {
+        let userStories = await storyService.query({ identifier: user._id, field: 'by._id' })
+        setUserStories(userStories)
+        let savedStories = await storyService.query({ identifier: user._id, field: 'savedBy' })
+        setSavedStories(savedStories)
     }
 
     function onStoryClick(storyId) {
@@ -88,7 +93,7 @@ export function UserDetails() {
                 </NavLink>
             </section>
 
-            <Outlet context={{ user, loggedInUser, stories, userStories, onStoryClick }} />
+            <Outlet context={{ user, loggedInUser, stories, userStories, savedStories, onStoryClick }} />
         </section>
     )
 }
@@ -102,23 +107,23 @@ export function UploadedStories() {
 }
 
 export function SavedStories() {
-    const { user, loggedInUser, onStoryClick } = useOutletContext()
+    const { user, loggedInUser, savedStories, onStoryClick } = useOutletContext()
     const navigate = useNavigate()
 
     useEffect(() => {
         if (user.username !== loggedInUser.username) {
             navigate(`/${user.username}`)
         }
-    }, [])
+    }, [savedStories])
 
     return (
-        <ImgGrid stories={user.savedStories} onStoryClick={onStoryClick} />
+        <ImgGrid stories={savedStories} onStoryClick={onStoryClick} />
     )
 }
 
 export function TaggedStories() {
     const { user, onStoryClick, stories } = useOutletContext()
-    const taggedStories = []
+    let taggedStories = []
 
     useEffect(() => {
         for (let story in stories) {

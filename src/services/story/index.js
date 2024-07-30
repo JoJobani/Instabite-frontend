@@ -13,6 +13,8 @@ function getEmptyStory() {
             imgUrl: ''
         },
         likedBy: [],
+        savedBy: [],
+        taggedUsers: [],
         comments: []
     }
 }

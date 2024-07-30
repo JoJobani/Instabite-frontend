@@ -51,31 +51,6 @@ export async function updateStory(story) {
     }
 }
 
-//Optimistic function
-export async function toggleStoryLike(story, user) {
-    try {
-        const storyId = story._id
-        const miniUser = {
-            _id: user._id,
-            username: user.username,
-            imgUrl: user.imgUrl
-        }
-        const idx = story.likedBy.findIndex(user => user._id === miniUser._id)
-        if (idx === -1) {
-            store.dispatch({ type: ADD_LIKE, storyId, miniUser })
-            story.likedBy.push(miniUser)
-        } else {
-            store.dispatch({ type: REMOVE_LIKE, storyId, miniUser })
-            story.likedBy.splice(idx, 1)
-        }
-        await storyService.save(story)
-    } catch (err) {
-        store.dispatch({ type: STORY_UNDO })
-        console.log('Cannot like story', err)
-        throw err
-    }
-}
-
 export async function addStoryComment(story, user, txt) {
     try {
         const miniUser = {
@@ -106,5 +81,45 @@ export async function removeStoryComment(story, commentId) {
     } catch (err) {
         console.log('Couldnt remove comment', err)
         throw err
+    }
+}
+
+//Optimistic functions
+export async function toggleStoryLike(story, user) {
+    try {
+        const storyId = story._id
+        const miniUser = {
+            _id: user._id,
+            username: user.username,
+            imgUrl: user.imgUrl
+        }
+        const idx = story.likedBy.findIndex(user => user._id === miniUser._id)
+        if (idx === -1) {
+            store.dispatch({ type: ADD_LIKE, storyId, miniUser })
+            story.likedBy.push(miniUser)
+        } else {
+            store.dispatch({ type: REMOVE_LIKE, storyId, miniUser })
+            story.likedBy.splice(idx, 1)
+        }
+        await storyService.save(story)
+    } catch (err) {
+        store.dispatch({ type: STORY_UNDO })
+        console.log('Cannot like story', err)
+        throw err
+    }
+}
+
+export async function toggleStorySave(story, user) {
+    try {
+        const idx = story.savedBy.findIndex(userId => userId === user._id)
+        if (idx === -1) {
+            story.savedBy.push(user._id)
+        } else {
+            story.savedBy.splice(idx, 1)
+        }
+        await storyService.save(story)
+        store.dispatch({ type: UPDATE_STORY, story })
+    } catch (err) {
+        console.log('Cannot save story', err)
     }
 }

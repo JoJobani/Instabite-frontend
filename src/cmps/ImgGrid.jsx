@@ -2,6 +2,9 @@ import Unlike from '../assets/svg/Unlike.svg?react'
 import CommentFull from '../assets/svg/CommentFull.svg?react'
 
 export function ImgGrid({ stories, onStoryClick }) {
+
+    if (!stories) return
+
     return (
         <ul className="img-grid">
             {stories.map(story => (

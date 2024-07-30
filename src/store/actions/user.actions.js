@@ -65,18 +65,3 @@ export async function loadUser(userId) {
         console.log('Cannot load user', err)
     }
 }
-
-export async function saveStory(story, user) {
-    try {
-        const idx = user.savedStories.findIndex(storyItem => storyItem._id === story._id)
-        if (idx === -1) {
-            user.savedStories.push(story)
-        } else {
-            user.savedStories.splice(idx, 1)
-        }
-        user = await userService.update(user)
-        store.dispatch({ type: SET_USER, user })
-    } catch (err) {
-        console.log('Cannot save story', err)
-    }
-}
