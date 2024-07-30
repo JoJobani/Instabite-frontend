@@ -27,12 +27,12 @@ export function storyReducer(state = initialState, action) {
             return { ...state, stories }
         case ADD_LIKE:
             stories = state.stories.map(story => (story._id === action.storyId)
-                ? { ...story, likedBy: [...story.likedBy, action.user] }
+                ? { ...story, likedBy: [...story.likedBy, action.miniUser] }
                 : story)
             return { ...state, stories, lastStories: state.stories }
         case REMOVE_LIKE:
             stories = state.stories.map(story => (story._id === action.storyId)
-                ? { ...story, likedBy: story.likedBy.filter(liker => liker !== action.user) }
+                ? { ...story, likedBy: story.likedBy.filter(user => user._id !== action.miniUser._id) }
                 : story)
             return { ...state, stories, lastStories: state.stories }
 

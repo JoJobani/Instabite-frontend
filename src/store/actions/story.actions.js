@@ -60,7 +60,7 @@ export async function toggleStoryLike(story, user) {
             username: user.username,
             imgUrl: user.imgUrl
         }
-        const idx = story.likedBy.findIndex(user => user === miniUser._id)
+        const idx = story.likedBy.findIndex(user => user._id === miniUser._id)
         if (idx === -1) {
             store.dispatch({ type: ADD_LIKE, storyId, miniUser })
             story.likedBy.push(miniUser)
