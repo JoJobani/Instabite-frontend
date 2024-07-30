@@ -21,7 +21,7 @@ export function StoryIndex() {
         navigate(`/p/${storyId}`)
     }
 
-    async function onOpenOptions(storyId) {
+    function onOpenOptions(storyId) {
         setFocusedStoryId(storyId)
     }
 
@@ -31,7 +31,6 @@ export function StoryIndex() {
 
     async function onRemoveStory() {
         try {
-            if (!confirm('Are you sure you want to delete this story?')) return
             await removeStory(focusedStoryId)
             onCloseOptions()
         } catch (err) {
