@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { uploadService } from '../services/upload.service'
+import { storyService } from '../services/story/index.js'
 import { addStory } from "../store/actions/story.actions.js"
 
 import UploadPlaceholder from '../assets/svg/UploadPlaceholder.svg?react'
@@ -8,28 +9,14 @@ import Back from '../assets/svg/Back.svg?react'
 
 export function UploadModal({ onCloseUpload }) {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
-    const [story, setStory] = useState({
-        txt: '',
-        by: loggedInUser,
-        imgUrl: ''
-    })
+    const [story, setStory] = useState(storyService.getEmptyStory())
     const [isUploading, setIsUploading] = useState(false)
     const modalContentRef = useRef(null)
 
     function handleClickOutside(ev) {
         if (modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
-            onCloseModal()
+            onCloseUpload()
         }
-    }
-
-    function onBack(){
-        if (!confirm('Are you sure you want to discard changes?')) return
-        setIsUploading(false)
-    }
-
-    function onCloseModal() {
-        if (isUploading && !confirm('Are you sure you want to discard changes?')) return
-        onCloseUpload()
     }
 
     async function uploadImg(ev) {
@@ -75,7 +62,7 @@ export function UploadModal({ onCloseUpload }) {
             {isUploading &&
                 <div className='modal-content after' ref={modalContentRef}>
                     <div className='modal-header'>
-                        <button className='back-btn' onClick={onBack}>
+                        <button className='back-btn' onClick={onCloseUpload}>
                             <Back />
                         </button>
                         <p>Create new post</p>
@@ -87,8 +74,8 @@ export function UploadModal({ onCloseUpload }) {
                         <img src={story.imgUrl} />
                         <div className='edit-section'>
                             <div className="profile">
-                                <img src={story.by.imgUrl} />
-                                <p>{story.by.fullname}</p>
+                                <img src={loggedInUser.imgUrl} />
+                                <p>{loggedInUser.username}</p>
                             </div>
                             <div className='edit-comment'>
                                 <textarea

@@ -1,8 +1,31 @@
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 
 export function SuggestionsBar() {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+    const users = useSelector(storeState => storeState.userModule.users)
+    const [suggested, setSuggested] = useState([])
+
+    useEffect(() => {
+        getRandomUsers()
+    }, [])
+
+    function getRandomUsers() {
+        const suggested = [];
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i];
+            if (!loggedInUser.following.includes(user.username) && loggedInUser._id !== user._id) {
+                suggested.push({ _id: user._id, username: user.username, imgUrl: user.imgUrl });
+                if (suggested.length >= 5) {
+                    setSuggested(suggested);
+                    break;
+                }
+            }
+        }
+    }
+
+    if (!suggested) return
 
     return (
         <div className="suggestions-bar">
@@ -26,66 +49,20 @@ export function SuggestionsBar() {
                     </button>
                 </div>
                 <ul className="users-list">
-                    <li className="user-prop">
-                        <div className="user-info">
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg' />
-                            <div className="names">
-                                <p className="username">Bob5231</p>
-                                <p className="sub-line">Suggested for you</p>
+                    {suggested.map(user => (
+                        <li className="user-prop" key={user.username}>
+                            <div className="user-info">
+                                <img src={user.imgUrl} />
+                                <div className="names">
+                                    <p className="username">{user.username}</p>
+                                    <p className="sub-line">Suggested for you</p>
+                                </div>
                             </div>
-                        </div>
-                        <button>
-                            <p>Follow</p>
-                        </button>
-                    </li>
-                    <li className="user-prop">
-                        <div className="user-info">
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg' />
-                            <div className="names">
-                                <p className="username">xXx_Shimon_xXx</p>
-                                <p className="sub-line">Suggested for you</p>
-                            </div>
-                        </div>
-                        <button>
-                            <p>Follow</p>
-                        </button>
-                    </li>
-                    <li className="user-prop">
-                        <div className="user-info">
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg' />
-                            <div className="names">
-                                <p className="username">pop7425</p>
-                                <p className="sub-line">Suggested for you</p>
-                            </div>
-                        </div>
-                        <button>
-                            <p>Follow</p>
-                        </button>
-                    </li>
-                    <li className="user-prop">
-                        <div className="user-info">
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg' />
-                            <div className="names">
-                                <p className="username">MP_1998</p>
-                                <p className="sub-line">Suggested for you</p>
-                            </div>
-                        </div>
-                        <button>
-                            <p>Follow</p>
-                        </button>
-                    </li>
-                    <li className="user-prop">
-                        <div className="user-info">
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg' />
-                            <div className="names">
-                                <p className="username">NotJonathan2309</p>
-                                <p className="sub-line">Suggested for you</p>
-                            </div>
-                        </div>
-                        <button>
-                            <p>Follow</p>
-                        </button>
-                    </li>
+                            <button>
+                                <p>Follow</p>
+                            </button>
+                        </li>
+                    ))}
                 </ul>
                 <footer>
                     <p>© Jonathan Menashe for Coding Academy 2024</p>
