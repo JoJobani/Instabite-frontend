@@ -1,4 +1,3 @@
-import demoStories from '../../../demoData/demoStories.json'
 import { storageService } from '../async-storage.service'
 import { userService } from '../user'
 
@@ -55,12 +54,4 @@ async function save(story, isDemo = false) {
         }
         return await storageService.post(STORAGE_KEY, storyToSave)
     }
-}
-
-async function _demoStories() {
-    await userService.addDemoUsers()
-    for (let story of demoStories) {
-        await save(story, true)
-    }
-    console.log('finished loading stories')
 }

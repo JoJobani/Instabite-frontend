@@ -1,4 +1,3 @@
-import demoUsers from '../../../demoData/demoUsers.json'
 import { storageService } from '../async-storage.service'
 
 const STORAGE_KEY = 'userDB'
@@ -13,8 +12,7 @@ export const userService = {
     remove,
     update,
     getLoggedinUser,
-    saveLoggedinUser,
-    addDemoUsers
+    saveLoggedinUser
 }
 
 async function getUsers(filterBy = {}) {
@@ -68,15 +66,4 @@ function getLoggedinUser() {
 function saveLoggedinUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
-}
-
-async function addDemoUsers() {
-    let users = await getUsers()
-    if (!users || !users.length) {
-        console.log('no users found. loading new users. please wait for a couple of seconds')
-        for (let user of demoUsers) {
-            await signup(user)
-        }
-        console.log('finished loading users')
-    }
 }
