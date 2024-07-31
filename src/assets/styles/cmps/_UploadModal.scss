@@ -89,6 +89,7 @@
         .upload-edit {
             height: 90%;
             width: 100%;
+            flex: 1;
             display: flex;
             align-items: center;
 
@@ -135,10 +136,17 @@
                 }
             }
 
-            img {
-                max-width: 70%;
-                object-fit: contain;
+            .img-container {
+                display: flex;
+                justify-content: center;
+                width: 70%;
+                max-height: 100%;
+
+                img {
+                    object-fit: contain;
+                }
             }
+
         }
     }
 }

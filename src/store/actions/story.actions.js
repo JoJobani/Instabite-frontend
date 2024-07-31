@@ -12,8 +12,9 @@ import {
     STORY_UNDO
 } from '../reducers/story.reducer.js'
 
-//UNMARK THIS TO CREATE DEMO STORIES
-// note: you MUST have at least 7 users in the database
+//UNCOMMENT THIS TO CREATE DEMO STORIES
+//note: you MUST have at least 7 users in the database
+//remember to DISABLE story.by and story.createdAt in backend addStory
 // demoCreator()
 
 export async function loadStories(filterBy) {

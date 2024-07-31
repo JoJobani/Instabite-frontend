@@ -71,7 +71,9 @@ export function UploadModal({ onCloseUpload }) {
                         </button>
                     </div>
                     <div className='upload-edit'>
-                        <img src={story.imgUrl} />
+                        <div className='img-container'>
+                            <img src={story.imgUrl} />
+                        </div>
                         <div className='edit-section'>
                             <div className="profile">
                                 <img src={loggedInUser.imgUrl} />

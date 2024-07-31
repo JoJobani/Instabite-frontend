@@ -12,7 +12,10 @@ export function PrevHeader({ story, clickUser, onOpenOptions }) {
                     onClick={() => clickUser(story.by._id)}>
                     <img src={story.by.imgUrl} />
                     <p>{story.by.username}</p>
-                    <p className='timestamp'>{`• ${formattedTime}`}</p>
+                    {formattedTime
+                        ? <p className='timestamp'>{`• ${formattedTime}`}</p>
+                        : <p className='timestamp'>• right now</p>
+                    }
                 </div>
             </div>
             <div
