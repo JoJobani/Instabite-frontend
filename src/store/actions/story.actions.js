@@ -1,4 +1,5 @@
 import { storyService } from '../../services/story'
+import { demoCreator } from '../../services/demoCreator.js'
 import { makeId } from '../../services/util.service.js'
 import { store } from '../store'
 import {
@@ -10,6 +11,15 @@ import {
     REMOVE_LIKE,
     STORY_UNDO
 } from '../reducers/story.reducer.js'
+
+//UNMARK THIS TO CREATE DEMO STORIES
+// note: you MUST have at least 7 users in the database
+// _createDemo
+
+async function _createDemo() {
+    const stories = await loadStories()
+    if (!stories || !stories.length) await demoCreator()
+}
 
 export async function loadStories(filterBy) {
     try {

@@ -7,6 +7,16 @@ export function makeId(length = 6) {
     return txt
 }
 
+export function getRandom(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+export function getRandomInt(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+}
+
 export function makeLorem(size = 100) {
     var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
     var txt = ''
@@ -23,6 +33,16 @@ export function debounce(func, timeout = 300) {
         clearTimeout(timer)
         timer = setTimeout(() => { func.apply(this, args) }, timeout)
     }
+}
+
+export function randomPastTime() {
+    const HOUR = 1000 * 60 * 60
+    const DAY = 1000 * 60 * 60 * 24
+    const WEEK = 1000 * 60 * 60 * 24 * 7
+    const MONTH = 1000 * 60 * 60 * 24 * 7 * 30
+
+    const pastTime = getRandomInt(HOUR, MONTH)
+    return Date.now() - pastTime
 }
 
 export function timeAgo(ms = new Date()) {
@@ -44,30 +64,30 @@ export function timeAgo(ms = new Date()) {
 }
 
 export function timeAgoExtended(ms = new Date()) {
-	const date = ms instanceof Date ? ms : new Date(ms)
-	const formatter = new Intl.RelativeTimeFormat('en')
-	const ranges = {
-		years: 3600 * 24 * 365,
-		months: 3600 * 24 * 30,
-		weeks: 3600 * 24 * 7,
-		days: 3600 * 24,
-		hours: 3600,
-		minutes: 60,
-		seconds: 1,
-	}
-	const secondsElapsed = (date.getTime() - Date.now()) / 1000
-	for (let key in ranges) {
-		if (ranges[key] < Math.abs(secondsElapsed)) {
-			const delta = secondsElapsed / ranges[key]
-			let time = formatter.format(Math.round(delta), key)
-			if (time.includes('in')) {
-				time = time.replace('in ', '')
-				time = time.replace('ago', '')
-				time += ' ago'
-			}
-			return time //? time : 'Just now'
-		}
-	}
+    const date = ms instanceof Date ? ms : new Date(ms)
+    const formatter = new Intl.RelativeTimeFormat('en')
+    const ranges = {
+        years: 3600 * 24 * 365,
+        months: 3600 * 24 * 30,
+        weeks: 3600 * 24 * 7,
+        days: 3600 * 24,
+        hours: 3600,
+        minutes: 60,
+        seconds: 1,
+    }
+    const secondsElapsed = (date.getTime() - Date.now()) / 1000
+    for (let key in ranges) {
+        if (ranges[key] < Math.abs(secondsElapsed)) {
+            const delta = secondsElapsed / ranges[key]
+            let time = formatter.format(Math.round(delta), key)
+            if (time.includes('in')) {
+                time = time.replace('in ', '')
+                time = time.replace('ago', '')
+                time += ' ago'
+            }
+            return time //? time : 'Just now'
+        }
+    }
 }
 
 export function saveToStorage(key, value) {
