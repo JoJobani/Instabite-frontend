@@ -55,7 +55,7 @@ export function RootCmp() {
                             </main>
                         </>
                     }>
-                        <Route path="" element={<StoryIndex />} />
+                        <Route path="" element={<StoryIndex onClickUpload={onClickUpload} />} />
                         <Route path="/explore" element={<Explore />} />
                         <Route path="/direct" element={<Messages />} />
                         <Route path="/:userRoute" element={<UserDetails />} >

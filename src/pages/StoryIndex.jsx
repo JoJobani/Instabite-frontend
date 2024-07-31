@@ -5,9 +5,10 @@ import { removeStory, toggleStoryLike, addStoryComment, toggleStorySave } from "
 import { StoryList } from "../cmps/StoryList.jsx"
 import { SuggestionsBar } from "../cmps/SuggestionsBar.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
+import { IndexHeader } from "../cmps/MobileCmps/IndexHeader.jsx"
 import { userService } from "../services/user/index.js"
 
-export function StoryIndex() {
+export function StoryIndex({ onClickUpload }) {
     const navigate = useNavigate()
     const stories = useSelector(storeState => storeState.storyModule.stories)
     const [focusedStoryId, setFocusedStoryId] = useState(null)
@@ -74,6 +75,7 @@ export function StoryIndex() {
 
     return (
         <main className="story-index">
+            <IndexHeader onClickUpload={onClickUpload} />
             {focusedStoryId &&
                 <StoryOptionsModal
                     onCloseOptions={onCloseOptions}

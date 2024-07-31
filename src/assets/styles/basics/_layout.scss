@@ -30,9 +30,10 @@
             cursor: pointer;
         }
     }
+
     @media (min-width:$wide-breakpoint) {
-        .app-nav{
-            .nav-bar{
+        .app-nav {
+            .nav-bar {
                 width: 311px;
             }
         }
@@ -79,6 +80,26 @@
         display: flex;
         flex-direction: column-reverse;
 
+        .story-index {
+            .index-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-inline: 10px;
+                height: 44px;
+                border-bottom: 1px $seperator solid;
+
+                .left-header {
+                    height: 30px;
+
+                    img {
+                        height: 30px;
+                    }
+                }
+
+            }
+        }
+
         .prev-header {
             padding-inline: 12px;
         }
@@ -87,7 +108,7 @@
             padding-inline: 16px;
         }
 
-        .story-list{
+        .story-list {
             width: 100%;
         }
 
