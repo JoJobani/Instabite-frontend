@@ -37,6 +37,8 @@ export function UserDetails() {
         setUserStories(userStories)
         let savedStories = await storyService.query({ identifier: user._id, field: 'savedBy' })
         setSavedStories(savedStories)
+        let taggedStories = await storyService.query({ identifier: user._id, field: 'taggedUsers' })
+        setTaggedStories(taggedStories)
     }
 
     function onStoryClick(storyId) {
@@ -93,7 +95,7 @@ export function UserDetails() {
                 </NavLink>
             </section>
 
-            <Outlet context={{ user, loggedInUser, stories, userStories, savedStories, onStoryClick }} />
+            <Outlet context={{ user, loggedInUser, stories, userStories, savedStories, taggedStories, onStoryClick }} />
         </section>
     )
 }
@@ -122,16 +124,8 @@ export function SavedStories() {
 }
 
 export function TaggedStories() {
-    const { user, onStoryClick, stories } = useOutletContext()
-    let taggedStories = []
-
-    useEffect(() => {
-        for (let story in stories) {
-            if (user.taggedStories.includes(story._id)) taggedStories.push(story)
-        }
-    }, [taggedStories])
-
+    const { onStoryClick, taggedStories } = useOutletContext()
     return (
-        <ImgGrid stories={user.taggedStories} onStoryClick={onStoryClick} />
+        <ImgGrid stories={taggedStories} onStoryClick={onStoryClick} />
     )
 }
