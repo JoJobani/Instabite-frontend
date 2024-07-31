@@ -14,7 +14,7 @@ import {
 
 //UNMARK THIS TO CREATE DEMO STORIES
 // note: you MUST have at least 7 users in the database
-// _createDemo
+_createDemo()
 
 async function _createDemo() {
     const stories = await loadStories()
