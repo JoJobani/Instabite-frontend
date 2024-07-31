@@ -17,27 +17,57 @@ export function makeLorem(size = 100) {
     return txt
 }
 
-export function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-export function randomPastTime() {
-    const HOUR = 1000 * 60 * 60
-    const DAY = 1000 * 60 * 60 * 24
-    const WEEK = 1000 * 60 * 60 * 24 * 7
-
-    const pastTime = getRandomIntInclusive(HOUR, WEEK)
-    return Date.now() - pastTime
-}
-
 export function debounce(func, timeout = 300) {
     let timer
     return (...args) => {
         clearTimeout(timer)
         timer = setTimeout(() => { func.apply(this, args) }, timeout)
     }
+}
+
+export function timeAgo(ms = new Date()) {
+    const date = ms instanceof Date ? ms : new Date(ms)
+    const secondsElapsed = (Date.now() - date.getTime()) / 1000
+    const ranges = [
+        { unit: 'w', seconds: 604800 },
+        { unit: 'd', seconds: 86400 },
+        { unit: 'h', seconds: 3600 },
+        { unit: 'm', seconds: 60 },
+        { unit: 's', seconds: 1 }
+    ]
+    for (let range of ranges) {
+        if (secondsElapsed >= range.seconds) {
+            const value = Math.floor(secondsElapsed / range.seconds)
+            return `${value}${range.unit}`
+        }
+    }
+}
+
+export function timeAgoExtended(ms = new Date()) {
+	const date = ms instanceof Date ? ms : new Date(ms)
+	const formatter = new Intl.RelativeTimeFormat('en')
+	const ranges = {
+		years: 3600 * 24 * 365,
+		months: 3600 * 24 * 30,
+		weeks: 3600 * 24 * 7,
+		days: 3600 * 24,
+		hours: 3600,
+		minutes: 60,
+		seconds: 1,
+	}
+	const secondsElapsed = (date.getTime() - Date.now()) / 1000
+	for (let key in ranges) {
+		if (ranges[key] < Math.abs(secondsElapsed)) {
+			const delta = secondsElapsed / ranges[key]
+			let time = formatter.format(Math.round(delta), key)
+			if (time.includes('in')) {
+				time = time.replace('in ', '')
+				time = time.replace('ago', '')
+				time += ' ago'
+			}
+			return time //? time : 'Just now'
+		}
+	}
 }
 
 export function saveToStorage(key, value) {

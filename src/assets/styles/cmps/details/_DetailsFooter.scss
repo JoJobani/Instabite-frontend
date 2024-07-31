@@ -33,7 +33,8 @@
         cursor: pointer;
     }
 
-    .story-date {
+    .timestamp{
+        margin: 0;
         padding-inline: 16px;
         color: $gray1;
         font-size: 12px;

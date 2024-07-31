@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { timeAgoExtended } from '../../services/util.service.js'
 
 import Like from '../../assets/svg/Like.svg?react'
 import Unlike from '../../assets/svg/Unlike.svg?react'
@@ -13,6 +14,7 @@ export function DetailsFooter({ story, toggleLike, shareStory, toggleSave, openL
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const isSaved = story.savedBy.find(userId => userId === loggedInUser._id)
     const isLiked = story.likedBy.find(user => user._id === loggedInUser._id)
+    let formattedTime = timeAgoExtended(+story.createdAt)
     const [comment, setComment] = useState('')
     const textareaRef = useRef(null)
 
@@ -66,11 +68,7 @@ export function DetailsFooter({ story, toggleLike, shareStory, toggleSave, openL
             <div className="story-likes" onClick={() => openLikedBy(story._id)}>
                 {story.likedBy.length > 0 ? `${story.likedBy.length} likes` : ''}
             </div>
-
-            <div className='story-date'>
-                some time ago
-            </div>
-
+            <p className='timestamp'>{`${formattedTime}`}</p>
             <div className="add-comment">
                 <Emoji />
                 <form onSubmit={onAddComment}>
