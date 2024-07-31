@@ -14,7 +14,7 @@ export function DetailsTexts({ story, clickUser, onRemoveComment }) {
                         className="user"
                         onClick={() => clickUser(story.by._id)}
                     >
-                        {story.by.fullname}
+                        {story.by.username}
                     </span>
                     {" " + story.txt}
                 </p>

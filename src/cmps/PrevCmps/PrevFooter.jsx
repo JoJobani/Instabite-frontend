@@ -70,7 +70,7 @@ export function PrevFooter({ story, toggleLike, openDetails, shareStory, toggleS
                         className="user"
                         onClick={() => clickUser(story.by._id)}
                     >
-                        {story.by.fullname}
+                        {story.by.username}
                     </span>
                     {" " + story.txt}
                 </p>
