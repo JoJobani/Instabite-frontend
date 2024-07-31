@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { SearchMenu } from './SearchMenu.jsx'
 import { MoreMenu } from './MoreMenu.jsx'
 
-import instaClone from '../assets/img/instaClone.png'
+import instaBite from '../assets/img/instaBite.png'
 import Instagram from '../assets/svg/Instagram.svg?react'
 import Home from '../assets/svg/Home.svg?react'
 import HomeFocus from '../assets/svg/HomeFocus.svg?react'
@@ -21,7 +21,7 @@ export function AppNav({ onClickUpload }) {
     return (
         <section className="app-nav">
             <NavLink to='/' className='logo'>
-                <img src={instaClone} />
+                <img src={instaBite} />
                 <Instagram color="black" className='small-logo' />
             </NavLink>
 

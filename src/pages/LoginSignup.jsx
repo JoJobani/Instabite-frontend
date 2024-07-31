@@ -2,7 +2,7 @@ import { useState } from "react"
 import { LoginForm } from "../cmps/LoginForm.jsx"
 import { SignupForm } from "../cmps/SignupForm.jsx"
 import LoginVisual from "../assets/img/loginVisual.png"
-import InstaClone from "../assets/img/InstaClone.png"
+import instaBite from "../assets/img/instaBite.png"
 
 export function LoginSignup() {
     const [isSignup, setIsSignup] = useState(false)
@@ -15,7 +15,7 @@ export function LoginSignup() {
                 </div>
                 <div className="form-container">
                     <div className="input-container">
-                        <img src={InstaClone} />
+                        <img src={instaBite} />
                         {!isSignup && <LoginForm />}
                         {isSignup && <SignupForm />}
                     </div>

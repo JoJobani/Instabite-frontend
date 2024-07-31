@@ -1,4 +1,4 @@
-import instaClone from '../../assets/img/instaClone.png'
+import instaBite from '../../assets/img/instaBite.png'
 import Create from '../../assets/svg/Create.svg?react'
 
 export function IndexHeader({ onClickUpload }) {
@@ -6,7 +6,7 @@ export function IndexHeader({ onClickUpload }) {
     return (
         <section className="index-header">
             <div className="left-header">
-                <img src={instaClone} onClick={() => navigate(`/`)} />
+                <img src={instaBite} onClick={() => navigate(`/`)} />
             </div>
             <div className="right-header">
                 <button className='link upload-btn' onClick={() => onClickUpload()}>

@@ -12,7 +12,7 @@ export default defineConfig({
 		})
 	],
 	build: {
-		outDir: '../Instaclone-backend/public',
+		outDir: '../Instabite-backend/public',
 		emptyOutDir: true,
 	},
 	server: {
