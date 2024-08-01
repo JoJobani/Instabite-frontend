@@ -7,8 +7,10 @@ import { DetailsImg } from "../cmps/DetailsCmps/DetailsImg.jsx"
 import { DetailsHeader } from "../cmps/DetailsCmps/DetailsHeader.jsx"
 import { DetailsTexts } from "../cmps/DetailsCmps/DetailsTexts.jsx"
 import { DetailsFooter } from "../cmps/DetailsCmps/DetailsFooter.jsx"
+import { StoryPreview } from "../cmps/StoryPreview.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
 import Close from "../assets/svg/close.svg?react"
+import ChevronUp from "../assets/svg/ChevronUp.svg?react"
 
 export function StoryDetails() {
     const navigate = useNavigate()
@@ -35,6 +37,10 @@ export function StoryDetails() {
         if (!openedStoryOptions && modalContentRef.current && !modalContentRef.current.contains(ev.target)) {
             onCloseDetails()
         }
+    }
+
+    function openDetails() {
+        return
     }
 
     function onCloseDetails() {
@@ -64,7 +70,6 @@ export function StoryDetails() {
             console.log(err)
         }
     }
-
 
     async function clickUser(userId) {
         const user = await userService.getById(userId)
@@ -109,43 +114,65 @@ export function StoryDetails() {
     if (!story) return
 
     return (
-        <div className='modal-overlay' onClick={handleClickOutside}>
-            {openedStoryOptions &&
-                <StoryOptionsModal
-                    onCloseOptions={onCloseOptions}
-                    onRemoveStory={onRemoveStory}
-                />}
+        <div className='details-container'>
+            <div className='modal-overlay' onClick={handleClickOutside}>
+                {openedStoryOptions &&
+                    <StoryOptionsModal
+                        onCloseOptions={onCloseOptions}
+                        onRemoveStory={onRemoveStory}
+                    />}
 
-            <div className='story-details' ref={modalContentRef}>
-                <DetailsImg
-                    story={story}
-                    toggleLike={toggleLike}
-                />
-                <section className='details-info'>
-                    <DetailsHeader
-                        story={story}
-                        clickUser={clickUser}
-                        onOpenOptions={onOpenOptions}
-                    />
-                    <DetailsTexts
-                        story={story}
-                        clickUser={clickUser}
-                        onRemoveComment={onRemoveComment}
-                    />
-                    <DetailsFooter
+                <div className='story-details' ref={modalContentRef}>
+                    <DetailsImg
                         story={story}
                         toggleLike={toggleLike}
-                        shareStory={shareStory}
-                        toggleSave={toggleSave}
-                        openLikedBy={openLikedBy}
-                        addComment={addComment}
                     />
-                </section>
+                    <section className='details-info'>
+                        <DetailsHeader
+                            story={story}
+                            clickUser={clickUser}
+                            onOpenOptions={onOpenOptions}
+                        />
+                        <DetailsTexts
+                            story={story}
+                            clickUser={clickUser}
+                            onRemoveComment={onRemoveComment}
+                        />
+                        <DetailsFooter
+                            story={story}
+                            toggleLike={toggleLike}
+                            shareStory={shareStory}
+                            toggleSave={toggleSave}
+                            openLikedBy={openLikedBy}
+                            addComment={addComment}
+                        />
+                    </section>
+                </div>
+
+                <div className='close-btn'>
+                    <Close />
+                </div>
+            </div>
+            <div className='mobile-details'>
+                <div className='mobile-header'>
+                    <button className='close-btn' onClick={onCloseDetails}>
+                        <ChevronUp />
+                    </button>
+                </div>
+                <StoryPreview
+                    story={story}
+                    clickUser={clickUser}
+                    onOpenOptions={onOpenOptions}
+                    toggleLike={toggleLike}
+                    addComment={addComment}
+                    openDetails={openDetails}
+                    shareStory={shareStory}
+                    toggleSave={toggleSave}
+                    openLikedBy={openLikedBy}
+                />
             </div>
 
-            <div className='close-btn'>
-                <Close />
-            </div>
         </div>
+
     )
 }
