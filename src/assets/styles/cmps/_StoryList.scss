@@ -7,5 +7,11 @@
     li {
         display: flex;
         justify-content: center;
+
+        &:last-of-type {
+            .story-preview {
+                border-bottom: none;
+            }
+        }
     }
 }

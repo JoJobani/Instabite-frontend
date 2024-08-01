@@ -7,8 +7,12 @@
         display: flex;
         width: 100%;
     }
+}
 
-    @media (max-width:$mobile-breakpoint) {
+@media (max-width:$mobile-breakpoint) {
+    .story-index {
+        width: 100%;
+
         .index-header {
             display: flex;
             justify-content: space-between;
@@ -36,6 +40,15 @@
 
         .story-list {
             width: 100%;
+
+            li {
+                width: 100%;
+
+                .story-preview {
+                    width: 100%;
+                    padding-inline: 6%;
+                }
+            }
         }
     }
 }
