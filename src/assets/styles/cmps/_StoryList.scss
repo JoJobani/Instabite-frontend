@@ -15,3 +15,13 @@
         }
     }
 }
+
+@media (max-width:$mobile-breakpoint) {
+    .story-list {
+        width: 100%;
+
+        li {
+            width: 100%;
+        }
+    }
+}

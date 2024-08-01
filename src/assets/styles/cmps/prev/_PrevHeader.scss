@@ -39,3 +39,9 @@
         cursor: pointer;
     }
 }
+
+@media (max-width:$mobile-breakpoint) {
+    .prev-header {
+        padding-inline: 12px;
+    }
+}

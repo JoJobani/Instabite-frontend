@@ -6,3 +6,9 @@
     border-bottom: 1px $seperator solid;
     margin-bottom: 20px;
 }
+
+@media (max-width:$mobile-breakpoint) {
+    .story-preview {
+        width: 100%;
+    }
+}

@@ -150,3 +150,36 @@
         }
     }
 }
+
+@media (max-width:$mobile-breakpoint) {
+    .modal-content {
+        width: 100%;
+
+        &.after {
+            width: 100%;
+            height: 90%;
+
+            .upload-edit {
+                flex-direction: column;
+
+                .edit-section {
+                    display: flex;
+                    width: 100%;
+
+                    .profile {
+                        display: none;
+                    }
+
+                    .edit-comment {
+                        width: 100%;
+
+                        textarea {
+                            min-height: 0;
+                            height: 90%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
