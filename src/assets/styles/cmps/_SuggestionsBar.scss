@@ -100,4 +100,8 @@
             }
         }
     }
+
+    @media (max-width:$narrow-breakpoint) {
+        display: none;
+    }
 }

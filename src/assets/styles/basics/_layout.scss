@@ -30,49 +30,6 @@
             cursor: pointer;
         }
     }
-
-    @media (min-width:$wide-breakpoint) {
-        .app-nav {
-            .nav-bar {
-                width: 311px;
-            }
-        }
-    }
-
-    @media (max-width:$normal-breakpoint) {
-        .app-nav {
-
-            .nav-bar {
-                width: 48px;
-            }
-
-            span {
-                display: none;
-            }
-
-            .logo {
-                padding: 0;
-
-                img {
-                    display: none;
-                }
-
-                .small-logo {
-                    display: block;
-                }
-            }
-
-            .nav-bar {
-                margin-top: 64px;
-            }
-        }
-    }
-
-    @media (max-width:$narrow-breakpoint) {
-        .suggestions-bar {
-            display: none;
-        }
-    }
 }
 
 @media (max-width:$mobile-breakpoint) {
@@ -80,70 +37,8 @@
         display: flex;
         flex-direction: column-reverse;
 
-        .story-index {
-            .index-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding-inline: 10px;
-                height: 44px;
-                border-bottom: 1px $seperator solid;
-
-                .left-header {
-                    height: 30px;
-
-                    img {
-                        height: 30px;
-                    }
-                }
-
-            }
-        }
-
-        .prev-header {
-            padding-inline: 12px;
-        }
-
-        .prev-footer {
-            padding-inline: 16px;
-        }
-
-        .story-list {
-            width: 100%;
-        }
-
-        .app-nav {
-            bottom: 0;
-            position: sticky;
-            padding: 0;
-            height: 50px;
-            border-top: 1px $seperator solid;
-
-            .logo {
-                display: none;
-            }
-
-            .nav-bar {
-                width: 100%;
-                margin: 0;
-
-                .main-nav {
-                    display: flex;
-                    justify-content: space-evenly;
-
-                    .link {
-                        width: fit-content;
-                    }
-
-                    .upload-btn {
-                        display: none;
-                    }
-                }
-
-                .lower-nav {
-                    display: none;
-                }
-            }
+        .main-content {
+            height: 100%;
         }
     }
 }

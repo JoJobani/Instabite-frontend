@@ -7,4 +7,9 @@
             cursor: pointer;
         }
     }
+
+    @media (max-width:$mobile-breakpoint) {
+        max-width: 100%;
+        margin-top: 2%;
+    }
 }

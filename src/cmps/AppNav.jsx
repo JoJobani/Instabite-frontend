@@ -6,7 +6,7 @@ import { SearchMenu } from './SearchMenu.jsx'
 import { MoreMenu } from './MoreMenu.jsx'
 
 import instaBite from '../assets/img/instaBite.png'
-import Instagram from '../assets/svg/Instagram.svg?react'
+import logo from '../assets/img/logo.png'
 import Home from '../assets/svg/Home.svg?react'
 import HomeFocus from '../assets/svg/HomeFocus.svg?react'
 import Search from '../assets/svg/Search.svg?react'
@@ -22,7 +22,8 @@ export function AppNav({ onClickUpload }) {
         <section className="app-nav">
             <NavLink to='/' className='logo'>
                 <img src={instaBite} />
-                <Instagram color="black" className='small-logo' />
+                {/* <Instagram color="black" className='small-logo' /> */}
+                <img src={logo} className='small-logo' />
             </NavLink>
 
             <section className='nav-bar'>

@@ -7,4 +7,36 @@
         display: flex;
         width: 100%;
     }
+
+    @media (max-width:$mobile-breakpoint) {
+        .index-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-inline: 10px;
+            height: 44px;
+            border-bottom: 1px $seperator solid;
+
+            .left-header {
+                height: 30px;
+
+                img {
+                    height: 30px;
+                }
+            }
+
+        }
+
+        .prev-header {
+            padding-inline: 12px;
+        }
+
+        .prev-footer {
+            padding-inline: 16px;
+        }
+
+        .story-list {
+            width: 100%;
+        }
+    }
 }

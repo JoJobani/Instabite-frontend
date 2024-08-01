@@ -1,8 +1,19 @@
+import { useRef } from 'react'
+import { getRandomInt } from '../../services/util.service.js'
 import MoreOptions from '../../assets/svg/MoreOptions.svg?react'
 import Like from '../../assets/svg/Like.svg?react'
 import Unlike from '../../assets/svg/Unlike.svg?react'
 
 export function DetailsTexts({ story, clickUser, onRemoveComment }) {
+
+    //temp func to assign random like numbers
+    const likesRef = useRef({})
+    function getLikes(likesRef, commentId) {
+        if (!likesRef.current[commentId]) {
+            likesRef.current[commentId] = getRandomInt(0, 100)
+        }
+        return likesRef.current[commentId]
+    }
 
     return (
         <section className="details-texts">
@@ -40,7 +51,7 @@ export function DetailsTexts({ story, clickUser, onRemoveComment }) {
                                 </p>
                                 <div className='comment-controls'>
                                     <p>
-                                        0 likes
+                                        {getLikes(likesRef, comment.id)} likes
                                     </p>
                                     <p>Reply</p>
                                     <button

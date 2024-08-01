@@ -64,7 +64,6 @@
 
                 p {
                     margin: 0 20px 0 0;
-                    cursor: pointer;
 
                     span {
                         font-weight: $font-weight-semibold;
@@ -128,6 +127,32 @@
             }
 
 
+        }
+    }
+
+    @media (max-width:$mobile-breakpoint) {
+        height: 100%;
+        width: 100%;
+        padding-inline: 0;
+
+        header {
+            display: flex;
+            padding-inline: 20px;
+
+            .user-img {
+                img {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+
+            .user-info {
+                display: flex;
+
+                .user-headline {
+                    display: flex;
+                }
+            }
         }
     }
 }

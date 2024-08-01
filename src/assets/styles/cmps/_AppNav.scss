@@ -8,16 +8,16 @@
 
     .logo {
         height: 32px;
-        padding: 25px 12px 16px 12px;
+        padding: 25px 0 16px 12px;
 
         img {
-            height: 30px;
+            height: 35px;
         }
 
         .small-logo {
-            height: 60px;
+            height: 58px;
             width: 48px;
-            padding: 12px;
+            padding-block: 12px;
             border-radius: 10px;
             margin-top: 10px;
             display: none;
@@ -76,6 +76,69 @@
 
         .selected {
             font-weight: $font-weight-bold;
+        }
+    }
+
+    @media (min-width:$wide-breakpoint) {
+        .nav-bar {
+            width: 311px;
+        }
+    }
+
+    @media (max-width:$normal-breakpoint) {
+        .nav-bar {
+            width: 48px;
+            margin-top: 64px;
+        }
+
+        span {
+            display: none;
+        }
+
+        .logo {
+            padding: 0;
+
+            img {
+                display: none;
+            }
+
+            .small-logo {
+                display: block;
+            }
+        }
+    }
+
+    @media (max-width:$mobile-breakpoint) {
+        bottom: 0;
+        position: sticky;
+        padding: 0;
+        height: 50px;
+        border-top: 1px $seperator solid;
+
+        .logo {
+            display: none;
+        }
+
+        .nav-bar {
+            width: 100%;
+            margin: 0;
+
+            .main-nav {
+                display: flex;
+                justify-content: space-evenly;
+
+                .link {
+                    width: fit-content;
+                }
+
+                .upload-btn {
+                    display: none;
+                }
+            }
+
+            .lower-nav {
+                display: none;
+            }
         }
     }
 }

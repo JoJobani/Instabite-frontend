@@ -7,11 +7,22 @@ export function makeId(length = 6) {
     return txt
 }
 
+export function shuffleArray(array) {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        const temp = shuffled[i]
+        shuffled[i] = shuffled[j]
+        shuffled[j] = temp
+    }
+    return shuffled
+}
+
 export function getRandom(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-export function getRandomInt(min, max) {
+export function getRandomInt(min = 50, max = 150) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive

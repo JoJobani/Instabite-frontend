@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { NavLink, useNavigate, Outlet, useOutletContext, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ImgGrid } from "../cmps/ImgGrid.jsx"
@@ -6,7 +6,7 @@ import { storyService } from '../services/story'
 import ShowUploaded from '../assets/svg/ShowUploaded.svg?react'
 import ShowSaved from '../assets/svg/ShowSaved.svg?react'
 import ShowTagged from '../assets/svg/ShowTagged.svg?react'
-
+import { getRandomInt } from '../services/util.service.js'
 
 export function UserDetails() {
     const navigate = useNavigate()
@@ -18,6 +18,10 @@ export function UserDetails() {
     const [savedStories, setSavedStories] = useState(null)
     const [taggedStories, setTaggedStories] = useState(null)
     const { userRoute } = useParams()
+
+    //temp fake followers
+    const followers = useRef(getRandomInt(100, 1000))
+    const following = useRef(getRandomInt(100, 1000))
 
     useEffect(() => {
         loadUser()
@@ -68,8 +72,10 @@ export function UserDetails() {
                     </div>
                     <div className="user-stats">
                         <p><span>{userStories ? `${userStories.length}` : '0'}</span> posts</p>
-                        <p><span>{user.followers.length}</span> followers</p>
-                        <p><span>{user.following.length}</span> following</p>
+                        {/* <p><span>{user.followers.length}</span> followers</p>
+                        <p><span>{user.following.length}</span> following</p> */}
+                        <p><span>{followers.current}</span> followers</p>
+                        <p><span>{following.current}</span> following</p>
                     </div>
                     <div className="user-texts">
                         <p className='fullname'>{user.fullname}</p>
