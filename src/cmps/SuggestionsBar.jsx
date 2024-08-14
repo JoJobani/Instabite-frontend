@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
-
 export function SuggestionsBar() {
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
     const users = useSelector(storeState => storeState.userModule.users)

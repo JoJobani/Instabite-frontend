@@ -9,7 +9,7 @@ import { DetailsTexts } from "../cmps/DetailsCmps/DetailsTexts.jsx"
 import { DetailsFooter } from "../cmps/DetailsCmps/DetailsFooter.jsx"
 import { StoryPreview } from "../cmps/StoryPreview.jsx"
 import { StoryOptionsModal } from "../cmps/StoryOptionsModal.jsx"
-import Close from "../assets/svg/close.svg?react"
+import Close from "../assets/svg/Close.svg?react"
 import ChevronUp from "../assets/svg/ChevronUp.svg?react"
 
 export function StoryDetails() {
